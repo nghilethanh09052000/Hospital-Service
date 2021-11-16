@@ -3,13 +3,13 @@
    <head>
       <meta charset="utf-8">
       <title>Trang chủ</title>
-      <link rel="stylesheet" type="text/css" href="TrangChu.css">
+      <link rel="stylesheet" type="text/css" href="/TrangChu.css">
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <link rel="shortcut icon" type="image/png" href="HinhAnh/2.png">
    </head>
    <body>
-      <header>
+      <nav class="header">
          <a href="#" class="logo"><img src='HinhAnh/logo1.jpg' alt="hinh"></a>
          <div class="navigation">
             <ul class="menu">
@@ -67,14 +67,19 @@
                   </ul>
                </li>
                <li class="menu-item">
-                  <a href="login.html">Đăng Nhập</a>
+                  <a href="/login">Đăng Nhập</a>
                </li>
             </ul>
          </div>
          <div class="menu-btn"></div>
-      </header>
+      </nav>
       
-      <section class="slider">
+      <div class="slider">
+         <div class="myslide fade">
+             
+            <img src="HinhAnh/Untitled-1.png" style="width: 100%; height: 100%;"alt="hinh">
+            <div class="circleLoading"></div>
+         </div>
 
          <div class="myslide fade">
             
@@ -88,11 +93,7 @@
             <div class="circleLoading"></div>
          </div>
 
-          <div class="myslide fade">
-             
-            <img src="HinhAnh/Untitled-1.png" style="width: 100%; height: 100%;"alt="hinh">
-            <div class="circleLoading"></div>
-         </div>
+         
 
           <div class="myslide fade">
              
@@ -128,7 +129,7 @@
             </a>
          </div>
 
-      </section>
+      </div>
          
       <section>
          <div class="container">
@@ -196,9 +197,9 @@
                   Chúng tôi luôn tâm niệm làm tất cả những gì tốt nhất để chăm sóc cho sức khỏe đôi mắt của bạn và những người thân yêu.</p>
             </div>
             <div class="trailer">
-               <<iframe width="560" height="315" src="https://www.youtube.com/embed/ha6dx4qrJyA" title="YouTube video player" frameborder="0" 
+               <iframe width="560" height="315" src="https://www.youtube.com/embed/ha6dx4qrJyA" title="YouTube video player" frameborder="0" 
                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-               </iframe> >
+               </iframe> 
                <!-- <video src="HinhAnh/video.mp4" autoplay="true"></video> -->
                <img src="HinhAnh/close1.png" class="close" onclick="toggleVideo()" alt="hinh">
             </div>
@@ -263,8 +264,8 @@
          <div class="footer-col">
             <h4>Hotline</h4>
             <div class="social-links">
-               <a  href="#"><i class="fab fa-facebook-f"></i></a>
-               <a  href="#"><i class="fab fa-twitter"></i></a>
+               <a  href="#"><i class="fa-blender-phone"></i>19001568</a>
+               
                
             </div>
          </div>
@@ -300,7 +301,7 @@
 
          //javascript for scrolling header:
           window.addEventListener("scroll" ,function(){
-            var header=document.querySelector("header");
+            var header=document.querySelector(".header");
             if (window.scrollY>0) {
                header.classList.add('white');
             }
