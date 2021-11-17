@@ -22,21 +22,11 @@
             <div class="container">
                <div class="user signupBx">
                   <div class="formBx">
-                     <form action="register-check.php" method="post" name="register">
+                     <form action="/register">
                         <h2>Create an account</h2>
-
-                        <?php if (isset($_GET['error'])) { ?>
-                           <p style="text-align: center;color: #F24444; padding-bottom:10px; font-weight:bold" ><?php echo $_GET['error']; ?></p>
-                        <?php } ?>
-
-                  
-
                         <input type="text" name="email" placeholder="Email" >
                         <input type="password" name="password" placeholder="Create Password" >
                         <input type="password" placeholder="Confirm Password" name="re_password">
-
-                      
-                        
                         <input type="submit"  value="Sign Up" name="register">
                         <p class="signup">Already have an account ?
                            <a href="/login" onclick="toggleForm()">Sign in</a>
@@ -51,12 +41,21 @@
          </div>
       </section>
       <script>
-         function toggleForm(){
-         	section=document.querySelector('section');
-         	container=document.querySelector('.container');
-         	section.classList.toggle('active');
-         	container.classList.toggle('active');
-         }
+        const form = document.querySelector('form');
+        form.addEventListener('submit',async(e)=>{
+            e.preventDefault();
+            const email = form.email.value;
+            const password = form.password.value;
+            try{
+               const res = await fetch('/register',{
+                  method:'POST',
+                  body:JSON.stringify( {email,password} ),
+                  headers:{'Content-Type':'application/json'}
+               });
+            }catch(err){
+               console.log(err);
+            }
+         });
 
          
       </script>
