@@ -1,14 +1,15 @@
 # Expressjs
-1/ Install npm:
+1/ <b>Install npm:</b>
 ---- auth nodejs ----
-npm init
-npm install -g nodemon
-npm install express
-npm install ejs
-npm install lodash
-npm install morgan
-npm install mongoose
-npm install validator
-npm install bcrypt
-npm install cookie-parser
-npm install jsonwebtoken
+<p>npm init</p>
+<p>npm install -g nodemon</p>
+<p>npm install express</p>
+<p>npm install ejs</p>
+<p>npm install lodash</p>
+<p>npm install morgan</p>
+<p>npm install mongoose</p>
+<p>npm install validator</p>
+<p>npm install bcrypt</p>
+<p>npm install cookie-parser</p>
+<p>npm install jsonwebtoken</p>
+<hr>
