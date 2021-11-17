@@ -21,6 +21,8 @@ app.set('view engine','ejs');
 
 //middleware & static files:
 app.use(express.static('public'));
+app.use(express.json());
+//app.use(cookieParser());
 
 //routes:
 app.get('/',(req,res)=>{

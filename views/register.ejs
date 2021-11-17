@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <title>Login</title>
-      <link rel="stylesheet" type="text/css" href="register.css">
-      <script src="Angular/angular.min.js"></script>
-      <script src="Angular/angular-route.min.js"></script>
-      
-   </head>
+   <link rel="stylesheet" href="/css/register.css">
+   <%- include("./partials/head.ejs") %>
    <body>
+      <%- include("./partials/nav.ejs") %>
       <section>
          <div class="color"></div>
          <div class="color"></div>
@@ -40,7 +35,8 @@
             </div>
          </div>
       </section>
-      <script>
+      <%- include("./partials/footer.ejs") %>
+      <!-- <script>
         const form = document.querySelector('form');
         form.addEventListener('submit',async(e)=>{
             e.preventDefault();
@@ -58,6 +54,6 @@
          });
 
          
-      </script>
+      </script> -->
    </body>
 </html>

@@ -1,0 +1,94 @@
+<nav class="header">
+    <a href="#" class="logo"><img src='HinhAnh/logo1.jpg' alt="hinh"></a>
+    <div class="navigation">
+       <ul class="menu">
+          <div class="close-btn"></div>
+          <li class="menu-item"><a href="/">Trang chủ</a></li>
+          <li class="menu-item">
+             <a class="sub-btn" href="#">Về chúng tôi</a>
+             <ul class="sub-menu">
+                <li class="sub-item"><a href="#">Giới thiệu chung</a></li>
+                <li class="sub-item"><a href="#">Hệ thống bệnh viện</a></li>
+                <li class="sub-item"><a href="#">Đội ngũ bác sĩ</a></li>
+                <li class="sub-item"><a href="#">Trang thiết bị</a></li>
+                <li class="sub-item"><a href="#">Tuyển dụng</a></li>
+                <li class="sub-item"><a href="#">Thư viện hình &amp; video</a></li>
+             </ul>
+          </li>
+          <li class="menu-item">
+             <a class="sub-btn"  href="#">Dịch vụ</a>
+             <ul class="sub-menu">
+                <li class="sub-item"><a href="#">Khám mắt</a></li>
+                <li class="sub-item"><a href="#">Điều trị tật khúc xạ</a></li>
+                <li class="sub-item"><a href="#">Phẫu thuật khúc xạ</a></li>
+                <li class="sub-item"><a href="#">Phẫu thuật cườm khô Phaco</a></li>
+                <li class="sub-item"><a href="#">Phẫu thuật cườm nước Glaucoma</a></li>
+                <li class="sub-item"><a href="#">Nhãn nhi &amp; Điều trị lác (lé)</a></li>
+                <li class="sub-item"><a href="#">Phẫu thuật ghép giác mạc</a></li>
+                <li class="sub-item"><a href="#">Tạo hình thẩm mỹ</a></li>
+             </ul>
+          </li>
+          <li class="menu-item">
+             <a class="sub-btn" href="#">Bệnh về da</a>
+             <ul class="sub-menu">
+                <li class="sub-item"><a href="#">Các tật khúc xạ</a></li>
+                <li class="sub-item"><a href="#">Đục thủy tinh thể</a></li>
+                <li class="sub-item"><a href="#">Lé mắt</a></li>
+                <li class="sub-item"><a href="#">Cườm nước</a></li>
+                <li class="sub-item"><a href="#">Viêm kết mạc</a></li>
+                <li class="sub-item"><a href="#">Bệnh về mắt khác</a></li>
+             </ul>
+          </li>
+          <li class="menu-item">
+             <a class="sub-btn" href="#">Hướng dẫn khách hàng</a>
+             <ul class="sub-menu">
+                <li class="sub-item"><a href="#">Bí quyết mắt khỏe</a></li>
+                <li class="sub-item"><a href="#">Thông tin bảo hiểm</a></li>
+                <li class="sub-item"><a href="#">Hướng dẫn thanh toán</a></li>
+             </ul>
+          </li>
+          <li class="menu-item">
+             <a class="sub-btn" href="#">Tin tức</a>
+             <ul class="sub-menu">
+                <li class="sub-item"><a href="#">Tin khuyến mại</a></li>
+                <li class="sub-item"><a href="#">Tin truyền thông</a></li>
+                <li class="sub-item"><a href="#">Chuyện của những đôi mắt khỏe</a></li>
+             </ul>
+          </li>
+          <li class="menu-item">
+             <a href="/login">Đăng Nhập</a>
+          </li>
+       </ul>
+    </div>
+    <div class="menu-btn"></div>
+ </nav>
+ <script>
+     //jquery for toggle dropdown menu:
+     $(document).ready(function(){
+            //toggle sub-menus:
+            $(".sub-btn").click(function(){
+               $(this).next(".sub-menu").slideToggle();
+            });
+         });
+         //javascript for the responsive navigation menu:
+         var menu=document.querySelector(".menu");
+         var menuBtn=document.querySelector(".menu-btn");
+         var closeBtn=document.querySelector(".close-btn");
+         menuBtn.addEventListener("click",function(){
+            menu.classList.add("active");
+         });
+         closeBtn.addEventListener("click",function(){
+            menu.classList.remove("active");
+         });
+
+         //javascript for scrolling header:
+          window.addEventListener("scroll" ,function(){
+            var header=document.querySelector(".header");
+            if (window.scrollY>0) {
+               header.classList.add('white');
+            }
+            else{
+               header.classList.remove('white');
+            }
+          });
+ </script>

@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <title>Login</title>
-      <link rel="stylesheet" type="text/css" href="login.css">
-      <script src="Angular/angular.min.js"></script>
-      <script src="Angular/angular-route.min.js"></script>
-      
-   </head>
+   <link rel="stylesheet" href="/css/login.css">
+   <%- include("./partials/head.ejs") %>
    <body>
+      <%- include("./partials/nav.ejs") %>
       <section>
          <div class="color"></div>
          <div class="color"></div>
@@ -25,19 +20,14 @@
                      <img style=" width: 350px; height: 400px;" src="HinhAnh/1.jpg">
                   </div>
                   <div class="formBx">
-                     <form action="login-check.php" method="post" id="myLogin">
-
+                     <form>
                         <h2>Sign in</h2>
-                        
-
-                       
-
                         <input type="text" placeholder="Email" name="email">
                         <input type="password"  placeholder="Password" name="password">
                         <input type="submit" value="Login">
 
                         <p class="signup">Don't have an account ?
-                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/register" onclick="toggleForm()">Sign up</a>
+                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/register">Sign up</a>
                         </p>
                          <p class="signup">Forgot password ?
                            <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/forgotpass">Click Here</a>
@@ -48,5 +38,6 @@
             </div>
          </div>
       </section>
+      <%- include("./partials/footer.ejs") %>
    </body>
 </html>
