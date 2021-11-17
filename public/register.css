@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Yaldevi:wght@300&display=swap');
 *{
 
 	margin: 0;
 	padding: 0;
 	box-sizing:border-box;
-	
+	font-family: 'Yaldevi', sans-serif;
 }
 
-
+/*body{
+	overflow: hidden;
+}*/
 
 section{
 	position: relative;
@@ -15,9 +18,11 @@ section{
 	align-items: center;
 	min-height: 100vh;
 	background: linear-gradient(to bottom, #f1f4f9,#dff1ff);
-	padding: 20px;
+	/*padding: 20px;*/
 }
-
+/*section.active{
+ 	background: #3e3f39;
+}*/
 /*---------------------------------------------*/
 					/*Color*/
 section .color{
@@ -114,6 +119,10 @@ section .color:nth-child(3){
 	height: 60px;
 }
 /*---------------------------------------------*/
+section{
+	background: #3e3f39;
+}
+
 section .container{
 	position: relative;
 	width: 700px;
@@ -143,6 +152,8 @@ section .container .user .imgBx img{
 	position: absolute;
 	top: 0;
 	left: 0;
+	width: 100%;
+	height: 100%;
 	object-fit: cover;
 }
 
@@ -150,7 +161,7 @@ section .container .user .imgBx img{
 	position: relative;
 	width: 50%;
 	height: 100%;
-	
+	background: solidgrey;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -169,8 +180,6 @@ section .container .user .imgBx img{
 	color: #555;
 }
 
-
-
 section .container .user .formBx input{
 	width: 100%;
 	padding: 10px;
@@ -187,22 +196,18 @@ section .container .user .formBx input{
 
 section .container .user .formBx input[type="submit"]{
 	max-width: 100px;
-	background: #677eff;
+	background: #e73e49;
 	color: #fff;
 	cursor: pointer;
 	font-size: 14px;
 	font-weight: 500;
 	letter-spacing: 1px;
 	transition: 0.5;
-
 }
-
-
 
 /* section .container .user.signupBx .formBx input[type="submit"]{
  	background: #e73e49;
  }*/
-
 
 /*section .container .signupBx{
  	pointer-events: none;
@@ -229,6 +234,39 @@ section .container .user .formBx input[type="submit"]{
  	top: 0;
 }*/
 
+section .container .user  .formBx .signup{
+	position: relative;
+	margin-top: 20px;
+	font-size: 12px;
+	letter-spacing: 1px;
+	color: #555;
+	text-transform: uppercase;
+	font-weight: 300;
+}
+
+section .container .user .formBx .signup a{
+	font-weight: 600;
+	text-decoration: none;
+	color: #577eff;
+}
+
+
+/*section .container .signinBx .formBx{
+	top: 0;
+}
+ 
+section .container.active .signinBx .formBx{
+	top: 100%;
+}
+
+section .container .signinBx .imgBx{
+	top: 0;
+}
+
+section .container.active .signinBx .imgBx{
+	top: -100%;
+}*/
+
 @media (max-width: 990px){
 	section.container{
 		max-width: 400px;
@@ -240,3 +278,6 @@ section .container .user .formBx input[type="submit"]{
 		width: 100%;
 	}
 }
+
+
+

@@ -25,51 +25,28 @@
                      <img style=" width: 350px; height: 400px;" src="HinhAnh/1.jpg">
                   </div>
                   <div class="formBx">
-                     <form action="validation.php" method="post" id="myLogin">
-                        <h2>Sign in</h2>
-                        <input type="text"  placeholder="Username"  required="">
-                        <input type="password"  placeholder="Password" required="">
-                        <input type="submit" value="Login">
-                        <p class="signup">Forgot Password ?
-                           <a href="#">Click Here</a>
-                        </p>
-                        <p class="signup">Don't have an account ?
-                           <a href="#" onclick="toggleForm()">Sign up</a>
-                        </p>
-                     </form>
-                  </div>
-               </div>
-               <div class="user signupBx">
-                  <div class="formBx">
-                     <form action="registration.php" method="post">
-                        <h2>Create an account</h2>
-                        <input type="text" name="Username" placeholder="Username" required="">
-                        <input type="text" placeholder="Email Address" >
-                        <input type="password" name="Password" placeholder="Create Password" required="">
-                        <input type="password" placeholder="Confirm Password">
-                        <input type="submit" value="Sign Up">
+                     <form action="login-check.php" method="post" id="myLogin">
 
-                        <p class="signup">Already have an account ?
-                           <a href="#" onclick="toggleForm()">Sign in</a>
+                        <h2>Sign in</h2>
+                        
+
+                       
+
+                        <input type="text" placeholder="Email" name="email">
+                        <input type="password"  placeholder="Password" name="password">
+                        <input type="submit" value="Login">
+
+                        <p class="signup">Don't have an account ?
+                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/register" onclick="toggleForm()">Sign up</a>
+                        </p>
+                         <p class="signup">Forgot password ?
+                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/forgotpass">Click Here</a>
                         </p>
                      </form>
-                  </div>
-                  <div class="imgBx">
-                     <img style=" width:380px; height: 400px;" src="HinhAnh/2.jpg">
                   </div>
                </div>
             </div>
          </div>
       </section>
-      <script>
-         function toggleForm(){
-         	section=document.querySelector('section');
-         	container=document.querySelector('.container');
-         	section.classList.toggle('active');
-         	container.classList.toggle('active');
-         }
-
-         
-      </script>
    </body>
 </html>
