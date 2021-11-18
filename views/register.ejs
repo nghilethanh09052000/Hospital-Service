@@ -68,6 +68,9 @@
                emailError.textContent=data.errors.email;
                passwordError.textContent=data.errors.password;
             }
+            if(data.user){
+               location.assign('/appointment');
+            }
          }catch (err){
             console.log(err);
          }

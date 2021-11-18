@@ -20,10 +20,12 @@
                      <img style=" width: 350px; height: 400px;" src="HinhAnh/1.jpg">
                   </div>
                   <div class="formBx">
-                     <form>
+                     <form action='/login'>
                         <h2>Sign in</h2>
                         <input type="text" placeholder="Email" name="email">
+                        <div class="emailError"></div>
                         <input type="password"  placeholder="Password" name="password">
+                        <div class="passwordError"></div>
                         <input type="submit" value="Login">
 
                         <p class="signup">Don't have an account ?
@@ -41,12 +43,38 @@
       <%- include("./partials/footer.ejs") %>
 
       <script>
-          const form = document.querySelector('form');
-        form.addEventListener('submit',async(e)=>{
-            e.preventDefault();
-            const email = form.email.value;
-            const password = form.password.value;
-        })
+       const form = document.querySelector('form');
+      const emailError=document.querySelector('.emailError');
+      const passwordError=document.querySelector('.passwordError');
+      form.addEventListener('submit',async(e)=>{
+         e.preventDefault();
+         
+         //reset errors:
+         emailError.textContent='';
+         passwordError.textContent='';
+
+         const email = form.email.value;
+         const password = form.password.value;
+        
+         try{
+            const res = await fetch('/login',{
+               method:'POST',
+               body:JSON.stringify({email,password}),
+               headers:{'Content-Type':'application/json'}
+            });
+            const data =await res.json();
+            console.log(data)
+            if(data.errors){
+               emailError.textContent=data.errors.email;
+               passwordError.textContent=data.errors.password;
+            }
+            if(data.user){
+               location.assign('/appointment');
+            }
+         }catch (err){
+            console.log(err);
+         }
+      });
       </script>
    </body>
 </html>

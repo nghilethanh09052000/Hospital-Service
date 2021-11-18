@@ -24,11 +24,19 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
-//Create function after doc saved to db
-userSchema.post('save',async function(doc,next){
-  console.log('new user was created & saved',doc)
-  next();
-})
+//check login user with static method:
+userSchema.statics.login = async function(email,password){
+  const user = await this.findOne({email});
+  if(user){
+    const auth = await bcrypt.compare(password, user.password);
+    if(auth){
+      return user;
+    }
+    throw Error('incorrect password');
+  }
+  throw Error('incorrect email'); 
+};
 
-const User = mongoose.model('Users', userSchema);
+
+const User = mongoose.model('users', userSchema);
 module.exports = User;

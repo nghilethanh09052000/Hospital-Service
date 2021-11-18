@@ -47,6 +47,9 @@ const createToken=(id)=>{
 const blog_homepage=(req,res)=>{
     res.render('homepage')
 }
+const blog_appointment=(req,res)=>{
+    res.render('appointment')
+}
 
 const register_get=(req,res)=>{
     res.render('register')
@@ -58,7 +61,7 @@ const register_post= async (req,res)=>{
         const user= await User.create( {email, password} );
         const token =createToken(user._id);
         res.cookie('jwt',token, {httpOnly:true,maxAge:maxAge*1000});
-        res.status(201).json(user._id);
+        res.status(201).json({user:user._id});
     }catch(err){
         const errors = handleErrors(err);
         res.status(400).json({ errors });
@@ -68,14 +71,18 @@ const register_post= async (req,res)=>{
 const login_get=(req,res)=>{
     res.render('login')
 }
+
 const login_post= async (req,res)=>{
-    const {email,password}=req.body;
+    const { email,password}=req.body;
 
     try{
-        const user= await User.create( {email, password} );
-
-    }catch{
-
+        const user= await User.login(email, password);
+        const token =createToken(user._id);
+        res.cookie('jwt',token, {httpOnly:true,maxAge:maxAge*1000});
+        res.status(200).json( {user:user._id} );
+    }catch(err){
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
     }
 }
 
@@ -88,6 +95,7 @@ const login_post= async (req,res)=>{
 
 module.exports = {
     blog_homepage,
+    blog_appointment,
     login_get,
     login_post,
     register_get,
