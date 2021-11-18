@@ -174,8 +174,10 @@ left: 0%;
    border-right: 20px solid #ff3b7e;
 }
 .container .card .icon{
-   margin-bottom: 10px;
-   padding-left: 45px;
+  right:50%;
+  transform:translateX(-50%) ;
+  /* margin-bottom: 10px;
+  padding-left: 45px; */
 }
 
 .container .card .icon img{

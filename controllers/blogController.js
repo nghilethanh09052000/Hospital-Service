@@ -8,7 +8,7 @@ const handleErrors = (err) => {
   
     // incorrect email
     if (err.message === 'incorrect email') {
-      errors.email = 'That email is not registered';
+      errors.email = 'That email is not existed';
     }
 
     // incorrect password
@@ -23,7 +23,7 @@ const handleErrors = (err) => {
     }
 
     // validation errors
-    if (err.message.includes('user validation failed')) {
+    if (err.message.includes('Users validation failed')) {
         // console.log(err);
         Object.values(err.errors).forEach(({ properties }) => {
         // console.log(val);
@@ -34,10 +34,35 @@ const handleErrors = (err) => {
     return errors;
 }
 
+//Create JWT:
+const maxAge= 3*24*60*60;
+const createToken=(id)=>{
+    return jwt.sign({id},'nghi',{
+        expiresIn:maxAge
+    });
+};
+
 
 //controler:
 const blog_homepage=(req,res)=>{
     res.render('homepage')
+}
+
+const register_get=(req,res)=>{
+    res.render('register')
+}
+
+const register_post= async (req,res)=>{
+    const { email,password}=req.body;
+    try{
+        const user= await User.create( {email, password} );
+        const token =createToken(user._id);
+        res.cookie('jwt',token, {httpOnly:true,maxAge:maxAge*1000});
+        res.status(201).json(user._id);
+    }catch(err){
+        const errors = handleErrors(err);
+        res.status(400).json({ errors });
+    }
 }
 
 const login_get=(req,res)=>{
@@ -55,20 +80,9 @@ const login_post= async (req,res)=>{
 }
 
 
-const register_get=(req,res)=>{
-    res.render('register')
-}
-const register_post= async (req,res)=>{
-    const { email,password}=req.body;
 
-    try{
-        const user= await User.create( {email, password} );
-        res.status(201).json(user);
-    }catch(err){
-        console.log(err);
-        res.status(400).send('error, user not created');
-    }
-}
+
+
 
 
 

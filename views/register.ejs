@@ -19,9 +19,13 @@
                   <div class="formBx">
                      <form action="/register">
                         <h2>Create an account</h2>
+                        
                         <input type="text" name="email" placeholder="Email" >
+                        <div class="emailError"></div>
                         <input type="password" name="password" placeholder="Create Password" >
-                        <input type="password" placeholder="Confirm Password" name="re_password">
+                        <div class="passwordError"></div>
+                        <!-- <input type="password" placeholder="Confirm Password" name="re_password"> -->
+                        <!-- <button>Sign up</button> -->
                         <input type="submit"  value="Sign Up" name="register">
                         <p class="signup">Already have an account ?
                            <a href="/login" onclick="toggleForm()">Sign in</a>
@@ -35,25 +39,41 @@
             </div>
          </div>
       </section>
+
       <%- include("./partials/footer.ejs") %>
-      <!-- <script>
-        const form = document.querySelector('form');
-        form.addEventListener('submit',async(e)=>{
-            e.preventDefault();
-            const email = form.email.value;
-            const password = form.password.value;
-            try{
-               const res = await fetch('/register',{
-                  method:'POST',
-                  body:JSON.stringify( {email,password} ),
-                  headers:{'Content-Type':'application/json'}
-               });
-            }catch(err){
-               console.log(err);
+
+      <script>
+      const form = document.querySelector('form');
+      const emailError=document.querySelector('.emailError');
+      const passwordError=document.querySelector('.passwordError');
+      form.addEventListener('submit',async(e)=>{
+         e.preventDefault();
+         
+         //reset errors:
+         emailError.textContent='';
+         passwordError.textContent='';
+
+         const email = form.email.value;
+         const password = form.password.value;
+         //const re_password = form.re_password.value;
+         try{
+            const res = await fetch('/register',{
+               method:'POST',
+               body:JSON.stringify({email,password}),
+               headers:{'Content-Type':'application/json'}
+            });
+            const data =await res.json();
+            console.log(data)
+            if(data.errors){
+               emailError.textContent=data.errors.email;
+               passwordError.textContent=data.errors.password;
             }
-         });
+         }catch (err){
+            console.log(err);
+         }
+      });
 
          
-      </script> -->
+      </script>
    </body>
 </html>
