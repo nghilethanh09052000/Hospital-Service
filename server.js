@@ -3,6 +3,7 @@ const morgan =  require('morgan');
 const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes');
 const cookieParser = require('cookie-parser');
+const {requireAuth, checkUser}= require('./middleware/authMiddleware');
 
 // express app
 const app=express();
@@ -22,10 +23,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 //routes:
-// app.get('/',(req,res)=>{
-//     res.render('homepage');
-// })
-
+app.get('*',checkUser);
+app.get('/',(req,res)=>{
+    res.render('homepage');
+})
+app.get('/appointment',requireAuth,(req,res)=>{
+    res.render('appointment');
+})
 
 // blog routes
 app.use(blogRoutes);

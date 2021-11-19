@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
-   <link rel="stylesheet" href="/css/login.css">
+
    <%- include("./partials/head.ejs") %>
-   <body>
-      <%- include("./partials/nav.ejs") %>
+  
+      
       <section>
          <div class="color"></div>
          <div class="color"></div>
@@ -68,9 +67,17 @@
                emailError.textContent=data.errors.email;
                passwordError.textContent=data.errors.password;
             }
+
+            if(data.userAdmin){
+               location.assign('/admin');
+            }
+            
             if(data.user){
                location.assign('/appointment');
             }
+            // if(email=='admin@gmail.com' && password=='admin123'){
+            //    location.assign('/admin');
+            // }
          }catch (err){
             console.log(err);
          }

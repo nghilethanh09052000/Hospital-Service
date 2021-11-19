@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
-   <link rel="stylesheet" href="/css/register.css">
+
    <%- include("./partials/head.ejs") %>
-   <body>
-      <%- include("./partials/nav.ejs") %>
+
+     
       <section>
          <div class="color"></div>
          <div class="color"></div>
@@ -68,9 +67,12 @@
                emailError.textContent=data.errors.email;
                passwordError.textContent=data.errors.password;
             }
+           
             if(data.user){
                location.assign('/appointment');
+               
             }
+           
          }catch (err){
             console.log(err);
          }

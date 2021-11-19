@@ -86,7 +86,10 @@ const login_post= async (req,res)=>{
     }
 }
 
-
+const logout_get=(req,res)=>{
+    res.cookie('jwt','',{maxAge:1});
+    res.redirect('/');
+}
 
 
 
@@ -99,6 +102,7 @@ module.exports = {
     login_get,
     login_post,
     register_get,
-    register_post
+    register_post,
+    logout_get
     
   }
