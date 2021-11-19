@@ -8,22 +8,23 @@ const {requireAuth, checkUser}= require('./middleware/authMiddleware');
 // express app
 const app=express();
 
+//middleware & static files:
+app.use(express.static('public'));
+app.use(express.json());
+app.use(cookieParser());
+
+//register view engine
+app.set('view engine','ejs');
+
+
 //connect to mongodb & listen for requests
 const dbURI='mongodb+srv://nghi:test1234@cluster0.mvd1w.mongodb.net/nghi?retryWrites=true&w=majority';
 mongoose.connect(dbURI,{ useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3000))
     .catch((err) =>(console.log(err)));
 
-//register view engine
-app.set('view engine','ejs');
-
-//middleware & static files:
-app.use(express.static('public'));
-app.use(express.json());
-app.use(cookieParser());
-
 //routes:
-app.get('*',checkUser);
+app.get('*', checkUser);
 app.get('/',(req,res)=>{
     res.render('homepage');
 })
