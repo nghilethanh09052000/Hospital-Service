@@ -55,15 +55,18 @@
                 <li class="sub-item"><a href="#">Chuyện của những đôi mắt khỏe</a></li>
              </ul>
           </li>
-          <li class="menu-item">
-            <a href="/login">Đăng Nhập</a>
-         </li>
-         <li class="menu-item">
-            <a href="/logout">Đăng Xuất</a>
-         </li>
-         <li class="menu-item">
-            Welcome, <%= user.email %>
-         </li>
+          <% if(user){%>
+            <li class="menu-item">
+               <a href="/logout">Đăng Xuất</a>
+            </li>
+         <% }else{%>
+            <li class="menu-item">
+               <a href="/login">Đăng nhập</a>
+            </li>
+            <%}%>
+          
+         
+         
           
           
 
