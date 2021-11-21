@@ -15,4 +15,5 @@
 <p>npm install jsonwebtoken</p>
 <hr>
 <b>2/Create middleware to check jwt</b> 
+<hr>
 <b>3/If register/login successfully: change header</b> 

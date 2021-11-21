@@ -1,5 +1,7 @@
 const User = require('../models/User');
+const otp = require('../models/otp');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 // handle errors:
 const handleErrors = (err) => {
@@ -43,16 +45,9 @@ const createToken=(id)=>{
 };
 
 
-//controler:
-const blog_homepage=(req,res)=>{
-    res.render('homepage')
-}
-const blog_appointment=(req,res)=>{
-    res.render('appointment')
-}
 
 const register_get=(req,res)=>{
-    res.render('register')
+    res.render('register',{title:'Đăng ký'});
 }
 
 const register_post= async (req,res)=>{
@@ -69,7 +64,7 @@ const register_post= async (req,res)=>{
 }
 
 const login_get=(req,res)=>{
-    res.render('login')
+    res.render('login',{title:'Đăng nhập'})
 }
 
 const login_post= async (req,res)=>{
@@ -91,18 +86,85 @@ const logout_get=(req,res)=>{
     res.redirect('/');
 }
 
+const sendMail_get=(req,res)=>{
+    res.render('sendMail', {title:'Quên mật khẩu'} );
+}
 
+const sendMail_post =async (req,res)=>{
+    const {email}=req.body
+    try{
+        const data = await User.findOne( {email} );
+        console.log(data);
+        if(data){
+            const otpCode = Math.floor((Math.random()*10000)+1);
+            const otpData = await otp.create({
+                email:email,
+                code:otpCode,
+                exprireIn: new Date().getTime()+300*1000
+            });
+            res.status(201).json({otpData:otpData._id});
+            await mailer( otpData.email, otpData.code);
+        }else{
+            res.status(400).send('error, otp is not createds');
+        }
+    }catch (err){
+        console.log(err);
+        res.status(400).send('error, otp is not created');
+    }
+}
 
+const changePass_get = (req,res)=>{
+    res.render('changePass_get');
+}
+const changePass_post = async (req,res)=>{
+    const data = await otp.find({email:req.body.email,code:req.body.otpCode});
+    if(data){
+        const user = await User.findOne({email:req.body.email})
+        user.password=req.body.password;
+        user.save();
+        res.status(200).json({user:user._id});
+    }else{
+        res.status(400).send('User cannot change');
+    }
+}
 
+// Send Otp Code with nodemailer:
+const mailer = async ( email, code) =>{
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port:465,
+        secure:true,
+        auth:{
+            user:'thanhnghi591@gmail.com',
+            pass:'abcABC@123'
+        }
+    });
+    let mailOptions = await transporter.sendMail({
+        from: 'thanhnghi591@gmail.com', // sender address
+        to:  email, // list of receivers
+        subject: "Hello, this is your Otp code ", // Subject line
+        text: "YOUR OTP CODE IS: "+ code // plain text body
+       // html: code, // html body
+      });
 
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          res.status(200).send(setting.status("User created Successfully, Please Check your Mail"))
+        }
+      });
+      
+}
 
 module.exports = {
-    blog_homepage,
-    blog_appointment,
     login_get,
     login_post,
     register_get,
     register_post,
-    logout_get
-    
-  }
+    logout_get,
+    sendMail_get,
+    sendMail_post,
+    changePass_get,
+    changePass_post
+}

@@ -26,10 +26,10 @@ mongoose.connect(dbURI,{ useNewUrlParser: true, useUnifiedTopology: true })
 //routes:
 app.get('*', checkUser);
 app.get('/',(req,res)=>{
-    res.render('homepage');
+    res.render('homepage',{title:'Trang chủ'});
 })
 app.get('/appointment',requireAuth,(req,res)=>{
-    res.render('appointment');
+    res.render('appointment',{title:'Đặt lịch'});
 })
 
 // blog routes

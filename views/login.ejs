@@ -32,7 +32,7 @@
                            <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/register">Sign up</a>
                         </p>
                          <p class="signup">Forgot password ?
-                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/forgotpass">Click Here</a>
+                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/sendMail">Click Here</a>
                         </p>
                      </form>
                   </div>
@@ -69,9 +69,7 @@
                passwordError.textContent=data.errors.password;
             }
 
-            if(data.userAdmin){
-               location.assign('/admin');
-            }
+            
             
             if(data.user){
                location.assign('/appointment');
