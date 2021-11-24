@@ -29,14 +29,14 @@
 	position: relative;
 	line-height: 50px;
 	transition: 0.6s;
-  /* transition-property: line-height; */
+  transition-property: line-height;
   padding-right: 5px;
 }
 
 .header .navigation .menu{
   position: relative;
   display: flex;
-  /* justify-content: center;  */
+  justify-content: center; 
   list-style: none;
   user-select: none;
   padding-left: 70px; 
@@ -60,13 +60,13 @@
  .menu-item .sub-menu{
   position: absolute;
   background: #fff;
-  top: 70px;
+  top: 50px;
   line-height: 40px;
   list-style: none;
   border-radius: 0 0 8px 8px;
   box-shadow: 0 5px 25px rgb(0 0 0 / 20%);
   pointer-events: none;
-  transform: translateY(20px);
+  transform: translateY(10px);
   opacity: 0;
   transition: 0.3s;
   transition-property: transform, opacity;
@@ -88,14 +88,14 @@
 }
 
 .menu-item .sub-menu .sub-item a{
-  color: #000;
+  color: #F25287;
   font-size: 20px;
   text-decoration: none;
   padding: 10px 20px;
 }
 
 .menu-item .sub-menu .sub-item:hover{
-  background: #4080EF;
+  background: #F0E4D7;
 }
 
 .menu-item .sub-menu .sub-item:last-child:hover{
@@ -126,8 +126,8 @@ header.white .navigation .menu .menu-item >a{
   .header .navigation .menu{
     position: fixed;
     display: block;
-    min-width: 300px;
-    height: 100vh;
+    min-width: 200px;
+    height: 200vh;
     top: 0;
     overflow-y: auto;
     padding: 60px 60px;
@@ -169,6 +169,7 @@ header.white .navigation .menu .menu-item >a{
   
   .header{
   padding: 15px 20px;
+  transition: .3s;
   }
   
   .close-btn{

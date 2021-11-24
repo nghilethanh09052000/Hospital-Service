@@ -1,0 +1,121 @@
+﻿.toolbar {
+    list-style: none;
+    margin: 30px;
+    padding: 0;
+}
+
+.toolbar-item {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+.toolbar .toolbar-item .sub-toolbar-item {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border: 0;
+    border-bottom: 1px solid #808080;
+    color:black;
+    font-size:18px;
+    font-weight:400;
+}
+
+.toolbar > :last-child > :last-child {
+    border: 0;
+    padding-bottom: 0;
+}
+
+.toolbar .toolbar-item .sub-toolbar-item:hover {
+    color: #FF449F;
+}
+
+    .toolbar .toolbar-item .sub-toolbar-item:hover::before {
+        color: #FF449F;
+    }
+
+    .toolbar .toolbar-item .sub-toolbar-item:hover::after {
+        background-color: #FF449F;
+    }
+
+    
+.toolbar .toolbar-item .sub-toolbar-item:before {
+    content: "\f054";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+    /*mã icon và tên font trong thư viện đã import font-weight: 700;*/
+    position: absolute;
+    top: -2px;
+    right: 0;
+    z-index: 1;
+    color: #d9d9d9;
+    transition: all 0.5s ease-out;
+}
+
+.toolbar .toolbar-item .sub-toolbar-item:after {
+    content: "";
+    position: absolute;
+    height: 25px;
+    width: 1px;
+    top: -3px;
+    left: 0;
+    z-index: 1;
+    background-color: #d9d9d9;
+    transition: all 0.5s ease-out;
+}
+
+.main_content_div {
+    position: relative;
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    padding: 3% 0;
+}
+
+.left_div_in_main_content_div {
+    position: relative;
+    width: 52%;
+    padding-left: 15px;
+    left: 9.5%;
+}
+
+.right_div_in_main_content_div {
+    position: relative;
+    width: 26%;
+    background-color: white;
+    text-align: left;
+    font-size: 20px;
+    right: 9.5%;
+}
+
+.inner_page_banner {
+    position: relative;
+    height: 90px;
+    display: flex;
+}
+
+.item_list_element {
+    position: relative;
+    top: 50px;
+    left: 9.5%;
+}
+
+.item_list_element_sub_item {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+.item_list_element_sub_item:hover{
+    color:white;
+}
+
+

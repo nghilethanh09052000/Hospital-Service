@@ -1,0 +1,57 @@
+
+.sidebar {
+
+	height: 100%; 
+	width:20%;
+	position: absolute; 
+	top: 0%; 
+	left: -30%;
+	background-color: #f29bd4;
+	/* overflow-x: hidden;  */
+	padding-top: 60px; 
+	transition: all 0.5s ease; 
+	display: block;
+	
+	
+}
+.sidebar h2 {
+	position: absolute; 
+	font-size: 100%;
+	color: white;
+    text-align:center;
+}
+.sidebar ul{
+	margin-top: 10%;
+}
+
+.sidebar ul li a{
+	display: block;
+	color: white;
+	line-height: 65px;
+	padding-left: 30px;
+	box-sizing: border-box;
+	border-bottom: 1px solid black;
+	border-top: 1px solid rgba(255,255,255,.1);
+	border-left: 5px solid transparent;
+	text-decoration: none;
+	transition: all .5s ease;
+}
+.sidebar ul li ul {
+	display: none;
+}
+
+.menuSideBar , .closeSideBar{
+	position: absolute;
+	cursor: pointer;
+}
+.menuSideBar{
+	top: 0%;
+	width: 3%;
+	
+}
+.closeSideBar{
+	top: 0%;
+	left: -30%;
+	width: 1%;
+	transition: all 0.5s ease; 
+} 

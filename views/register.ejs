@@ -18,29 +18,29 @@
                <div class="user signupBx">
                   <div class="formBx">
                      <form action="/register">
-                        <h2>Create an account</h2>
+                        <h2>Tạo tài khoản</h2>
                         
                         <input type="text" name="email" placeholder="Email" >
                         <div class="emailError"></div>
-                        <input type="password" name="password" placeholder="Create Password" >
+                        <input type="password" name="password" placeholder="Mật khẩu" >
                         <div class="passwordError"></div>
-                        <!-- <input type="password" placeholder="Confirm Password" name="re_password"> -->
-                        <!-- <button>Sign up</button> -->
-                        <input type="submit"  value="Sign Up" name="register">
-                        <p class="signup">Already have an account ?
-                           <a href="/login" onclick="toggleForm()">Sign in</a>
+                        <input type="password" placeholder="Xác nhận mật khẩu" name="re_password">
+                        
+                        <input type="submit"  value="Đăng ký" name="register">
+                        <p class="signup">Đã có tài khoản ?
+                           <a href="/login" onclick="toggleForm()">Đăng nhập </a>
                         </p>
                      </form>
                   </div>
                   <div class="imgBx">
-                     <img style=" width:380px; height: 400px;" src="HinhAnh/2.jpg">
+                     <img style=" width:380px; height: 400px;" src="/HinhAnh/doctor.jpg">
                   </div>
                </div>
             </div>
          </div>
       </section>
 
-      <%- include("./partials/footer.ejs") %>
+      
 
       <script>
       const form = document.querySelector('form');
@@ -55,7 +55,12 @@
 
          const email = form.email.value;
          const password = form.password.value;
-         //const re_password = form.re_password.value;
+         const re_password = form.re_password.value;
+         if (password!=re_password){
+            passwordError.textContent='Mật khẩu không trùng';
+         }else{
+
+         
          try{
             const res = await fetch('/register',{
                method:'POST',
@@ -77,7 +82,7 @@
          }catch (err){
             console.log(err);
          }
-      });
+      }});
 
          
       </script>

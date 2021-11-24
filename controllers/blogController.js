@@ -1,9 +1,12 @@
 const User = require('../models/User');
 const otp = require('../models/otp');
+const appointment = require('../models/appointment');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
-// handle errors:
+//const bcrypt = require('bcrypt');
+
+// handle errors: 
 const handleErrors = (err) => {
     console.log(err.message, err.code);
     let errors = { email: '', password: '' };
@@ -102,6 +105,8 @@ const sendMail_post =async (req,res)=>{
                 code:otpCode,
                 exprireIn: new Date().getTime()+300*1000
             });
+            const token =createToken(otpData._id);
+            res.cookie('jwt',token, {httpOnly:true,maxAge:maxAge*1000});
             res.status(201).json({otpData:otpData._id});
             await mailer( otpData.email, otpData.code);
         }else{
@@ -114,21 +119,42 @@ const sendMail_post =async (req,res)=>{
 }
 
 const changePass_get = (req,res)=>{
-    res.render('changePass_get');
+    res.render('changePass',{title:'Đổi mật khẩu'});
 }
 const changePass_post = async (req,res)=>{
-    const data = await otp.find({email:req.body.email,code:req.body.otpCode});
-    if(data){
-        const user = await User.findOne({email:req.body.email})
-        user.password=req.body.password;
-        user.save();
-        res.status(200).json({user:user._id});
-    }else{
-        res.status(400).send('User cannot change');
+    const {email,code}=req.body;
+    try{
+        const data = await otp.find({code:code});
+        if(data){
+            //const salt = await bcrypt.genSalt();
+            const {password} =req.body;
+            const user = await User.findOneAndUpdate({email:email},{password:password})
+            res.status(200).json();
+        }else{
+            console.log(err);
+            res.status(400).send('User cannot change');
+        }
+    }catch(err){
+        console.log(err);
+    }
+    
+}
+
+const appointment_post= async (req,res)=>{
+    const {fullname,phone,birthday,gender,service,appointmentday,time,note }=req.body;
+    try{
+        const Appointment = await appointment.create({fullname,phone,birthday,gender,service,appointmentday,time,note });
+        res.status(201).json({ Appointment: Appointment._id});
+    }catch(err){
+        res.status(400).send('no');
     }
 }
 
-// Send Otp Code with nodemailer:
+const GioiThieuChung_get = (req,res)=>{
+    res.render('GioiThieuChung',{title:'Giới thiệu chung'});
+}
+
+// Send Otp with nodemailer:
 const mailer = async ( email, code) =>{
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -166,5 +192,7 @@ module.exports = {
     sendMail_get,
     sendMail_post,
     changePass_get,
-    changePass_post
+    changePass_post,
+    appointment_post,
+    GioiThieuChung_get
 }

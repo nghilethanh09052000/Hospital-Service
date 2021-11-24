@@ -1,6 +1,6 @@
 
 <%- include("./partials/head.ejs") %>
-<link rel="stylesheet" href="/css/sendMail.css">
+<link rel="stylesheet" href="/css/changePass.css">
 
 <body>
    <%- include("./partials/nav.ejs") %>
@@ -18,13 +18,13 @@
             <div class="user signupBx">
                <div class="formBx">
                   <form action="/sendMail">
-                     <h2>Please enter your email</h2>
-                     <input type="text" name="email" placeholder="Email" >
+                     <h2>Đổi mật khẩu</h2>
+                     <input type="text" name="otp" placeholder="Otp">
+                     <input type="text" name="password" placeholder="Mật khẩu" >
+                     <input type="text" name="re_password" placeholder="Xác nhận mật khẩu" >
                      <div class="emailError"></div>
-                     <input type="submit"  value="Verify" >
-                     <p class="signup">Already have an account ?
-                        <a href="/login">Sign in</a>
-                     </p>
+                     <input type="submit"  value="Xác nhận">
+                     
                   </form>
                </div>
             </div>
@@ -38,19 +38,22 @@
 
       form.addEventListener('submit', async(e)=>{
          e.preventDefault();
-         const email = form.email.value;
+         const otp = form.otp.value;
+         const password = form.password.value;
+         const re_password = form.re_password.value;
          try{
-            const res = await fetch('/sendMail',{
+            const res = await fetch('/changePass',{
                method:'POST',
-               body:JSON.stringify( {email:email} ),
+               body:JSON.stringify( {password:password} ),
                headers:{'Content-Type':'application/json'}
 
          });
          const data =await res.json();
          console.log(data);
          
-         if (data.otpData){
-            location.assign('/changePass');
+         
+         if (data.user){
+            location.assign('/appointment');
          }
       }catch (err){
          console.log(err);

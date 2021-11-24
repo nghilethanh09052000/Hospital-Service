@@ -1,0 +1,32 @@
+<img class='menuSideBar' src="/HinhAnh/menu.png" alt="#" >
+<div class="sidebar">
+    <h2>Hello, <%= user.email %> </h2>
+    <ul>
+        <li>
+            <a href="/appointment">Đặt lịch khám</a>
+        </li>
+        <li><a href="#">Quản lý hồ sơ</a></li>
+        <li>
+            <a href="#">Quản lý tài khoản</a>
+            <ul>
+                <li><a href="#">Đổi mật khẩu </a></li>
+                <li><a href="/logout">Đăng xuất </a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<img  class='closeSideBar'src="/HinhAnh/close.png" alt="#">
+<script>
+    const sidebar=document.querySelector('.sidebar');
+    const menuSideBar=document.querySelector('.menuSideBar');
+    const closeSideBar=document.querySelector('.closeSideBar');
+    menuSideBar.addEventListener('click',function(e){
+        sidebar.style.left="0%";
+        closeSideBar.style.left="19%";
+       
+    })
+    closeSideBar.addEventListener('click',function(e){
+        sidebar.style.left="-30%";
+        closeSideBar.style.left="-30%";
+    })
+</script>

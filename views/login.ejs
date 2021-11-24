@@ -9,30 +9,30 @@
          <div class="color"></div>
          <div class="color"></div>
          <div class="box">
-            <div class="square" style="--i:0;"></div>
+            <!-- <div class="square" style="--i:0;"></div>
             <div class="square" style="--i:1;"></div>
             <div class="square" style="--i:2;"></div>
             <div class="square" style="--i:3;"></div>
-            <div class="square" style="--i:4;"></div>
-            <div class="container">
+            <div class="square" style="--i:4;"></div> -->
+            <div class="container12">
                <div class="user signinBx" ng-controller="loginCtrl">
                   <div class="imgBx">
-                     <img style=" width: 350px; height: 400px;" src="HinhAnh/1.jpg">
+                     <img style=" width: 350px; height: 400px;" src="/HinhAnh/doctor.jpg">
                   </div>
                   <div class="formBx">
                      <form action='/login'>
-                        <h2>Sign in</h2>
+                        <h2>Đăng ký</h2>
                         <input type="text" placeholder="Email" name="email">
                         <div class="emailError"></div>
-                        <input type="password"  placeholder="Password" name="password">
+                        <input type="password"  placeholder="Mật khẩu" name="password">
                         <div class="passwordError"></div>
                         <input type="submit" value="Login">
 
-                        <p class="signup">Don't have an account ?
-                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/register">Sign up</a>
+                        <p class="signup">Không có tài khoản ?
+                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/register">Đăng ký</a>
                         </p>
-                         <p class="signup">Forgot password ?
-                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/sendMail">Click Here</a>
+                         <p class="signup">Quên mật khẩu ?
+                           <a style="text-decoration: none; color: #577eff;font-weight: 500;" href="/sendMail">Bấm vào đây</a>
                         </p>
                      </form>
                   </div>
@@ -40,7 +40,7 @@
             </div>
          </div>
       </section>
-      <%- include("./partials/footer.ejs") %>
+      
 
       <script>
        const form = document.querySelector('form');
@@ -72,6 +72,7 @@
             
             
             if(data.user){
+               
                location.assign('/appointment');
             }
             // if(email=='admin@gmail.com' && password=='admin123'){
