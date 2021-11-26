@@ -1,0 +1,135 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/Benhveda.css">
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    .custom_a {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        border: 0;
+        border-bottom: 1px solid #808080;
+    }
+
+    a:hover {
+        color: forestgreen;
+    }
+
+    .custom_a:before {
+        content: ">";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 700;
+        position: absolute;
+        top: -2px;
+        right: 0;
+        z-index: 1;
+        color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .custom_a:after {
+        content: "";
+        position: absolute;
+        height: 25px;
+        width: 2px;
+        top: -3px;
+        left: 0;
+        z-index: 1;
+        font-size: 28px;
+        background-color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .content-tag {
+
+        float: left; background-color: white; display: grid; grid-template-columns: repeat(2,1fr); grid-column-gap: 30px; grid-row-gap: 30px;width: 100%;
+    }
+
+    @media(max-width: 700px) {
+        .main_content_div {
+            flex-direction: column;
+        }
+        .content-tag {
+            display: block;
+        }
+        .left_div_in_main_content_div {
+            width: 80%;
+            left: 10%
+        }
+        .right_div_in_main_content_div {
+            width: 80%;
+            left: 10%;
+        }
+
+    }
+</style>
+</head>
+<body>
+   <%- include("./partials/nav.ejs") %>
+   <div class="main_content_div">
+    <div class="left_div_in_main_content_div">
+ 
+    <div class = "content-tag">
+
+
+        <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+            <img src="Images/hoidap.jpg" width="100%" style="margin-bottom:40px" />
+            <br />
+            <p style="margin-left: 20px; margin-right: 20px"> <a style="font-size:25px;margin-top:20px" href="#">Hỏi đáp các phương pháp phẫu thuật LASER xóa cận – viễn – loạn phổ biến hiện nay</a></p>
+            <br />
+            <p style="margin:15px">Rời bỏ vướng bận từ cặp kính cận là mơ ước của rất nhiều người khi phải sống chung cùng tật khúc xạ. Phẫu thuật</p>
+        </div>
+
+        <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+            <img src="Images/hoidap.jpg" width="100%" style="margin-bottom:40px" />
+            <br />
+            <p style="margin-left: 20px; margin-right: 20px"> <a style="font-size:25px;margin-top:20px" href="#">Hỏi đáp các phương pháp phẫu thuật LASER xóa cận – viễn – loạn phổ biến hiện nay</a></p>
+            <br />
+            <p style="margin:15px">Rời bỏ vướng bận từ cặp kính cận là mơ ước của rất nhiều người khi phải sống chung cùng tật khúc xạ. Phẫu thuật</p>
+        </div>
+
+        <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+            <img src="Images/hoidap.jpg" width="100%" style="margin-bottom:40px" />
+            <br />
+            <p style="margin-left: 20px; margin-right: 20px"> <a style="font-size:25px;margin-top:20px" href="#">Hỏi đáp các phương pháp phẫu thuật LASER xóa cận – viễn – loạn phổ biến hiện nay</a></p>
+            <br />
+            <p style="margin:15px">Rời bỏ vướng bận từ cặp kính cận là mơ ước của rất nhiều người khi phải sống chung cùng tật khúc xạ. Phẫu thuật</p>
+        </div>
+
+        <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+            <img src="Images/hoidap.jpg" width="100%" style="margin-bottom:40px" />
+            <br />
+            <p style="margin-left: 20px; margin-right: 20px"> <a style="font-size:25px;margin-top:20px" href="#">Hỏi đáp các phương pháp phẫu thuật LASER xóa cận – viễn – loạn phổ biến hiện nay</a></p>
+            <br />
+            <p style="margin:15px">Rời bỏ vướng bận từ cặp kính cận là mơ ước của rất nhiều người khi phải sống chung cùng tật khúc xạ. Phẫu thuật</p>
+        </div>
+
+    
+    </div> 
+
+</div>
+
+
+    <div class="right_div_in_main_content_div">
+        <div style="position: relative; width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%); top:0; left:0;">
+            <ul class="toolbar">
+                <li class="toolbar-item"><a href="gioithieuchung.html" class="sub-toolbar-item">Giới thiệu chung</a></li>
+                <li class="toolbar-item"><a href="#" class="sub-toolbar-item">Hệ thống bệnh viện</a></li>
+                <li class="toolbar-item"><a href="#" class="sub-toolbar-item">Đội ngũ bác sĩ</a></li>
+                <li class="toolbar-item"><a href="#" class="sub-toolbar-item">Tin truyền thông</a></li>
+                <li class="toolbar-item"><a href="#" class="sub-toolbar-item">Trang thiết bị</a></li>
+                <li class="toolbar-item"><a href="#" class="sub-toolbar-item">Tuyển dụng</a></li>
+                <li class="toolbar-item"><a href="#" class="sub-toolbar-item">Thư viện hình & video</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<%- include("./partials/footer.ejs") %>
+</body>
+</html>

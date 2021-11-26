@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 
+
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
@@ -14,7 +15,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter a password'],
         minlength: [6, 'Minimum password length is 6 characters'],
-      }
+      },
+     
 });
 
 //Create function before doc saved to db
@@ -26,6 +28,7 @@ userSchema.pre('save', async function(next) {
 
 //check login user with static method:
 userSchema.statics.login = async function(email,password){
+
   const user = await this.findOne({email});
   if(user){
     const auth = await bcrypt.compare(password, user.password);
@@ -37,6 +40,6 @@ userSchema.statics.login = async function(email,password){
   throw Error('incorrect email'); 
 };
 
-
 const User = mongoose.model('users', userSchema);
+
 module.exports = User;

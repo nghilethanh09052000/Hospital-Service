@@ -13,12 +13,12 @@
                
                <div class="form-field">
                   <p>Họ và tên</p>
-                  <input type="text" name="fullname" placeholder="Họ và tên" required="required">
+                  <input type="text" name="fullname"  required="required">
                </div>
                
                <div class="form-field">
                 <p>Số điện thoại</p>
-                <input type="text" name="phone" placeholder="Số điện thoại" required="required">
+                <input type="text" name="phone"  required="required">
              </div>
                <div class="form-field">
                   <p>Ngày sinh</p>
@@ -26,36 +26,37 @@
                </div>
                <div class="form-field">
                 <p>Giới tính</p>
-                <select name="select" id="#" name="gender" required="required">
-                   <option value="1">Nam</option>
-                   <option value="2">Nữ</option>
+                <select name="select" id="gender" name="gender" required="required" >
+                   <option value="Nam">Nam</option>
+                   <option value="Nữ">Nữ</option>
                 </select>
              </div>
              <div class="form-field">
+               <p>Địa chỉ</p>
+               <input type="text" name="address">
+            </div>
+         
+             <div class="form-field">
                 <p>Chọn loại dịch vụ</p>
-                <select name="select" id="#" name="service" required="required">
-                    <option value="1">Khám bệnh ngoài da</option>
-                    <option value="2">Khám & tư vấn thẩm mỹ da</option>
-                    <option value="3">Khám & tư vấn tạo hình thẫm mỹ</option>
-                    <option value="4">Khám nam khoa</option>
-                    <option value="5">Khám phụ khoa</option>
+                <select name="select" id="service" name="service" required="required">
+                    <option value="Khám bệnh ngoài da">Khám bệnh ngoài da</option>
+                    <option value="Khám & tư vấn thẩm mỹ da">Khám & tư vấn thẩm mỹ da</option>
+                    <option value="Khám & tư vấn tạo hình thẫm mỹ">Khám & tư vấn tạo hình thẫm mỹ</option>
+                    <option value="Khám nam khoa">Khám nam khoa</option>
+                    <option value="Khám phụ khoa">Khám phụ khoa</option>
                  </select>
              </div>
                <div class="form-field">
                   <p>Ngày đặt hẹn</p>
-                  <input type="date" name="appointmentday" required="required">
+                  <input type="datetime-local" name="appointmentday" required="required" >
                </div>
-               <div class="form-field">
-                  <p>Giờ đặt hẹn</p>
-                  <input type="time" name="time" required="required">
-               </div>
+              
               
              <div class="form-field">
                 <p>Ghi chú</p>
-                <textarea name="textarea" name="note" required="required"> </textarea>
+                <input type="text" name="note" >
              </div>
-
-             
+             <input type="hidden" name="user_id" value="<%= user._id %>">
              <button class="btn">Xác nhận</button>
              
              
@@ -79,5 +80,39 @@
       </div>
    </section>
    <!-- <%- include("./partials/footer.ejs") %> -->
+   <script>
+      const userId=  document.querySelector('.userId');
+      const form = document.querySelector('form');
+      form.addEventListener('submit', async (e)=>{
+         e.preventDefault();
+         const fullname = form.fullname.value;
+         const phone = form.phone.value;
+         const birthday = form.birthday.value;
+         const gender = document.getElementById("gender").value;
+         const service = document.getElementById("service").value;
+         const address = form.address.value;
+         const appointmentday = form.appointmentday.value;
+         const note = form.note.value;
+         const user_id = form.user_id.value;
+         try{
+            const res = await fetch('/appointment',{
+               method:'POST',
+               body:JSON.stringify({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id}),
+               headers:{'Content-Type':'application/json'} 
+            })
+            const data =await res.json();
+
+            if(data.appointment){
+               location.assign('/appointmentinfo');
+            }else{
+               console.log(err);
+            }
+
+         }catch(err){
+            console.log(err);
+         }
+      })
+         
+   </script>
 </body>
 </html>

@@ -1,11 +1,12 @@
 <img class='menuSideBar' src="/HinhAnh/menu.png" alt="#" >
 <div class="sidebar">
     <h2>Hello, <%= user.email %> </h2>
+   
     <ul>
         <li>
             <a href="/appointment">Đặt lịch khám</a>
         </li>
-        <li><a href="#">Quản lý hồ sơ</a></li>
+        <li><a href="/appointmentinfo">Quản lý hồ sơ</a></li>
         <li>
             <a href="#">Quản lý tài khoản</a>
             <ul>
@@ -15,6 +16,7 @@
         </li>
     </ul>
 </div>
+
 <img  class='closeSideBar'src="/HinhAnh/close.png" alt="#">
 <script>
     const sidebar=document.querySelector('.sidebar');

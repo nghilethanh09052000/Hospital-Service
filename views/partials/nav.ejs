@@ -29,7 +29,7 @@
           <li class="menu-item">
              <a class="sub-btn" href="#">Bệnh về da</a>
              <ul class="sub-menu">
-                <li class="sub-item"><a href="#">Bệnh vẩy nến</a></li>
+                <li class="sub-item"><a href="/benhveda">Bệnh vẩy nến</a></li>
                 <li class="sub-item"><a href="#">Bệnh chàm</a></li>
                 <li class="sub-item"><a href="#">Viêm da cơ địa</a></li>
                 
@@ -70,3 +70,32 @@
     </div>
     <div class="menu-btn"></div>
  </nav>
+<script>
+   //jquery for toggle dropdown menu:
+   $(document).ready(function(){
+          //toggle sub-menus:
+          $(".sub-btn").click(function(){
+             $(this).next(".sub-menu").slideToggle();
+          });
+       });
+       //javascript for the responsive navigation menu:
+       var menu=document.querySelector(".menu");
+       var menuBtn=document.querySelector(".menu-btn");
+       var closeBtn=document.querySelector(".close-btn");
+       menuBtn.addEventListener("click",function(){
+          menu.classList.add("active");
+       });
+       closeBtn.addEventListener("click",function(){
+          menu.classList.remove("active");
+       });
+        //javascript for scrolling header:
+        window.addEventListener("scroll" ,function(){
+          var header=document.querySelector(".header");
+          if (window.scrollY>0) {
+             header.classList.add('white');
+          }
+          else{
+             header.classList.remove('white');
+          }
+        });
+</script>

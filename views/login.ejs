@@ -21,7 +21,7 @@
                   </div>
                   <div class="formBx">
                      <form action='/login'>
-                        <h2>Đăng ký</h2>
+                        <h2>Đăng nhập</h2>
                         <input type="text" placeholder="Email" name="email">
                         <div class="emailError"></div>
                         <input type="password"  placeholder="Mật khẩu" name="password">
@@ -68,16 +68,11 @@
                emailError.textContent=data.errors.email;
                passwordError.textContent=data.errors.password;
             }
-
-            
-            
             if(data.user){
-               
                location.assign('/appointment');
+               
             }
-            // if(email=='admin@gmail.com' && password=='admin123'){
-            //    location.assign('/admin');
-            // }
+            
          }catch (err){
             console.log(err);
          }

@@ -1,8 +1,9 @@
 const User = require('../models/User');
 const otp = require('../models/otp');
-const appointment = require('../models/appointment');
+const Appointment = require('../models/appointment');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+// const appointment = require('../models/appointment');
 
 //const bcrypt = require('bcrypt');
 
@@ -72,12 +73,13 @@ const login_get=(req,res)=>{
 
 const login_post= async (req,res)=>{
     const { email,password}=req.body;
-
     try{
+       
         const user= await User.login(email, password);
         const token =createToken(user._id);
         res.cookie('jwt',token, {httpOnly:true,maxAge:maxAge*1000});
         res.status(200).json( {user:user._id} );
+        
     }catch(err){
         const errors = handleErrors(err);
         res.status(400).json({ errors });
@@ -141,19 +143,45 @@ const changePass_post = async (req,res)=>{
 }
 
 const appointment_post= async (req,res)=>{
-    const {fullname,phone,birthday,gender,service,appointmentday,time,note }=req.body;
+    
+    const {fullname,phone,birthday,gender,service,address,appointmentday,note,user_id }=req.body;
     try{
-        const Appointment = await appointment.create({fullname,phone,birthday,gender,service,appointmentday,time,note });
-        res.status(201).json({ Appointment: Appointment._id});
+        const appointment = await Appointment.create({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id});
+        res.status(201).json({appointment:appointment._id});
     }catch(err){
-        res.status(400).send('no');
+        res.status(400).send("No");
     }
+    
+    
+    
+ }
+const appointmentinfo_get =  (req,res)=>{
+    // Appointment.find()
+    // .then(result=>{
+    //     res.render('appointmentinfo', {appointments:result, title:'Quản lý hồ sơ'});
+    // }).catch(err => {
+    //     console.log(err);
+    //     res.render('404', { title: 'Không tìm thấy trang này' });
+    //   });
+    res.render('appointmentinfo', {title:'Quản lý hồ sơ'});
 }
 
 const GioiThieuChung_get = (req,res)=>{
     res.render('GioiThieuChung',{title:'Giới thiệu chung'});
 }
 
+const benhveda_get =(req,res)=>{
+    res.render('benhveda',{title:'Bệnh về da'});
+}
+
+const userAccount_get =(req,res)=>{
+    User.find().then(result=>{
+        res.render('userAccount', {users:result,title:"Danh Sách Người Dùng"});
+    }).catch(err =>{
+        console.log(err);
+    });
+    
+}
 // Send Otp with nodemailer:
 const mailer = async ( email, code) =>{
     let transporter = nodemailer.createTransport({
@@ -194,5 +222,8 @@ module.exports = {
     changePass_get,
     changePass_post,
     appointment_post,
-    GioiThieuChung_get
+    GioiThieuChung_get,
+    benhveda_get,
+    appointmentinfo_get,
+    userAccount_get
 }

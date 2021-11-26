@@ -8,6 +8,7 @@ const router = express.Router();
 //router.get('/appointment',blogController.blog_appointment);
 
 router.get('/GioiThieuChung',blogController.GioiThieuChung_get);
+router.get('/benhveda', blogController.benhveda_get);
 
 router.get('/login', blogController.login_get);
 router.post('/login', blogController.login_post);
@@ -24,4 +25,7 @@ router.post('/changePass',blogController.changePass_post);
 router.get('/logout', blogController.logout_get);
 
 router.post('/appointment',blogController.appointment_post);
+router.get('/appointmentinfo',blogController.appointmentinfo_get);
+
+router.get('/userAccount',blogController.userAccount_get);
 module.exports=router;
