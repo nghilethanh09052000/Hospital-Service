@@ -1,0 +1,89 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" type="text/css" href="/css/adviceMail.css">
+</head>
+<body>
+   <%- include("./partials/nav.ejs") %>
+   <section>
+    <div class="container">
+        <div class="LichHen">
+            <p>Quý khách có các thắc mắc liên quan đến phương pháp điều trị, chính sách ưu đãi, biểu
+                phí, hình thức thanh toán vui lòng để lại thông tin và Mắt Sài Gòn sẽ liên hệ lại, hoặc Quý
+                khách có thể gọi đến tổng đài 1900555553 để được hỗ trợ. Cảm ơn Quý khách.
+            </p>
+            <button class="btn12">Hotline: 1900555553
+                <img src="/HinhAnh/arrowRight.png"  alt="">
+            </button>
+        </div>
+       
+
+       <div class="container-form">
+          <form action="/adviceMail">
+             <h2 class="heading heading-yellow">Đăng ký nhận tư vấn</h2>
+
+             <div class="form-field">
+                <p>Email</p>
+                <input type="email" name="email"  required="required">
+             </div>
+             
+             <div class="form-field">
+                <p>Họ và tên</p>
+                <input type="text" name="fullname"  required="required">
+             </div>
+             
+             <div class="form-field">
+              <p>Số điện thoại</p>
+              <input type="text" name="phone"  required="required">
+           </div>
+            
+             
+           <div class="form-field">
+             <p>Địa chỉ</p>
+             <input type="text" name="address">
+          </div>  
+
+           <div class="form-field">
+              <p>Nội dung cần tư vấn</p>
+              <textarea name="note" id="note"> </textarea>
+
+           </div>
+           <button class="btn">Xác nhận</button>
+           
+           
+          </form>
+       </div>
+       
+    </div>
+ </section>
+
+</body>
+<script>
+    const userId=  document.querySelector('.userId');
+    const form = document.querySelector('form');
+    form.addEventListener('submit',async (e)=>{
+        e.preventDefault();
+        const email = form.email.value;
+        const fullname = form.fullname.value;
+        const phone = form.phone.value;
+        const address = form.address.value;
+        const note =document.getElementById("note").value;
+        try{
+            const res = await fetch('/adviceMail',{
+               method:'POST',
+               body:JSON.stringify({email,fullname,phone,address,note}),
+               headers:{'Content-Type':'application/json'} 
+            })
+            const data =await res.json();
+
+            if(data){
+               location.assign('/');
+            }else{
+               console.log(err);
+            }
+
+         }catch(err){
+            console.log(err);
+         }
+      })
+  
+</script>
+</html>

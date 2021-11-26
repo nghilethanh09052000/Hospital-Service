@@ -16,8 +16,11 @@ router.post('/login', blogController.login_post);
 router.get('/register', blogController.register_get);
 router.post('/register', blogController.register_post);
 
-router.get('/sendMail', blogController.sendMail_get);
-router.post('/sendMail',blogController.sendMail_post);
+router.get('/sendMail', blogController.sendOTP_get);
+router.post('/sendMail',blogController.sendOTP_post);
+
+router.get('/adviceMail', blogController.sendAdviceMail_get);
+router.post('/adviceMail', blogController.sendAdviceMail_post);
 
 router.get('/changePass',blogController.changePass_get);
 router.post('/changePass',blogController.changePass_post);

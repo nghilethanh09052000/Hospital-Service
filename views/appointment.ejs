@@ -54,8 +54,9 @@
               
              <div class="form-field">
                 <p>Ghi chú</p>
-                <input type="text" name="note" >
+                <textarea id='note' name="note" > </textarea>
              </div>
+
              <input type="hidden" name="user_id" value="<%= user._id %>">
              <button class="btn">Xác nhận</button>
              
@@ -92,7 +93,8 @@
          const service = document.getElementById("service").value;
          const address = form.address.value;
          const appointmentday = form.appointmentday.value;
-         const note = form.note.value;
+         const note =document.getElementById("note").value;
+         // const note = form.note.value;
          const user_id = form.user_id.value;
          try{
             const res = await fetch('/appointment',{

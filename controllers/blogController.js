@@ -91,11 +91,11 @@ const logout_get=(req,res)=>{
     res.redirect('/');
 }
 
-const sendMail_get=(req,res)=>{
+const sendOTP_get=(req,res)=>{
     res.render('sendMail', {title:'Quên mật khẩu'} );
 }
 
-const sendMail_post =async (req,res)=>{
+const sendOTP_post =async (req,res)=>{
     const {email}=req.body
     try{
         const data = await User.findOne( {email} );
@@ -119,6 +119,24 @@ const sendMail_post =async (req,res)=>{
         res.status(400).send('error, otp is not created');
     }
 }
+
+const sendAdviceMail_get = (req,res)=>{
+    res.render('adviceMail',{title:'Nhận tư vấn'});
+}
+
+const sendAdviceMail_post = async (req,res)=>{
+    const {email,fullname,phone,address,note}=req.body;
+
+    try{
+        res.status(201).json({email,fullname,phone,address,note});
+        adviceMail(email,note);
+        backadviceMail(email);
+    }catch(err){
+        res.status(400).send('Mail does not send');  
+    }
+}
+
+
 
 const changePass_get = (req,res)=>{
     res.render('changePass',{title:'Đổi mật khẩu'});
@@ -155,6 +173,7 @@ const appointment_post= async (req,res)=>{
     
     
  }
+
 const appointmentinfo_get =  (req,res)=>{
     // Appointment.find()
     // .then(result=>{
@@ -211,14 +230,73 @@ const mailer = async ( email, code) =>{
       
 }
 
+// Send adviceMail: 
+const adviceMail = async ( email, note) =>{
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port:465,
+        secure:true,
+        auth:{
+            user:'thanhnghi591@gmail.com',
+            pass:'abcABC@123'
+        }
+    });
+    let mailOptions = await transporter.sendMail({
+        from: email, // sender address
+        to:  'thanhnghi591@gmail.com' , // list of receivers
+        subject: "Hello, ", // Subject line
+        text: note // plain text body
+       // html: code, // html body
+      });
+
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          res.status(200).send(setting.status("User created Successfully, Please Check your Mail"))
+        }
+      });
+      
+}
+
+// Send back adviceMail: 
+const backadviceMail = async (email) =>{
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port:465,
+        secure:true,
+        auth:{
+            user:'thanhnghi591@gmail.com',
+            pass:'abcABC@123'
+        }
+    });
+    let mailOptions = await transporter.sendMail({
+        from: 'thanhnghi591@gmail.com', // sender address
+        to:  email , // list of receivers
+        subject: "Hello, ", // Subject line
+        text: "We have receive your question"// plain text body
+       // html: code, // html body
+      });
+
+      transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          res.status(200).send(setting.status("User created Successfully, Please Check your Mail"))
+        }
+      });
+      
+}
+
 module.exports = {
     login_get,
     login_post,
     register_get,
     register_post,
     logout_get,
-    sendMail_get,
-    sendMail_post,
+    sendOTP_get,
+    sendOTP_post,
+    sendAdviceMail_get,sendAdviceMail_post,
     changePass_get,
     changePass_post,
     appointment_post,
