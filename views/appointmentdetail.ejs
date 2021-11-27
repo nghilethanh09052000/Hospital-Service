@@ -1,0 +1,69 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/appointmentdetail.css">
+<body>
+   <%- include("./partials/nav.ejs") %>
+<section>
+    <%- include("./partials/sidenav.ejs") %>
+
+    <div class="container">
+
+        <div class="container-form">
+           <form action="/appointment">
+              <h2 class="heading heading-yellow">Thông tin chi tiết</h2>
+              
+              <div class="form-field">
+                 <p>Họ và tên</p>
+                 <input type="text" name="fullname" name="fullname"  value="<%= appointment.fullname %> " >
+              </div>
+              
+              <div class="form-field">
+               <p>Số điện thoại</p>
+               <input type="text" name="phone"  value="<%= appointment.phone %> " >
+            </div>
+              <div class="form-field">
+                 <p>Ngày sinh</p>
+                 <input type="date" name="birthday" value="<%= appointment.birthday %>">
+              </div>
+              <div class="form-field">
+               <p>Giới tính</p>
+               <select name="select" id="gender" name="gender" >
+                  <option value="<%= appointment.gender %>" ><%= appointment.gender %> </option>
+                  
+               </select>
+            </div>
+            <div class="form-field">
+              <p>Địa chỉ</p>
+              <input type="text" name="address" value="<%= appointment.address %>">
+           </div>
+        
+            <div class="form-field">
+               <p>Chọn loại dịch vụ</p>
+               <select name="select" id="service" name="service" required="required" >
+                   <option value="<%= appointment.service %>"><%= appointment.service %></option></select>
+            </div>
+              <div class="form-field">
+                 <p>Ngày đặt hẹn</p>
+                 <textarea name="appointmentday" required="required" value=""><%= appointment.appointmentday%> 
+                    </textarea>
+              </div>
+             
+             
+            <div class="form-field">
+               <p>Ghi chú</p>
+               <textarea id='note' name="note"  ><%= appointment.note%> </textarea>
+            </div>
+
+            <input type="hidden" name="user_id" value="<%= user._id %>">
+            <input type="hidden" name="status" value="Pending">
+        </form>
+        </div>
+    </div>
+</section>
+<script>
+    
+</script>
+
+
+
+</body>
+</html>

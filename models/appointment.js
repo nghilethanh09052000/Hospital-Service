@@ -3,8 +3,6 @@ const User = require('./User');
 const moment = require('moment-timezone');
 
 const dateVietNam = moment.tz(Date.now(), "Asia/Tokyo");
-
-
 const appointmentSchema = new mongoose.Schema({
     fullname:String,
     phone:String,
@@ -22,8 +20,9 @@ const appointmentSchema = new mongoose.Schema({
         ref:User,
         required:true,
         index:true
-    }
-});
+    },
+    status:String
+},{ timestamps: true });
 
 const Appointment = mongoose.model('appointments', appointmentSchema );
 module.exports = Appointment;

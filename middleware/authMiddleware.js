@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require("../models/User");
+const Appointment = require('../models/appointment');
 
 const requireAuth = (req,res,next)=>{
     //grab the token 

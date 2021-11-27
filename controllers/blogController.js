@@ -141,6 +141,7 @@ const sendAdviceMail_post = async (req,res)=>{
 const changePass_get = (req,res)=>{
     res.render('changePass',{title:'Đổi mật khẩu'});
 }
+
 const changePass_post = async (req,res)=>{
     const {email,code}=req.body;
     try{
@@ -162,9 +163,9 @@ const changePass_post = async (req,res)=>{
 
 const appointment_post= async (req,res)=>{
     
-    const {fullname,phone,birthday,gender,service,address,appointmentday,note,user_id }=req.body;
+    const {fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status }=req.body;
     try{
-        const appointment = await Appointment.create({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id});
+        const appointment = await Appointment.create({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status});
         res.status(201).json({appointment:appointment._id});
     }catch(err){
         res.status(400).send("No");
@@ -175,14 +176,49 @@ const appointment_post= async (req,res)=>{
  }
 
 const appointmentinfo_get =  (req,res)=>{
-    // Appointment.find()
-    // .then(result=>{
-    //     res.render('appointmentinfo', {appointments:result, title:'Quản lý hồ sơ'});
-    // }).catch(err => {
-    //     console.log(err);
-    //     res.render('404', { title: 'Không tìm thấy trang này' });
-    //   });
-    res.render('appointmentinfo', {title:'Quản lý hồ sơ'});
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token,'nghi', async (err,decodedToken)=>{
+            if(err){
+                console.log(err);
+            }else{
+                const user_id = await User.findById(decodedToken.id);
+                Appointment.find( {user_id:user_id._id } ).sort({appointmentday:-1})
+                    .then(result =>{
+                        res.render('appointmentinfo', {appointments:result ,title:'Quản lý hồ sơ'});
+                    })
+                    .catch(err =>{
+                        console.log(err);
+                        res.render('404', { title: 'Trang không tìm thấy' });
+                    })
+                
+            }
+        })
+    }else{
+        res.render('404', { title: 'Trang không tìm thấy' });
+    }
+}
+
+const appointmentinfo_delete = (req,res)=>{
+    const id = req.params.id;
+    Appointment.findByIdAndDelete(id).
+    then(result=>{
+        res.json( { redirect:'/appointmentinfo'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
+const appointmentdetail_get = (req,res) =>{
+    const id =req.params.id;
+    Appointment.findById(id)
+    .then(result =>{
+        res.render('appointmentdetail',{appointment:result ,title:'Thông tin chi tiết'});
+    })
+    .catch(err =>{
+        res.render('404', { title: 'Trang không tìm thấy' });
+    })
 }
 
 const GioiThieuChung_get = (req,res)=>{
@@ -300,8 +336,10 @@ module.exports = {
     changePass_get,
     changePass_post,
     appointment_post,
+    appointmentinfo_get,
+    appointmentinfo_delete,
+    appointmentdetail_get,
     GioiThieuChung_get,
     benhveda_get,
-    appointmentinfo_get,
     userAccount_get
 }

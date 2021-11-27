@@ -28,7 +28,12 @@ router.post('/changePass',blogController.changePass_post);
 router.get('/logout', blogController.logout_get);
 
 router.post('/appointment',blogController.appointment_post);
+
 router.get('/appointmentinfo',blogController.appointmentinfo_get);
+router.delete('/appointmentinfo/:id',blogController.appointmentinfo_delete);
+
+router.get('/appointmentdetail/:id',blogController.appointmentdetail_get);
+
 
 router.get('/userAccount',blogController.userAccount_get);
 module.exports=router;

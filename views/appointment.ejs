@@ -44,6 +44,7 @@
                     <option value="Khám & tư vấn tạo hình thẫm mỹ">Khám & tư vấn tạo hình thẫm mỹ</option>
                     <option value="Khám nam khoa">Khám nam khoa</option>
                     <option value="Khám phụ khoa">Khám phụ khoa</option>
+
                  </select>
              </div>
                <div class="form-field">
@@ -58,6 +59,7 @@
              </div>
 
              <input type="hidden" name="user_id" value="<%= user._id %>">
+             <input type="hidden" name="status" value="Pending">
              <button class="btn">Xác nhận</button>
              
              
@@ -96,16 +98,17 @@
          const note =document.getElementById("note").value;
          // const note = form.note.value;
          const user_id = form.user_id.value;
+         const status = form.status.value;
          try{
             const res = await fetch('/appointment',{
                method:'POST',
-               body:JSON.stringify({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id}),
+               body:JSON.stringify({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status}),
                headers:{'Content-Type':'application/json'} 
             })
             const data =await res.json();
 
             if(data.appointment){
-               location.assign('/appointmentinfo');
+               alert('Đặt lịch thành công');
             }else{
                console.log(err);
             }
