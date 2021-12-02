@@ -3,9 +3,11 @@ const morgan =  require('morgan');
 const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes');
 const cookieParser = require('cookie-parser');
-const {requireAuth, checkUser}= require('./middleware/authMiddleware');
+const {requireAuth, checkUser , checkLogin, checkPatient,checkDoctor,checkAdmin}= require('./middleware/authMiddleware');
+const Specialization = require('./models/specialization');
+const Appointment = require('./models/appointment');
 
-// express app
+//express app
 const app=express();
 
 //middleware & static files:
@@ -25,12 +27,27 @@ mongoose.connect(dbURI,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 //routes:
 app.get('*', checkUser);
+
 app.get('/',(req,res)=>{
     res.render('homepage',{title:'Trang chủ'});
 })
-app.get('/appointment',requireAuth,(req,res)=>{
+
+app.get('/appointment',checkLogin,checkPatient,(req,res)=>{
     res.render('appointment',{title:'Đặt lịch'});
 })
+
+
+app.get('/adminpage',checkLogin,checkAdmin,(req,res)=>{
+  res.render('adminpage',{title:'Trang quản lý'})
+
+})
+
+app.get('/doctorpage',checkLogin,checkDoctor,(req,res)=>{
+    res.render('doctorpage',{title:'Trang bác sĩ'})
+  
+  })
+
+
 
 // blog routes
 app.use(blogRoutes);

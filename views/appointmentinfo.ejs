@@ -21,11 +21,13 @@
         </div>
           <div class="table-cell last-cell">
               <p>Trạng thái</p>
-          </div> 
+          </div>
+        
           <div class="table-cell last-cell">
             <p>Chi tiết</p>
         </div> 
       </div>
+      
       <% if(appointments.length>0){ %>
         <% appointments.forEach(appointment => { %>
         <div class="table-row">
@@ -41,8 +43,9 @@
         <div class="table-cell">
           <p><%= appointment.status %></p>
       </div>
+     
           <div class="table-cell last-cell">
-              <a href="/appointmentdetail/<%= appointment._id %>">Chi tiết</a>
+              <a class="detail" href="/appointmentdetail/<%= appointment._id %>">Chi tiết</a>
               <a href=""class="trashBin" data-doc="<%= appointment._id %> " >
                 <img src="/HinhAnh/trash.png" alt="#" >
               </a>
@@ -66,6 +69,7 @@
     .then(data => window.location.href=data.redirect)
     .catch(err=> console.log(err));
   })
+
 </script>
 
 </body>

@@ -1,9 +1,12 @@
 const User = require('../models/User');
 const otp = require('../models/otp');
 const Appointment = require('../models/appointment');
+const Specialization = require('../models/specialization');
+const Schedule = require('../models/schedule');
+
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-// const appointment = require('../models/appointment');
+
 
 //const bcrypt = require('bcrypt');
 
@@ -74,11 +77,23 @@ const login_get=(req,res)=>{
 const login_post= async (req,res)=>{
     const { email,password}=req.body;
     try{
-       
         const user= await User.login(email, password);
         const token =createToken(user._id);
         res.cookie('jwt',token, {httpOnly:true,maxAge:maxAge*1000});
-        res.status(200).json( {user:user._id} );
+        const role = user.role;
+        if(role=='patient'){
+            const user = await User.findOne({email,role});
+            res.status(200).json( {user:user._id} );
+        }else if(role =='doctor'){
+            const user1 = await User.findOne({email,role});
+            res.status(200).json( {user1:user._id} );
+        }else{
+            const user2 = await User.findOne({email,role});
+            res.status(200).json( {user2:user._id} );
+        }
+            
+        
+        
         
     }catch(err){
         const errors = handleErrors(err);
@@ -163,7 +178,7 @@ const changePass_post = async (req,res)=>{
 
 const appointment_post= async (req,res)=>{
     
-    const {fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status }=req.body;
+    const {fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status}=req.body;
     try{
         const appointment = await Appointment.create({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status});
         res.status(201).json({appointment:appointment._id});
@@ -237,6 +252,102 @@ const userAccount_get =(req,res)=>{
     });
     
 }
+
+const adminPageUserAccount_get =(req,res)=>{
+    const role = 'patient'
+    User.find({role:role})
+    .then(result =>{
+        res.render('adminPageUserAccount',{users:result, title:'Quản lý bệnh nhân'});
+    })
+    .catch(err =>{
+        console.log(err);
+    })
+}
+
+const adminPageDoctorAccount_get = (req,res)=>{
+    const role = 'doctor'
+    User.find({role:role})
+    .then(result =>{
+        res.render('adminPageDoctorAccount',{users:result, title:'Quản lý Bác Sĩ'});
+    })
+    .catch(err =>{
+        console.log(err);
+    })
+}
+
+const adminPageDoctorAccountDetail_get =(req,res)=>{
+    const id =req.params.id;
+    User.findById(id)
+    .then(result =>{
+        res.render('adminPageDoctorAccountDetail',{user:result ,title:'Thông tin chi tiết'});
+    })
+    .catch(err =>{
+        res.render('404', { title: 'Trang không tìm thấy' });
+    })
+}
+
+const adminPageDoctorAccountDetail_post= async (req,res)=>{
+    const {specializations,image,description,user_id} = req.body;
+    try{
+        const specialization = await Specialization.create({specializations,image,description,user_id});
+        res.status(201).json({specialization:specialization._id});
+    }catch(err){
+        res.status(400).send("No");
+    }
+}
+
+const adminPageSpecialization_get =(req,res)=>{
+    const specialization = Specialization.find()
+    
+}
+
+const doctorPageSchedule_get = (req,res)=>{
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token,'nghi', async (err,decodedToken)=>{
+            if(err){
+                console.log(err);
+            }else{
+                const user_id = await User.findById(decodedToken.id);
+                Schedule.find({user_id:user_id}).sort({createdAt:-1})
+                .then(result =>{
+                    res.render('doctorPageSchedule',{schedules:result, title:'Lịch làm việc'});
+                })
+                .catch(err =>{
+                    res.render('404', { title: 'Trang không tìm thấy' })
+                })
+    }
+})
+    }
+    
+}
+
+const doctorPageSchedule_delete = (req,res) =>{
+    const id = req.params.id;
+    Schedule.findOneAndDelete({id}).
+    then(result=>{
+        res.json( { redirect:'/doctorPageSchedule'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
+
+const doctorPageCreateSchedule_get = async (req,res)=>{
+    res.render('doctorPageCreateSchedule',{title:'Thêm giờ làm việc'});
+}
+
+const doctorPageCreateSchedule_post =async (req,res) =>{
+    const {hour,date,user_id} = req.body;
+    try{
+        const schedule = await Schedule.create({hour,date, user_id});
+        res.status(201).json({schedule:schedule._id});
+    }catch(err){
+        res.status(400).send("No");
+    }
+}
+
 // Send Otp with nodemailer:
 const mailer = async ( email, code) =>{
     let transporter = nodemailer.createTransport({
@@ -245,7 +356,7 @@ const mailer = async ( email, code) =>{
         secure:true,
         auth:{
             user:'thanhnghi591@gmail.com',
-            pass:'abcABC@123'
+            pass:'abcABC@123456'
         }
     });
     let mailOptions = await transporter.sendMail({
@@ -274,7 +385,7 @@ const adviceMail = async ( email, note) =>{
         secure:true,
         auth:{
             user:'thanhnghi591@gmail.com',
-            pass:'abcABC@123'
+            pass:'abcABC@123456'
         }
     });
     let mailOptions = await transporter.sendMail({
@@ -303,7 +414,7 @@ const backadviceMail = async (email) =>{
         secure:true,
         auth:{
             user:'thanhnghi591@gmail.com',
-            pass:'abcABC@123'
+            pass:'abcABC@123456'
         }
     });
     let mailOptions = await transporter.sendMail({
@@ -341,5 +452,7 @@ module.exports = {
     appointmentdetail_get,
     GioiThieuChung_get,
     benhveda_get,
-    userAccount_get
+    userAccount_get,
+    adminPageUserAccount_get,adminPageDoctorAccount_get,adminPageDoctorAccountDetail_get,adminPageDoctorAccountDetail_post,adminPageSpecialization_get,
+    doctorPageCreateSchedule_get,doctorPageCreateSchedule_post,doctorPageSchedule_get,doctorPageSchedule_delete
 }

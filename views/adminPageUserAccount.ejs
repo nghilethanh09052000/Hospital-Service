@@ -1,0 +1,49 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/adminPageUserAccount.css">
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <section>
+    <%- include("./partials/sidebarAdminPage.ejs") %>
+    <div class="table-box">
+        <div class="table-row table-head">
+            <div class="table-cell first-cell">
+                <p>Email</p>
+            </div>
+            <div class="table-cell">
+              <p>Ngày tạo tài khoản</p>
+          </div>
+            <div class="table-cell last-cell">
+                <p>Role</p>
+            </div>
+          
+            <div class="table-cell last-cell">
+              <p>Xóa tài khoản</p>
+          </div> 
+        </div>
+        <% if(users.length>0){ %>
+            <% users.forEach(user=> { %>
+        <div class="table-row">
+            <div class="table-cell first-cell">
+                <p><%= user.email %></p>
+            </div>
+            <div class="table-cell">
+              <p><%= user.createdAt %></p>
+          </div>
+          <div class="table-cell">
+            <p><%= user.role %></p>
+        </div>
+       <div class="table-cell last-cell">
+                <a href=""class="trashBin" >
+                  <img src="/HinhAnh/trash.png" alt="#" >
+                </a>
+              </div>   
+        </div>
+        <% }) %>
+        <% }else{%>
+          <p>Không có lịch hẹn nào...</p>
+          <% } %>
+        </div>
+      </section>
+  
+</body>
+</html>

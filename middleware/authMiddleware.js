@@ -20,7 +20,7 @@ const requireAuth = (req,res,next)=>{
         res.redirect('/login');
     }
 };
-// check current user:
+//check current user:
 const checkUser= (req,res,next)=>{
     const token=req.cookies.jwt;
     if(token){
@@ -31,6 +31,7 @@ const checkUser= (req,res,next)=>{
             }else{
                 let user = await User.findById(decodedToken.id);
                 res.locals.user=user;
+                
                 next();
             }
         })
@@ -40,4 +41,57 @@ const checkUser= (req,res,next)=>{
     }
 }
 
-module.exports={requireAuth ,checkUser};
+// Check admin permission
+const checkLogin= (req,res,next)=>{
+   try{
+    const token = req.cookies.jwt;
+    const idUser = jwt.verify(token,'nghi')
+    User.findById(idUser.id)
+    .then(data =>{
+        if(data){
+            req.data=data
+            next()
+        }else{
+            res.json('Not Permission1')
+        }
+    }).catch(err=>{
+        res.json('Not Permission2')
+    })
+
+    }catch(err){
+        res.redirect('/login');
+    }
+}
+const checkPatient = (req,res,next)=>{
+    var role = req.data.role;
+    if(role =='patient'){
+        next();
+    }else{
+        console.log(req.data.email)
+        console.log(role)
+        res.json('Not Permission4')
+    }
+}
+
+const checkDoctor = (req,res,next)=>{
+    var role = req.data.role;
+    if(role ==='doctor'){
+        next();
+    }else{
+        console.log(role)
+        res.json('Not Permission7')
+    }
+}
+
+const checkAdmin = (req,res,next)=>{
+    var role = req.data.role;
+    if(role ==='admin'){
+        next();
+    }else{
+        console.log(role)
+        res.json('Not Permission5')
+    }
+}
+
+
+module.exports={requireAuth ,checkUser,checkLogin, checkPatient,checkDoctor,checkAdmin};

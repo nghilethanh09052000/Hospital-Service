@@ -68,9 +68,16 @@
                emailError.textContent=data.errors.email;
                passwordError.textContent=data.errors.password;
             }
+            if(data.user2){
+               location.assign('/adminpage');
+            }
+
+            if(data.user1){
+               location.assign('/doctorpage');
+            }
+            
             if(data.user){
                location.assign('/appointment');
-               
             }
             
          }catch (err){

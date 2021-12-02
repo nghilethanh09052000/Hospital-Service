@@ -1,0 +1,135 @@
+<%- include("./partials/head.ejs") %>
+<style>
+    section{
+        position: relative;
+        display: flex;
+        height: 100%;
+        width: 100%;
+      background: #fff;
+    }
+    .table-box
+{
+    position: absolute;
+    width: 60%;
+    right: 50%;
+    transform: translateX(50%);
+    margin: 20px auto;
+}
+
+.table-row{
+    display: table;
+    width: 80%;
+    margin: 10px auto;
+    font-family: sans-serif;
+    background: transparent;
+    padding: 12px 0;
+    color: #555;
+    font-size: 13px;
+    box-shadow: 0 1px 4px 0px rgba(0,0,50,0.3);
+}
+.table-head{
+    background: #8665f7;
+    box-shadow: none;
+    color: #fff;
+    font-weight: 600;
+}
+.table-head .table-cell{
+    border-right: none;
+}
+.table-cell{
+    display: table-cell;
+    width: 20%;
+    text-align: center;
+    padding: 4px 0;
+    border-right: 1px solid #d6d4d4;
+    vertical-align: middle;
+}
+.first-cell{
+    text-align: left;
+    padding-left: 10px;
+}
+.last-cell{
+    border-right: none;
+}
+a{
+    text-decoration: none;
+    color: #555;
+}
+.last-cell img{
+    margin-left: 10%;
+    width: 15%;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .table-row {
+    font-size: 11px;
+  }
+}
+</style>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <section>
+        <%- include("./partials/sidebarDoctor.ejs") %>
+        <div class="table-box">
+
+            <div class="table-row table-head">
+                <div class="table-cell first-cell">
+                    <p>Ngày làm việc</p>
+                </div>
+                <div class="table-cell">
+                    <p>Giờ làm việc</p>
+                </div>
+                <div class="table-cell">
+                    <p>Ngày tạo</p>
+                </div>
+                <div class="table-cell last-cell">
+                    <p>Xóa</p>
+                </div>
+              
+            </div>
+            
+            <% if(schedules.length>0){ %>
+              <% schedules.forEach(schedule => { %>
+
+              <div class="table-row">
+
+                <div class="table-cell first-cell">
+                    <p><%= schedule.date %></p>
+                </div>
+                
+               <div class="table-cell">
+                <p><%= schedule.hour %></p>
+            </div>
+              <div class="table-cell">
+                <p><%= schedule.createdAt %></p>
+            </div>
+           
+                <div class="table-cell last-cell">
+                    <a href=""class="trashBin" data-doc="<%= schedule._id %> " >
+                      <img src="/HinhAnh/trash.png" alt="#" >
+                    </a>
+                  </div>   
+            </div>
+            <% }) %>
+            <% }else{%>
+              <p>Chưa có ngày làm...</p>
+              <% } %>
+            </div>  
+    </section>
+
+
+    <script>
+        const trashBin = document.querySelector('.trashBin');
+        trashBin.addEventListener('click',(e)=>{
+        const id = `/doctorPageSchedule/${trashBin.dataset.doc}`;
+    fetch(id,{
+      method:'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => window.location.href=data.redirect)
+    .catch(err=> console.log(err));
+  })
+    </script>
+</body>
+</html>

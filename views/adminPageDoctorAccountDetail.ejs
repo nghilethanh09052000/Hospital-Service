@@ -1,0 +1,163 @@
+<%- include("./partials/head.ejs") %>
+<style>
+   section{
+   position: relative;
+   display: flex;
+   height: 660px;
+   width: 100%;
+   background: #fff;
+}
+.forms {
+   position:  relative;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 50%;
+   left: 50%;
+   transform: translateX(-50%);
+   height: 50%;
+   background-color: #fff;
+}
+.form-content{
+   position: relative;
+   left: 50%;
+   transform: translateX(-50%);
+   background-color: #fff;
+}
+.forms .form-content .title{
+position: relative;
+font-size: 24px;
+font-weight: 500;
+color: #333;
+}
+.forms .form-content .title:before{
+content: '';
+position: absolute;
+left: 0;
+bottom: 0;
+height: 3px;
+width: 25px;
+background: #7d2ae8;
+}
+.forms .form-content .input-boxes{
+margin-top: 30px;
+}
+.forms .form-content .input-box{
+display: flex;
+align-items: center;
+height: 50px;
+width: 100%;
+margin: 10px 0;
+position: relative;
+}
+.form-content .input-box select{
+/* height: 100%; */
+width: 100%;
+outline: none;
+border: none;
+padding: 0 30px;
+font-size: 16px;
+font-weight: 500;
+border-bottom: 2px solid rgba(0,0,0,0.2);
+transition: all 0.3s ease;
+}
+.form-content .input-box select:focus,
+.form-content .input-box select:valid{
+border-color: #7d2ae8;
+}
+
+.forms .form-content .button{
+color: #fff;
+margin-top: 40px;
+}
+.forms .form-content .button input{
+color: #fff;
+background: #7d2ae8;
+border-radius: 6px;
+padding: 0;
+cursor: pointer;
+transition: all 0.4s ease;
+}
+.forms .form-content .button input:hover{
+background: #5b13b9;
+}
+
+</style>
+<body>
+    <%- include("./partials/nav.ejs") %>
+    <section>
+        <%- include("./partials/sidebaradminPage.ejs") %>
+
+        <div class="forms">
+         <div class="form-content">
+           <div class="login-form">
+             <div class="title">Chọn chuyên khoa</div>
+             <form action="/:id">
+             <div class="input-boxes">
+               <div class="input-box">
+                  <select name="select" id="specialization" name="specialization" required="required" >
+                     <option value="Khám bệnh ngoài da">Khám bệnh ngoài da</option>
+                     <option value="Khám tư vấn thẩm mỹ da">Khám tư vấn thẩm mỹ da</option>
+                     <option value="Khám và tư vấn tạo hình thẩm mỹ">Khám và tư vấn tạo hình thẩm mỹ</option>
+                     <option value="Khám nam khoa">Khám nam khoa</option>
+                     <option value="Khám phụ khoa">Khám phụ khoa</option>
+                  </select>                 
+            </div>
+               <div class="input-box">
+               
+                  <input type="file" name="image" required="required">
+                  <textarea id='description' name="description"> </textarea>
+                 <input type="hidden" name="user_id" value="<%= user._id %>" >
+               </div>
+               <div class="button input-box">
+                  <input type="submit" value="Xác nhận">
+               </div>
+             </div>
+         </form>
+       </div>
+      </div>
+   </div>
+
+         
+        
+           
+           
+            
+            
+    
+
+
+    </section>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (e)=>{
+         e.preventDefault();
+         const specializations = document.getElementById("specialization").value;
+         const image = form.image.value;
+         const description =document.getElementById("description").value;
+         const user_id = form.user_id.value;
+         try{
+            const res = await fetch('/:id',{
+               method:'POST',
+               body:JSON.stringify({specializations,image,description,user_id}),
+               headers:{'Content-Type':'application/json'} 
+            })
+            const data =await res.json();
+
+            if(data.specialization){
+               alert('Thành công');
+            }else{
+               console.log(err);
+            }
+
+         }catch(err){
+            console.log(err);
+         }
+      })
+    </script>
+</body>
+
+
+
+</html>

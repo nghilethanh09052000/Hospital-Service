@@ -60,6 +60,7 @@
 
              <input type="hidden" name="user_id" value="<%= user._id %>">
              <input type="hidden" name="status" value="Pending">
+             <input type="hidden" name="medicalForm" value="Không">
              <button class="btn">Xác nhận</button>
              
              
@@ -96,13 +97,13 @@
          const address = form.address.value;
          const appointmentday = form.appointmentday.value;
          const note =document.getElementById("note").value;
-         // const note = form.note.value;
          const user_id = form.user_id.value;
          const status = form.status.value;
+         
          try{
             const res = await fetch('/appointment',{
                method:'POST',
-               body:JSON.stringify({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status}),
+               body:JSON.stringify({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status }),
                headers:{'Content-Type':'application/json'} 
             })
             const data =await res.json();

@@ -16,7 +16,14 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please enter a password'],
         minlength: [6, 'Minimum password length is 6 characters'],
       },
-     
+     role:{
+      type: String,
+      enum : ['patient','doctor','admin'],
+      default:'patient'
+     },
+     name:String,
+     image:String
+
 },{ timestamps: true });
 
 //Create function before doc saved to db
@@ -28,6 +35,7 @@ userSchema.pre('save', async function(next) {
 
 //check login user with static method:
 userSchema.statics.login = async function(email,password){
+
 
   const user = await this.findOne({email});
   if(user){
