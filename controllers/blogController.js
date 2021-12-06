@@ -3,9 +3,11 @@ const otp = require('../models/otp');
 const Appointment = require('../models/appointment');
 const Specialization = require('../models/specialization');
 const Schedule = require('../models/schedule');
+const Clinic = require('../models/clinic');
 
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+const bcrypt = require('bcrypt');
 
 
 //const bcrypt = require('bcrypt');
@@ -152,30 +154,29 @@ const sendAdviceMail_post = async (req,res)=>{
 }
 
 
-
-const changePass_get = (req,res)=>{
+const changepass_get = (req,res)=>{
     res.render('changePass',{title:'Đổi mật khẩu'});
 }
-
-const changePass_post = async (req,res)=>{
-    const {email,code}=req.body;
-    try{
-        const data = await otp.find({code:code});
-        if(data){
-            //const salt = await bcrypt.genSalt();
-            const {password} =req.body;
-            const user = await User.findOneAndUpdate({email:email},{password:password})
-            res.status(200).json();
-        }else{
-            console.log(err);
-            res.status(400).send('User cannot change');
-        }
-    }catch(err){
-        console.log(err);
+ const changepass_post = async (req,res)=>{
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token,'nghi', async (err,decodedToken)=>{
+            if(err){
+                console.log(err);
+            }else{
+                try{
+                    const user_id = await User.findById(decodedToken.id);
+                    const salt = await bcrypt.genSalt();
+                    const password = await bcrypt.hash(req.body.password, salt);
+                    const user = await User.findByIdAndUpdate( {_id:user_id},{password:password});
+                    res.status(201).json({user:user._id});
+                }catch(err){
+                    res.status(400).send("No");
+                }
+            }
+        })
     }
-    
 }
-
 const appointment_post= async (req,res)=>{
     
     const {fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status}=req.body;
@@ -244,8 +245,8 @@ const benhveda_get =(req,res)=>{
     res.render('benhveda',{title:'Bệnh về da'});
 }
 
-const userAccount_get =(req,res)=>{
-    User.find().then(result=>{
+const userAccount_get =  (req,res)=>{
+     User.find().then(result=>{
         res.render('userAccount', {users:result,title:"Danh Sách Người Dùng"});
     }).catch(err =>{
         console.log(err);
@@ -253,9 +254,9 @@ const userAccount_get =(req,res)=>{
     
 }
 
-const adminPageUserAccount_get =(req,res)=>{
+const adminPageUserAccount_get = (req,res)=>{
     const role = 'patient'
-    User.find({role:role})
+ User.find({role:role}).sort({createdAt:-1})
     .then(result =>{
         res.render('adminPageUserAccount',{users:result, title:'Quản lý bệnh nhân'});
     })
@@ -264,41 +265,198 @@ const adminPageUserAccount_get =(req,res)=>{
     })
 }
 
-const adminPageDoctorAccount_get = (req,res)=>{
-    const role = 'doctor'
-    User.find({role:role})
-    .then(result =>{
-        res.render('adminPageDoctorAccount',{users:result, title:'Quản lý Bác Sĩ'});
+const adminPageUserAccount_delete = (req,res) =>{
+    const id = req.params.id;
+    User.findByIdAndDelete(id).
+    then(result=>{
+        res.json( { redirect:'/adminPageUserAccount'} );
     })
-    .catch(err =>{
+    .catch(err=>{
         console.log(err);
-    })
+    });
 }
 
-const adminPageDoctorAccountDetail_get =(req,res)=>{
+const adminPageUserAccountDetails_get =(req,res)=>{
     const id =req.params.id;
     User.findById(id)
     .then(result =>{
-        res.render('adminPageDoctorAccountDetail',{user:result ,title:'Thông tin chi tiết'});
+        res.render('adminPageUserAccountDetails',{user:result ,title:'Thông tin tài khoản'});
     })
     .catch(err =>{
         res.render('404', { title: 'Trang không tìm thấy' });
     })
 }
 
-const adminPageDoctorAccountDetail_post= async (req,res)=>{
-    const {specializations,image,description,user_id} = req.body;
+const adminPageUserAccountDetails_put = (req,res)=>{
+    const {role,user_id} = req.body;
+    User.findByIdAndUpdate(user_id, {role:role})
+    .then(result=>{
+        res.json( { redirect:'/adminPageUserAccount'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
+const adminPageDoctorAccount_get =  (req,res)=>{
+    const role = 'doctor'
+     User.find({role:role})
+    .then(result =>{
+        res.render('adminPageDoctorAccount',{users:result, title:'Quản lý Bác Sĩ'});
+    })
+    .catch(err =>{
+        res.render('404', { title: 'Trang không tìm thấy' });
+    })
+}
+
+const adminPageDoctorAccount_delete = (req,res)=>{
+    const id = req.params.id;
+    User.findByIdAndDelete(id).
+    then(result=>{
+        res.json( { redirect:'/adminPageDoctorAccount'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
+const adminPageDoctorAccountDetails_get = async (req,res)=>{
+    const id =req.params.id;
+    const user = await User.findById(id);
+    const clinics =  await Clinic.find();
+    return res.render('adminPageDoctorAccountDetails',
+    {user:user,clinics :clinics ,
+        title:'Phân phòng khám'});
+}
+
+const adminPageDoctorAccountDetails_put = async (req,res)=>{
+    const {clinic,user_id} = req.body;
+    const doctor_id= await User.findById(user_id);
+
+    Clinic.findOneAndUpdate( {name:clinic} , {doctor_id:doctor_id })
+    .then(result=>{
+        res.json( { redirect:'/adminPageDoctorAccount'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
+const adminPageDoctorAccountDetail_get = async (req,res)=>{
+    const id =req.params.id;
+    const user = await User.findById(id);
+    const specializations =  await Specialization.find();
+    return res.render('adminPageDoctorAccountDetail',
+    {user:user,specializations :specializations ,
+        title:'Phân chuyên khoa'});
+
+}
+
+const adminPageDoctorAccountDetail_put= async (req,res)=>{
+    const {specializations,user_id} = req.body;
+    const specialization = await Specialization.findOne({specializations:specializations});
+    User.findByIdAndUpdate(user_id, {specialization_id:specialization._id})
+    .then(result=>{
+        res.json( { redirect:'/adminPageDoctorAccount'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
+
+
+const adminPageCreateSpecialization_get = (req,res)=>{
+    res.render('adminPageCreateSpecialization',{title:'Tạo mới chuyên khoa'});
+}
+
+const adminPageCreateSpecialization_post = async (req,res)=>{
+    const {specializations,description,image}=req.body;
     try{
-        const specialization = await Specialization.create({specializations,image,description,user_id});
+        const specialization = await Specialization.create({specializations,description,image});
         res.status(201).json({specialization:specialization._id});
+    }catch(err){
+        res.status(400).send("No");
+
+    }
+
+}
+
+const adminPageSpecialization_get =(req,res)=>{
+    Specialization.find()
+    .then(result=>{
+        res.render('adminPageSpecialization',{specializations:result ,title:'Các chuyên khoa'});
+    })
+    .catch(err =>{
+        res.render('404', { title: 'Trang không tìm thấy' });
+    })
+}
+
+const adminPageSpecializationDetails_get = (req,res)=>{
+    const id =req.params.id;
+    Specialization.findById(id)
+    .then(result =>{
+        res.render('adminPageSpecializationDetails',{specializations:result ,title:'Thông tin chi tiết'});
+    })
+    .catch(err =>{
+        res.render('404', { title: 'Trang không tìm thấy' });
+    })
+}
+
+const adminPageSpecialization_delete = (req,res)=>{
+    const id = req.params.id;
+    Specialization.findByIdAndDelete(id).
+    then(result=>{
+        res.json( { redirect:'/adminPageSpecialization'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
+const adminPageSpecialization_put =  (req,res)=>{
+    const {specializations_id, description,image} = req.body;
+    Specialization.findByIdAndUpdate(specializations_id, {image:image,description:description})
+    .then(result=>{
+        res.json( { redirect:'/adminPageSpecialization'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
+const adminPageCreateClinic_get = (req,res)=>{
+    res.render('adminPageCreateClinic',{title:'Thêm phòng khám'});
+}
+
+const adminPageCreateClinic_post = async (req,res)=>{
+    const {name} = req.body;
+    try{
+        const clinic = await Clinic.create({name});
+        res.status(201).json({clinic:clinic._id});
     }catch(err){
         res.status(400).send("No");
     }
 }
 
-const adminPageSpecialization_get =(req,res)=>{
-    const specialization = Specialization.find()
+const adminPageClinic_get = async (req,res)=>{
+    const clinics = await Clinic.find();
+    return res.render('adminPageClinic',
+    { clinics:clinics,
+        title:'Thông tin phòng khám'});
+
     
+}
+
+const adminPageClinic_delete = (req,res)=>{
+    const id = req.params.id;
+    Clinic.findByIdAndDelete(id).
+    then(result=>{
+        res.json( { redirect:'/adminPageClinic'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
 }
 
 const doctorPageSchedule_get = (req,res)=>{
@@ -308,8 +466,8 @@ const doctorPageSchedule_get = (req,res)=>{
             if(err){
                 console.log(err);
             }else{
-                const user_id = await User.findById(decodedToken.id);
-                Schedule.find({user_id:user_id}).sort({createdAt:-1})
+                const doctor_id = await User.findById(decodedToken.id);
+                Schedule.find({doctor_id}).sort({createdAt:-1})
                 .then(result =>{
                     res.render('doctorPageSchedule',{schedules:result, title:'Lịch làm việc'});
                 })
@@ -324,7 +482,7 @@ const doctorPageSchedule_get = (req,res)=>{
 
 const doctorPageSchedule_delete = (req,res) =>{
     const id = req.params.id;
-    Schedule.findOneAndDelete({id}).
+    Schedule.findByIdAndDelete(id).
     then(result=>{
         res.json( { redirect:'/doctorPageSchedule'} );
     })
@@ -335,13 +493,29 @@ const doctorPageSchedule_delete = (req,res) =>{
 
 
 const doctorPageCreateSchedule_get = async (req,res)=>{
-    res.render('doctorPageCreateSchedule',{title:'Thêm giờ làm việc'});
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token,'nghi', async (err,decodedToken)=>{
+            if(err){
+                console.log(err);
+            }else{
+                const doctorId = await User.findById(decodedToken.id);
+                const doctor_id = doctorId._id.toString()
+                const clinics = await Clinic.find( { doctor_id: doctor_id });
+                return res.render('doctorPageCreateSchedule',
+                {clinics:clinics,
+                    title:'Thêm lịch làm việc'});
+    }
+})
+    }
+    
+    
 }
 
 const doctorPageCreateSchedule_post =async (req,res) =>{
-    const {hour,date,user_id} = req.body;
+    const {hour,date,doctor_id,clinic_id} = req.body;
     try{
-        const schedule = await Schedule.create({hour,date, user_id});
+        const schedule = await Schedule.create({hour,date, doctor_id,clinic_id});
         res.status(201).json({schedule:schedule._id});
     }catch(err){
         res.status(400).send("No");
@@ -443,9 +617,10 @@ module.exports = {
     logout_get,
     sendOTP_get,
     sendOTP_post,
-    sendAdviceMail_get,sendAdviceMail_post,
-    changePass_get,
-    changePass_post,
+    sendAdviceMail_get,
+    sendAdviceMail_post,
+    changepass_get, 
+    changepass_post,
     appointment_post,
     appointmentinfo_get,
     appointmentinfo_delete,
@@ -453,6 +628,26 @@ module.exports = {
     GioiThieuChung_get,
     benhveda_get,
     userAccount_get,
-    adminPageUserAccount_get,adminPageDoctorAccount_get,adminPageDoctorAccountDetail_get,adminPageDoctorAccountDetail_post,adminPageSpecialization_get,
-    doctorPageCreateSchedule_get,doctorPageCreateSchedule_post,doctorPageSchedule_get,doctorPageSchedule_delete
+    adminPageUserAccount_get,
+    adminPageUserAccountDetails_get,
+    adminPageUserAccountDetails_put,
+    adminPageUserAccount_delete,
+    adminPageDoctorAccount_get,
+    adminPageDoctorAccountDetail_get,
+    adminPageDoctorAccountDetails_get,
+    adminPageDoctorAccountDetails_put,
+    adminPageDoctorAccountDetail_put,
+    adminPageDoctorAccount_delete,
+    adminPageSpecialization_get,
+    adminPageSpecialization_delete,
+    adminPageSpecializationDetails_get,
+    adminPageSpecialization_put,
+    adminPageCreateSpecialization_get,
+    adminPageCreateSpecialization_post,
+    doctorPageCreateSchedule_get,
+    doctorPageCreateSchedule_post,
+    doctorPageSchedule_get,
+    doctorPageSchedule_delete,
+    adminPageCreateClinic_get,
+    adminPageCreateClinic_post,adminPageClinic_get,adminPageClinic_delete
 }

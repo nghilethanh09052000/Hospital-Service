@@ -3,16 +3,17 @@ const User = require('./User');
 const moment = require('moment-timezone');
 
 const specializationSchema = new mongoose.Schema({
-    specializations:String,
-    description:String,
-    image:String,
-    user_id:{
-        type: mongoose.Schema.ObjectId,
-        ref:User,
-        required:true,
-        index:true,
+    specializations:{
+        type:String,
         unique:true
     },
+    description:String,
+    image:String,
+    address:{
+        type:String,
+        default:'Số 669 Quốc lộ 1, Khu phố 3, Phường Linh Xuân, Thủ Đức, TP. Hồ Chí Minh'
+    }
+   
 },{ timestamps: true });
 
 const Specialization = mongoose.model('specializations', specializationSchema );

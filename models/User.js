@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
-
+const Specialization = require('./specialization');
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -21,8 +21,20 @@ const userSchema = new mongoose.Schema({
       enum : ['patient','doctor','admin'],
       default:'patient'
      },
+     
      name:String,
-     image:String
+     image:String,
+     phone:String,
+     facebook:String,
+     instagram:String,
+     description:String,
+
+
+     specialization_id:{
+      type: mongoose.Schema.ObjectId,
+      ref:Specialization,
+      index:true 
+     }
 
 },{ timestamps: true });
 
@@ -35,8 +47,6 @@ userSchema.pre('save', async function(next) {
 
 //check login user with static method:
 userSchema.statics.login = async function(email,password){
-
-
   const user = await this.findOne({email});
   if(user){
     const auth = await bcrypt.compare(password, user.password);

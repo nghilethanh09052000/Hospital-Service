@@ -9,29 +9,31 @@ const router = express.Router();
 
 router.get('/GioiThieuChung',blogController.GioiThieuChung_get);
 router.get('/benhveda', blogController.benhveda_get);
-
-router.get('/login', blogController.login_get);
-router.post('/login', blogController.login_post);
-
-router.get('/register', blogController.register_get);
-router.post('/register', blogController.register_post);
-
 router.get('/sendMail', blogController.sendOTP_get);
 router.post('/sendMail',blogController.sendOTP_post);
-
 router.get('/adviceMail', blogController.sendAdviceMail_get);
 router.post('/adviceMail', blogController.sendAdviceMail_post);
 
-router.get('/changePass',blogController.changePass_get);
-router.post('/changePass',blogController.changePass_post);
-
+router.get('/login', blogController.login_get);
+router.post('/login', blogController.login_post);
+router.get('/register', blogController.register_get);
+router.post('/register', blogController.register_post);
 router.get('/logout', blogController.logout_get);
 
-router.post('/appointment',blogController.appointment_post);
 
+
+
+
+
+
+router.post('/appointment',blogController.appointment_post);
 router.get('/appointmentinfo',requireAuth,checkLogin, checkPatient,blogController.appointmentinfo_get);
 router.delete('/appointmentinfo/:id',blogController.appointmentinfo_delete);
 router.get('/appointmentdetail/:id',blogController.appointmentdetail_get);
+router.get('/changepass', blogController.changepass_get);
+router.post('/changepass', blogController.changepass_post);
+
+
 
 router.get('/doctorPageSchedule',requireAuth,checkLogin,checkDoctor,blogController.doctorPageSchedule_get);
 router.delete('/doctorPageSchedule/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageSchedule_delete);
@@ -40,12 +42,34 @@ router.post('/doctorPageCreateSchedule',requireAuth,checkLogin,checkDoctor,blogC
 
 
 router.get('/adminPageUserAccount',requireAuth,checkLogin, checkAdmin,blogController.adminPageUserAccount_get);
+router.get('/adminPageUserAccountDetails/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageUserAccountDetails_get);
+router.put('/adminPageUserAccountDetails',requireAuth,checkLogin, checkAdmin,blogController.adminPageUserAccountDetails_put);
+router.delete('/adminPageUserAccount/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageUserAccount_delete);
+
 router.get('/adminPageDoctorAccount',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccount_get);
-router.get('/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetail_get);
-router.post('/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetail_post);
+router.delete('/adminPageDoctorAccount/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccount_delete);
+router.get('/adminPageDoctorAccountDetail/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetail_get);
+router.put('/adminPageDoctorAccountDetail',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetail_put);
+router.get('/adminPageDoctorAccountDetails/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetails_get);
+router.put('/adminPageDoctorAccountDetails',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetails_put);
+
+
+router.get('/adminPageCreateSpecialization',requireAuth,checkLogin, checkAdmin,blogController.adminPageCreateSpecialization_get);
+router.post('/adminPageCreateSpecialization',requireAuth,checkLogin, checkAdmin,blogController.adminPageCreateSpecialization_post);
 router.get('/adminPageSpecialization',requireAuth,checkLogin, checkAdmin,blogController.adminPageSpecialization_get);
+router.delete('/adminPageSpecialization/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageSpecialization_delete);
+
+router.get('/adminPageSpecializationDetails/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageSpecializationDetails_get);
+router.put('/adminPageSpecialization',requireAuth,checkLogin, checkAdmin,blogController.adminPageSpecialization_put);
+router.get('/adminPageCreateClinic',requireAuth,checkLogin, checkAdmin,blogController.adminPageCreateClinic_get);
+router.post('/adminPageCreateClinic',requireAuth,checkLogin, checkAdmin,blogController.adminPageCreateClinic_post);
+router.get('/adminPageClinic',requireAuth,checkLogin, checkAdmin,blogController.adminPageClinic_get);
+router.delete('/adminPageClinic/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageClinic_delete);
+
+
 
 
 
 router.get('/userAccount',blogController.userAccount_get);
+
 module.exports=router;

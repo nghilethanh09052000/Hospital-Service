@@ -85,7 +85,7 @@
    </style>
    <body>
       <%- include("./partials/nav.ejs") %>
-    
+
       <section>
          <%- include("./partials/sidebarDoctor.ejs") %>
 
@@ -106,6 +106,19 @@
                     <input type="date" name="date">
                     <input type="hidden" name="user_id" value="<%= user._id %>" >
                   </div>
+
+                  <div class="input-box">
+                     <select name="clinic" id="clinic">
+                        <% if(clinics.length>0){ %>
+                           <% clinics.forEach(clinic=> { %>
+                              <option value="<%= clinic._id %>"><%= clinic.name%></option>
+                              <% }) %>
+                              <% }else{%>
+                                <p>Không có phòng nào nào...</p>
+                                <% } %>
+                      </select>
+                   </div>
+
                   <div class="button input-box">
                     <input type="submit" value="Sumbit">
                   </div>
@@ -125,13 +138,13 @@
          e.preventDefault();
          const hour = document.getElementById("hour").value;
          const date = form.date.value;
-         const user_id = form.user_id.value;
-
+         const doctor_id = form.user_id.value;
+         const clinic_id = document.getElementById("clinic").value;
          
          try{
             const res = await fetch('/doctorPageCreateSchedule',{
                method:'POST',
-               body:JSON.stringify({hour,date, user_id}),
+               body:JSON.stringify({hour,date, doctor_id,clinic_id}),
                headers:{'Content-Type':'application/json'} 
             })
             const data =await res.json();

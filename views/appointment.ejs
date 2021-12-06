@@ -5,86 +5,30 @@
    
    <section>
       <%- include("./partials/sidenav.ejs") %>
-      <div class="container">
-
-         <div class="container-form">
-            <form action="/appointment">
-               <h2 class="heading heading-yellow">Đặt lịch khám</h2>
-               
-               <div class="form-field">
-                  <p>Họ và tên</p>
-                  <input type="text" name="fullname"  required="required">
+      <div class="containerAppointment">
+         <ul>
+            <% if(specializations.length>0){ %>
+               <% specializations.forEach(specialization=> { %>
+            <li>
+               <div class="bottom">
+                  <a href="<%= specialization._id %>">
+                     <%= specialization.specializations  %>
+                  </a>
                </div>
-               
-               <div class="form-field">
-                <p>Số điện thoại</p>
-                <input type="text" name="phone"  required="required">
-             </div>
-               <div class="form-field">
-                  <p>Ngày sinh</p>
-                  <input type="date" name="birthday">
-               </div>
-               <div class="form-field">
-                <p>Giới tính</p>
-                <select name="select" id="gender" name="gender" required="required" >
-                   <option value="Nam">Nam</option>
-                   <option value="Nữ">Nữ</option>
-                </select>
-             </div>
-             <div class="form-field">
-               <p>Địa chỉ</p>
-               <input type="text" name="address">
-            </div>
-         
-             <div class="form-field">
-                <p>Chọn loại dịch vụ</p>
-                <select name="select" id="service" name="service" required="required">
-                    <option value="Khám bệnh ngoài da">Khám bệnh ngoài da</option>
-                    <option value="Khám & tư vấn thẩm mỹ da">Khám & tư vấn thẩm mỹ da</option>
-                    <option value="Khám & tư vấn tạo hình thẫm mỹ">Khám & tư vấn tạo hình thẫm mỹ</option>
-                    <option value="Khám nam khoa">Khám nam khoa</option>
-                    <option value="Khám phụ khoa">Khám phụ khoa</option>
-
-                 </select>
-             </div>
-               <div class="form-field">
-                  <p>Ngày đặt hẹn</p>
-                  <input type="datetime-local" name="appointmentday" required="required" >
-               </div>
-              
-              
-             <div class="form-field">
-                <p>Ghi chú</p>
-                <textarea id='note' name="note" > </textarea>
-             </div>
-
-             <input type="hidden" name="user_id" value="<%= user._id %>">
-             <input type="hidden" name="status" value="Pending">
-             <input type="hidden" name="medicalForm" value="Không">
-             <button class="btn">Xác nhận</button>
-             
-             
-            </form>
-         </div>
-         <ul class='LichHen'>
-            <h2>Lưu ý:</h2> 
-            <li>Lịch hẹn chỉ có hiệu lực khi Quý khách được xác nhận chính thức từ Bệnh viện thông qua
-               điện thoại hoặc email.
+                <img src="<%= specialization.image  %>" alt="">
             </li>
-            <li>Quý khách sử dụng dịch vụ đặt hẹn trực tuyến, vui lòng đặt hẹn ít nhất 24h trước
-               khi đến khám.
-            </li>
-            <li>Quý khách vui lòng cung cấp thông tin chính xác để được hỗ trợ nhanh nhất.
-
-            </li>
-            <li>Trường hợp khẩn cấp hay có triệu chứng nguy hiểm, vui lòng liên hệ trực tiếp cơ sở y tế để kịp thời xử lý.
-            </li>
-            <button class="btn1">Hotline: 12345678</button>
+            <% }) %>
+            <% }else{%>
+              <p>Không có lịch hẹn nào...</p>
+              <% } %>
          </ul>
-      </div>
-   </section>
-   <!-- <%- include("./partials/footer.ejs") %> -->
-   <script>
+        
+     </div>
+
+ 
+
+         
+   <!-- <script>
       const userId=  document.querySelector('.userId');
       const form = document.querySelector('form');
       form.addEventListener('submit', async (e)=>{
@@ -119,6 +63,6 @@
          }
       })
          
-   </script>
+   </script> -->
 </body>
 </html>

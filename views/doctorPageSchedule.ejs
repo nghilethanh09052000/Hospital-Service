@@ -81,7 +81,7 @@ a{
                     <p>Giờ làm việc</p>
                 </div>
                 <div class="table-cell">
-                    <p>Ngày tạo</p>
+                    <p>Mã phòng khám</p>
                 </div>
                 <div class="table-cell last-cell">
                     <p>Xóa</p>
@@ -102,11 +102,11 @@ a{
                 <p><%= schedule.hour %></p>
             </div>
               <div class="table-cell">
-                <p><%= schedule.createdAt %></p>
+                <p><%= schedule.clinic_id %></p>
             </div>
            
                 <div class="table-cell last-cell">
-                    <a href=""class="trashBin" data-doc="<%= schedule._id %> " >
+                    <a href="" class="trashBin" data-doc="<%= schedule._id %> " >
                       <img src="/HinhAnh/trash.png" alt="#" >
                     </a>
                   </div>   
@@ -120,16 +120,18 @@ a{
 
 
     <script>
-        const trashBin = document.querySelector('.trashBin');
-        trashBin.addEventListener('click',(e)=>{
-        const id = `/doctorPageSchedule/${trashBin.dataset.doc}`;
-    fetch(id,{
+        const trashBins = document.querySelectorAll('.trashBin');
+  Array.from(trashBins).forEach((trashBin)=>{
+    trashBin.addEventListener('click',(e)=>{
+      const id = `/doctorPageSchedule/${trashBin.dataset.doc}`;
+      fetch(id,{
       method:'DELETE',
-    })
-    .then(response => response.json())
+    }).then(response => response.json())
     .then(data => window.location.href=data.redirect)
     .catch(err=> console.log(err));
-  })
+    })
+    })
+
     </script>
 </body>
 </html>

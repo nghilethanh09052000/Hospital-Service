@@ -32,8 +32,12 @@ app.get('/',(req,res)=>{
     res.render('homepage',{title:'Trang chủ'});
 })
 
-app.get('/appointment',checkLogin,checkPatient,(req,res)=>{
-    res.render('appointment',{title:'Đặt lịch'});
+app.get('/appointment',checkLogin,checkPatient, async (req,res)=>{
+    const specializations = await Specialization.find()
+    return res.render('appointment',{
+      specializations:specializations,
+       title:'Đặt lịch'});
+    
 })
 
 
@@ -43,6 +47,7 @@ app.get('/adminpage',checkLogin,checkAdmin,(req,res)=>{
 })
 
 app.get('/doctorpage',checkLogin,checkDoctor,(req,res)=>{
+  
     res.render('doctorpage',{title:'Trang bác sĩ'})
   
   })

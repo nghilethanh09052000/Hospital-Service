@@ -55,7 +55,7 @@ const checkLogin= (req,res,next)=>{
             res.json('Not Permission1')
         }
     }).catch(err=>{
-        res.json('Not Permission2')
+        res.render('404', { title: 'Trang không tìm thấy' });
     })
 
     }catch(err){
@@ -69,7 +69,7 @@ const checkPatient = (req,res,next)=>{
     }else{
         console.log(req.data.email)
         console.log(role)
-        res.json('Not Permission4')
+        res.render('404', { title: 'Trang không tìm thấy' });
     }
 }
 
@@ -79,7 +79,7 @@ const checkDoctor = (req,res,next)=>{
         next();
     }else{
         console.log(role)
-        res.json('Not Permission7')
+        res.render('404', { title: 'Trang không tìm thấy' });
     }
 }
 
@@ -89,7 +89,7 @@ const checkAdmin = (req,res,next)=>{
         next();
     }else{
         console.log(role)
-        res.json('Not Permission5')
+        res.render('404', { title: 'Trang không tìm thấy' });
     }
 }
 

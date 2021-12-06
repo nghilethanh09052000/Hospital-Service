@@ -1,0 +1,66 @@
+<%- include("./partials/head.ejs") %> 
+<link rel="stylesheet" href="/css/adminPageUserAccount.css">
+
+  <body>
+      <%- include("./partials/nav.ejs") %> 
+      <section>
+          <%- include("./partials/sidebarAdminPage.ejs") %> 
+          <div class="table-box">
+            <div class="table-row table-head">
+                <div class="table-cell first-cell">
+                    <p>Tên chuyên khoa</p>
+                </div>
+                <div class="table-cell">
+                  <p>Đường dẫn hình ảnh</p>
+              </div>
+                <div class="table-cell last-cell">
+                    <p>Ngày tạo</p>
+                </div>
+              
+                <div class="table-cell last-cell">
+                  <p>Chi tiết</p>
+              </div> 
+            </div>
+            <% if(specializations.length>0){ %>
+                <% specializations.forEach(specialization=> { %>
+            <div class="table-row">
+                <div class="table-cell first-cell">
+                    <p><%= specialization.specializations %></p>
+                </div>
+                <div class="table-cell">
+                  <p><%= specialization.image %></p>
+              </div>
+              <div class="table-cell">
+                <p><%= specialization.createdAt %></p>
+            </div>
+           <div class="table-cell last-cell">
+            <a class="detail" href="/adminPageSpecializationDetails/<%= specialization._id %>" >Cập nhật</a>
+            <a class="trashBin" data-doc="<%= specialization._id %>" > 
+              <img src="/HinhAnh/trash.png" alt="#" >
+            </a>
+          </div>   
+            </div>
+            <% }) %>
+            <% }else{%>
+              <p>Không có chuyên khoa nào...</p>
+              <% } %>
+        </div>
+    </section>
+
+    <script>
+      const trashBins = document.querySelectorAll('.trashBin');
+     Array.from(trashBins).forEach((trashBin)=>{
+       trashBin.addEventListener('click',(e)=>{
+         const id = `/adminPageSpecialization/${trashBin.dataset.doc}`;
+         fetch(id,{
+         method:'DELETE',
+       }).then(response => response.json())
+       .then(data => window.location.href=data.redirect)
+       .catch(err=> console.log(err));
+       })
+       })
+   
+   
+   </script>
+  </body>
+  </html>

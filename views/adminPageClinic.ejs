@@ -8,42 +8,41 @@
         <div class="table-box">
         <div class="table-row table-head">
             <div class="table-cell first-cell">
-                <p>Email</p>
+                <p>Tên phòng</p>
             </div>
-      
-            <div class="table-cell ">
-                <p>Role</p>
-            </div>
-            <div class="table-cell ">
-              <p>Phân phòng khám</p>
+            <div class="table-cell">
+              <p>Ngày tạo phòng</p>
           </div>
+          <div class="table-cell">
+            <p>Mã bác sĩ</p>
+        </div>
+          
             <div class="table-cell last-cell">
               <p>Chi tiết</p>
           </div> 
         </div>
-        <% if(users.length>0){ %>
-            <% users.forEach(user=> { %>
+        <% if(clinics.length>0){ %>
+            <% clinics.forEach(clinic=> { %>
         <div class="table-row">
             <div class="table-cell first-cell">
-                <p><%= user.email %></p>
+                <p><%= clinic.name %></p>
             </div>
-        
+            
+            <div class="table-cell">
+              <p><%= clinic.createdAt %></p>
+          </div>
           <div class="table-cell">
-            <p><%= user.role %></p>
-        </div>
-        <div class="table-cell">
-          <a class="detail" href="/adminPageDoctorAccountDetails/<%= user._id %>" >Phân phòng khám</a>
+            <p><%= clinic.doctor_id %></p>
         </div>
        <div class="table-cell last-cell">
-        <a class="detail" href="/adminPageDoctorAccountDetail/<%= user._id %>" >Phân chuyên khoa</a>
-        <a class="trashBin" data-doc="<%= user._id %>" > 
+        <a class="trashBin" data-doc="<%= clinic._id %>" > 
           <img src="/HinhAnh/trash.png" alt="#" >
         </a>
       </div>   
         </div>
         <% }) %>
         <% }else{%>
-          <p>Không có tài khoản nào nào...</p>
+          <p>Không có phòng khám nào...</p>
           <% } %>
     </div>
      </section>
@@ -53,7 +52,7 @@
    const trashBins = document.querySelectorAll('.trashBin');
   Array.from(trashBins).forEach((trashBin)=>{
     trashBin.addEventListener('click',(e)=>{
-      const id = `/adminPageDoctorAccount/${trashBin.dataset.doc}`;
+      const id = `/adminPageClinic/${trashBin.dataset.doc}`;
       fetch(id,{
       method:'DELETE',
     }).then(response => response.json())

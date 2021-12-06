@@ -1,19 +1,30 @@
 const mongoose = require('mongoose');
 const User = require('./User');
+const Clinic = require('./clinic');
+
 const moment = require('moment-timezone');
 
 const scheduleSchema = new mongoose.Schema({
-    hour:String,
-    date:{
-        type: Date,
-        unique:true
+    hour:{
+        type:String,
+        required:true,
     },
-    user_id:{
+    date:{
+       type:Date,
+       required:true
+    },
+    doctor_id:{
         type: mongoose.Schema.ObjectId,
         ref:User,
         required:true,
         index:true
     },
+    clinic_id:{
+        type: mongoose.Schema.ObjectId,
+        ref:Clinic,
+        index:true,
+        required:true
+    }
 },{ timestamps: true });
 
 const Schedule = mongoose.model('schedules', scheduleSchema );

@@ -58,6 +58,7 @@ a{
 .last-cell img{
     margin-left: 10%;
     width: 15%;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {

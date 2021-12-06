@@ -1,34 +1,48 @@
-<img class='menuSideBar' src="/HinhAnh/menu.png" alt="#" >
-<div class="sidebar">
-    <h2>Hello, <%= user.email %> </h2>
-   
+<div class="btnadminPage">
+    <span class="fas fa-bars"></span>
+ </div>
+ <nav class="sidebaradminPage">
+    <div class="text">
+      Bệnh viện da liễu Sài Gòn
+    </div>
     <ul>
-        <li>
-            <a href="/appointment">Đặt lịch khám</a>
-        </li>
-        <li><a href="/appointmentinfo">Quản lý hồ sơ</a></li>
-        <li>
-            <a href="#">Quản lý tài khoản</a>
-            <ul>
-                <li><a href="#">Đổi mật khẩu </a></li>
-                <li><a href="/logout">Đăng xuất </a></li>
-            </ul>
-        </li>
+       <li class="active"><a href="/doctorpage">Xin chào, <%=user.email  %></a></li>
+       <li>
+          <a href="#" class="feat-btn">Quản lý hồ sơ
+          <span class="fas fa-caret-down first"></span>
+          </a>
+          <ul class="feat-show">
+             <li><a href="/">Hồ sơ đặt khám</a></li>
+             <li><a href="/">Phiếu khám bệnh</a></li>
+          </ul>
+       </li>
+       <li>
+        <a href="#" class="serv-btn">Quản lý tài khoản
+        <span class="fas fa-caret-down second"></span>
+        </a>
+        <ul class="serv-show">
+            <li><a href="/">Cập nhật thông tin</a></li>
+            <li><a href="/changepass ">Đổi mật khẩu</a></li>
+        </ul>
+     </li>
+       <li><a href="/doctorPageFeedBack">Feedback</a></li>
+       <li><a href="/logout">Đăng xuất</a></li>
     </ul>
-</div>
-
-<img  class='closeSideBar'src="/HinhAnh/close.png" alt="#">
-<script>
-    const sidebar=document.querySelector('.sidebar');
-    const menuSideBar=document.querySelector('.menuSideBar');
-    const closeSideBar=document.querySelector('.closeSideBar');
-    menuSideBar.addEventListener('click',function(e){
-        sidebar.style.left="0%";
-        closeSideBar.style.left="19%";
-       
-    })
-    closeSideBar.addEventListener('click',function(e){
-        sidebar.style.left="-30%";
-        closeSideBar.style.left="-30%";
-    })
-</script>
+ </nav>
+ <script>
+    $('.btnadminPage').click(function(){
+      $(this).toggleClass("click");
+      $('.sidebaradminPage').toggleClass("show");
+    });
+      $('.feat-btn').click(function(){
+        $('.sidebaradminPage ul .feat-show').toggleClass("show");
+        $('.sidebaradminPage ul .first').toggleClass("rotate");
+      });
+      $('.serv-btn').click(function(){
+        $('.sidebaradminPage ul .serv-show').toggleClass("show1");
+        $('.sidebaradminPage ul .second').toggleClass("rotate");
+      });
+      $('.sidebaradminPage ul li').click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+      });
+ </script>

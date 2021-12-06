@@ -7,25 +7,39 @@
     </div>
     <ul>
        <li class="active"><a href="#">Dashboard</a></li>
+
        <li>
           <a href="#" class="feat-btn">Tài khoản
           <span class="fas fa-caret-down first"></span>
           </a>
           <ul class="feat-show">
              <li><a href="/adminPageUserAccount">Tài khoản bệnh nhân</a></li>
-             <li><a href="/adminPageDoctorAccount">Tài khoản bác si</a></li>
+             <li><a href="/adminPageDoctorAccount">Tài khoản bác sĩ</a></li>
           </ul>
        </li>
+
        <li>
           <a href="#" class="serv-btn">Chuyên khoa
           <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
-             <li><a href="#">Khám bệnh ngoài d</a></li>
-             <li><a href="#">Khám & tư vấn thẩm mỹ da</a></li>
+            <li><a href="/adminPageCreateSpecialization">Tạo chuyên khoa</a></li>
+            <li><a href="/adminPageSpecialization">Thông tin chuyên khoa</a></li>
+             
           </ul>
        </li>
-       <li><a href="/adminPageSpecialization">Chuyên khoa</a></li>
+
+       <li>
+        <a href="#" class="serv-btn1">Phòng khám
+        <span class="fas fa-caret-down third"></span>
+        </a>
+        <ul class="serv-show1">
+          <li><a href="/adminPageCreateClinic">Tạo phòng khám</a></li>
+          <li><a href="/adminPageClinic">Thông tin phòng khám</a></li>
+           
+        </ul>
+     </li>
+       
        <li><a href="/logout">Đăng xuất</a></li>
     </ul>
  </nav>
@@ -34,14 +48,22 @@
       $(this).toggleClass("click");
       $('.sidebaradminPage').toggleClass("show");
     });
+
       $('.feat-btn').click(function(){
         $('.sidebaradminPage ul .feat-show').toggleClass("show");
         $('.sidebaradminPage ul .first').toggleClass("rotate");
       });
+
       $('.serv-btn').click(function(){
         $('.sidebaradminPage ul .serv-show').toggleClass("show1");
         $('.sidebaradminPage ul .second').toggleClass("rotate");
       });
+
+      $('.serv-btn1').click(function(){
+        $('.sidebaradminPage ul .serv-show1').toggleClass("show2");
+        $('.sidebaradminPage ul .third').toggleClass("rotate");
+      });
+
       $('.sidebaradminPage ul li').click(function(){
         $(this).addClass("active").siblings().removeClass("active");
       });

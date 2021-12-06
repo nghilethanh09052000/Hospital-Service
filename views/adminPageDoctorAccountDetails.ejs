@@ -112,19 +112,20 @@ input[type="submit"]:hover{
     <section>
         <%- include("./partials/sidebaradminPage.ejs") %>
         <div class="center">
-         <h1>Phân chuyên khoa</h1>
-         <form action="/adminPageDoctorAccountDetail" id='form1'>
+         <h1>Chọn phòng khám</h1>
+         <form action="/adminPageDoctorAccountDetails" id='form1'>
            <div class="txt_field">
-             <select name="specialization" id="specialization">
-               <% if(specializations.length>0){ %>
-                  <% specializations.forEach(specialization=> { %>
-                     <option value="<%= specialization.specializations %>"><%= specialization.specializations %></option>
+             <select name="clinic" id="clinic">
+               <% if(clinics.length>0){ %>
+                  <% clinics.forEach(clinic=> { %>
+                     <option value="<%= clinic.name %>"><%= clinic.name%></option>
                      <% }) %>
                      <% }else{%>
                        <p>Không có phòng nào nào...</p>
                        <% } %>
              </select>
            </div>
+ 
              <input type="hidden" name='user_id' required value="<%=user._id %>">
            
            <input type="submit" value="CẬP NHẬT">
@@ -132,28 +133,17 @@ input[type="submit"]:hover{
            </div>
          </form>
        </div>
-      
-
-         
-        
-           
-           
-            
-            
-    
-
-
     </section>
 
     <script>
         const form = document.getElementById("form1");
         form.addEventListener('submit', async (e)=>{
          e.preventDefault();
-         const specializations = document.getElementById("specialization").value;
+         const clinic = document.getElementById("clinic").value;
          const user_id = form.user_id.value;
-            fetch('/adminPageDoctorAccountDetail',{
+            fetch('/adminPageDoctorAccountDetails',{
                method:'PUT',
-               body:JSON.stringify({specializations,user_id}),
+               body:JSON.stringify({clinic,user_id}),
                headers:{'Content-Type':'application/json'} 
             })
             .then(response => response.json())
