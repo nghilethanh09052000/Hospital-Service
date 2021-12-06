@@ -18,11 +18,12 @@ app.use(cookieParser());
 //register view engine
 app.set('view engine','ejs');
 
+var port = process.env.PORT || 3000;
 
 //connect to mongodb & listen for requests
 const dbURI='mongodb+srv://nghi:test1234@cluster0.mvd1w.mongodb.net/nghi?retryWrites=true&w=majority';
 mongoose.connect(dbURI,{ useNewUrlParser: true, useUnifiedTopology: true })
-    .then((result) => app.listen(3000))
+    .then((result) => app.listen(port))
     .catch((err) =>(console.log(err)));
 
 //routes:
