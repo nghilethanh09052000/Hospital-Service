@@ -459,6 +459,10 @@ const adminPageClinic_delete = (req,res)=>{
     });
 }
 
+const   doctorPageInfo_get = (req,res)=>{
+    res.render('doctorPageInfo',{title:'Thông tin cá nhân'})
+}
+
 const doctorPageSchedule_get = (req,res)=>{
     const token = req.cookies.jwt;
     if(token){
@@ -628,6 +632,12 @@ module.exports = {
     GioiThieuChung_get,
     benhveda_get,
     userAccount_get,
+
+    doctorPageInfo_get,
+    doctorPageCreateSchedule_get,
+    doctorPageCreateSchedule_post,
+    doctorPageSchedule_get,
+    doctorPageSchedule_delete,
     adminPageUserAccount_get,
     adminPageUserAccountDetails_get,
     adminPageUserAccountDetails_put,
@@ -644,10 +654,8 @@ module.exports = {
     adminPageSpecialization_put,
     adminPageCreateSpecialization_get,
     adminPageCreateSpecialization_post,
-    doctorPageCreateSchedule_get,
-    doctorPageCreateSchedule_post,
-    doctorPageSchedule_get,
-    doctorPageSchedule_delete,
     adminPageCreateClinic_get,
-    adminPageCreateClinic_post,adminPageClinic_get,adminPageClinic_delete
+    adminPageCreateClinic_post,
+    adminPageClinic_get,
+    adminPageClinic_delete
 }
