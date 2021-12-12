@@ -128,6 +128,10 @@ text-decoration: underline;
               <span></span>
               <label>MÔ TẢ</label>
             </div>
+            <div class="txt_field">
+              <input type="input" name="price" required="required">
+              <label>GÍA</label>
+            </div>
             
             <input type="submit" value="Tạo">
            
@@ -167,11 +171,12 @@ text-decoration: underline;
          const specializations = form.specializations.value;
          const description =document.getElementById("description").value;
          const image = form.image.value;
-         
+         const price = form.price.value;
+
          try{
            const res = await fetch('/adminPageCreateSpecialization',{
              method:'POST',
-             body:JSON.stringify({specializations,description,image}),
+             body:JSON.stringify({specializations,description,image,price}),
              headers:{'Content-Type':'application/json'} 
             })
             const data =await res.json();

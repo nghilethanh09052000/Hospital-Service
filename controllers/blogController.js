@@ -371,9 +371,9 @@ const adminPageCreateSpecialization_get = (req,res)=>{
 }
 
 const adminPageCreateSpecialization_post = async (req,res)=>{
-    const {specializations,description,image}=req.body;
+    const {specializations,description,image,price}=req.body;
     try{
-        const specialization = await Specialization.create({specializations,description,image});
+        const specialization = await Specialization.create({specializations,description,image,price});
         res.status(201).json({specialization:specialization._id});
     }catch(err){
         res.status(400).send("No");
@@ -415,8 +415,8 @@ const adminPageSpecialization_delete = (req,res)=>{
 }
 
 const adminPageSpecialization_put =  (req,res)=>{
-    const {specializations_id, description,image} = req.body;
-    Specialization.findByIdAndUpdate(specializations_id, {image:image,description:description})
+    const {specializations_id, description,image,price} = req.body;
+    Specialization.findByIdAndUpdate(specializations_id, {image:image,description:description,price:price})
     .then(result=>{
         res.json( { redirect:'/adminPageSpecialization'} );
     })

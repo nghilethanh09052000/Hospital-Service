@@ -12,7 +12,8 @@ const specializationSchema = new mongoose.Schema({
     address:{
         type:String,
         default:'Số 669 Quốc lộ 1, Khu phố 3, Phường Linh Xuân, Thủ Đức, TP. Hồ Chí Minh'
-    }
+    },
+    price:String
    
 },{ timestamps: true });
 
