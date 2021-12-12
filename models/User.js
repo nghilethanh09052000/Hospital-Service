@@ -28,6 +28,8 @@ const userSchema = new mongoose.Schema({
      facebook:String,
      instagram:String,
      description:String,
+     country:String,
+
 
 
      specialization_id:{

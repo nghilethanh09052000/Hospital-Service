@@ -1,1 +1,30 @@
-hello
+<%- include("./partials/head.ejs") %>
+<style>
+    section {
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    }
+   
+  
+
+</style>
+<body>
+    <%- include("./partials/nav.ejs") %> 
+    <section> 
+      <%- include("./partials/sidebarDoctor.ejs") %> 
+
+    <%= specialization.specializations %>
+      
+  
+    
+
+
+
+    </section>
+  
+
+</body>
+</html>

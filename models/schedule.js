@@ -19,12 +19,7 @@ const scheduleSchema = new mongoose.Schema({
         required:true,
         index:true
     },
-    clinic_id:{
-        type: mongoose.Schema.ObjectId,
-        ref:Clinic,
-        index:true,
-        required:true
-    }
+    
 },{ timestamps: true });
 
 const Schedule = mongoose.model('schedules', scheduleSchema );

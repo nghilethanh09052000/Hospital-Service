@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const {requireAuth, checkUser , checkLogin, checkPatient,checkDoctor,checkAdmin}= require('./middleware/authMiddleware');
 const Specialization = require('./models/specialization');
 const Appointment = require('./models/appointment');
+const Clinic = require('./models/clinic');
+const User = require('./models/User');
 
 //express app
 const app=express();
@@ -42,8 +44,15 @@ app.get('/appointment',checkLogin,checkPatient, async (req,res)=>{
 })
 
 
-app.get('/adminpage',checkLogin,checkAdmin,(req,res)=>{
-  res.render('adminpage',{title:'Trang quản lý'})
+app.get('/adminpage',checkLogin,checkAdmin, async (req,res)=>{
+  const specializations = await Specialization.find()
+  const clinics = await Clinic.find();
+  const users = await User.find();
+  return res.render('adminpage',{
+    specializations:specializations,
+    clinics:clinics,
+    users:users,
+    title:'Trang quản lý'})
 
 })
 

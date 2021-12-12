@@ -108,15 +108,7 @@
                   </div>
 
                   <div class="input-box">
-                     <select name="clinic" id="clinic">
-                        <% if(clinics.length>0){ %>
-                           <% clinics.forEach(clinic=> { %>
-                              <option value="<%= clinic._id %>"><%= clinic.name%></option>
-                              <% }) %>
-                              <% }else{%>
-                                <p>Không có phòng nào nào...</p>
-                                <% } %>
-                      </select>
+                  
                    </div>
 
                   <div class="button input-box">
@@ -139,12 +131,12 @@
          const hour = document.getElementById("hour").value;
          const date = form.date.value;
          const doctor_id = form.user_id.value;
-         const clinic_id = document.getElementById("clinic").value;
+        
          
          try{
             const res = await fetch('/doctorPageCreateSchedule',{
                method:'POST',
-               body:JSON.stringify({hour,date, doctor_id,clinic_id}),
+               body:JSON.stringify({hour,date, doctor_id}),
                headers:{'Content-Type':'application/json'} 
             })
             const data =await res.json();

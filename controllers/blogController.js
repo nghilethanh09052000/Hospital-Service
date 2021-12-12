@@ -460,7 +460,23 @@ const adminPageClinic_delete = (req,res)=>{
 }
 
 const   doctorPageInfo_get = (req,res)=>{
-    res.render('doctorPageInfo',{title:'Thông tin cá nhân'})
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token,'nghi', async (err,decodedToken)=>{
+            if(err){
+                console.log(err);
+            }else{
+                 const user = await User.findById(decodedToken.id);
+                 const specialization = await Specialization.findById(user.specialization_id);
+                 return res.render('doctorPageInfo',{
+                    user:user,
+                    specialization:specialization, 
+                    title:'Thông tin Bác Sĩ'})
+              }
+  
+    })
+   
+}
 }
 
 const doctorPageSchedule_get = (req,res)=>{
@@ -517,9 +533,9 @@ const doctorPageCreateSchedule_get = async (req,res)=>{
 }
 
 const doctorPageCreateSchedule_post =async (req,res) =>{
-    const {hour,date,doctor_id,clinic_id} = req.body;
+    const {hour,date,doctor_id} = req.body;
     try{
-        const schedule = await Schedule.create({hour,date, doctor_id,clinic_id});
+        const schedule = await Schedule.create({hour,date, doctor_id});
         res.status(201).json({schedule:schedule._id});
     }catch(err){
         res.status(400).send("No");
