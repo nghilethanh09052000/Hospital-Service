@@ -3,10 +3,108 @@
    
    <body>
       <%- include("./partials/nav.ejs") %>
-<section>
+<div class="section">
    <%- include("./partials/sidebarAdminPage.ejs") %>
+   <main>
+      <div class="main__container">
+        <div class="main__title">
+          <div class="main__greeting">
+            <h1>Hello Admin</h1>
+            <p>Welcome to your admin dashboard</p>
+          </div>
+        </div>
+        <div class="main__cards">
+          <div class="card">
+            <i
+            class="fa fa-user fa-2x text-yellow"
+              aria-hidden="true"
+            ></i>
+            <div class="card_inner">
+              <p class="text-primary-p">Tài khoản bệnh nhân</p>
+              <span class="font-bold text-title"> <%= userpatient.length %> </span>
+            </div>
+          </div>
 
-</section>
+          <div class="card">
+            <i
+              class="fa fa-user-nurse fa-2x text-yellow"
+              aria-hidden="true"
+            ></i>
+            <div class="card_inner">
+              <p class="text-primary-p">Số bác sĩ</p>
+              <span class="font-bold text-title"><%= userdoctor.length %></span>
+            </div>
+          </div>
+          <div class="card">
+            <i
+              class="fa fa-book-medical fa-2x "
+              aria-hidden="true"
+            ></i>
+            <div class="card_inner">
+              <p class="text-primary-p">Số chuyên khoa</p>
+              <span class="font-bold text-title"><%= specializations.length %> </span>
+            </div>
+          </div>
+          <div class="card">
+            <i class="fa fa-door-open fa-2x text-red" aria-hidden="true"></i>
+            <div class="card_inner">
+              <p class="text-primary-p">Số phòng khám</p>
+              <span class="font-bold text-title"> <%= clinics.length %>  </span>
+            </div>
+          </div>
+
+        
+
+         
+        </div>
+
+        <div class="charts">
+          <div class="charts__left">
+            <div class="charts__left__title">
+              <div>
+                <h1>Daily Appointment</h1>
+              </div>
+              <i class="fa fa-usd" aria-hidden="true"></i>
+            </div>
+            <div id="apex1"></div>
+          </div>
+
+          <div class="charts__right">
+            <div class="charts__right__title">
+              <div>
+                <h1>Stats Reports</h1>
+              </div>
+              <i class="fa fa-usd" aria-hidden="true"></i>
+            </div>
+
+            <div class="charts__right__cards">
+              <div class="card1">
+                <h1>Income</h1>
+                <p>1.000.000 VND</p>
+              </div>
+
+              <div class="card2">
+                <h1>Sales</h1>
+                <p>1.000.000 VND</p>
+              </div>
+
+              <div class="card3">
+                <h1>Users</h1>
+                <p>1.000.000 VND</p>
+              </div>
+
+              <div class="card4">
+                <h1>Số lịch hẹn</h1>
+                <p> <%=appointments.length  %> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- CHARTS ENDS HERE -->
+      </div>
+    </main>
+
+</div>
 
 
 

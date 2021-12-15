@@ -121,11 +121,6 @@ input[type="submit"]:hover{
                 <label>TÊN CHUYÊN KHOA</label>
               </div>
               <div class="txt_field">
-                <input type="text" name='image' required value="<%=specializations.image %>">
-                <span></span>
-                <label>ĐƯỜNG DẪN HÌNH ẢNH (*/HinhAnh/...)</label>
-              </div>
-              <div class="txt_field">
                 <input type="input" name="price">
                 <label>GÍA</label>
               </div>
@@ -151,11 +146,11 @@ input[type="submit"]:hover{
             e.preventDefault();
             const specializations_id =form.specializations_id.value;
             const description = form.description.value;
-            const image = form.image.value;
+    
             const price = form.price.value;
             fetch('/adminPageSpecialization', {
                 method: 'PUT', 
-                body: JSON.stringify({specializations_id,description,image,price}),
+                body: JSON.stringify({specializations_id,description,price}),
                 headers: {'Content-Type': 'application/json',},
             })
             .then(response => response.json())

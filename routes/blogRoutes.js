@@ -3,7 +3,27 @@ const blogController = require('../controllers/blogController');
 const {requireAuth, checkUser , checkLogin, checkPatient,checkDoctor,checkAdmin}= require('../middleware/authMiddleware');
 
 const router = express.Router();
+const multer = require('multer');
+const storage = multer.diskStorage({
+    //destination for files
+    destination: function (request, file, callback) {
+      callback(null, 'HinhAnh/');
+    },
+  
+    //add back the extension
+    filename: function (request, file, callback) {
+      callback(null, Date.now() + file.originalname);
+    },
+  });
 
+const upload = multer({
+    storage: storage,
+    limits: {
+      fieldSize: 1024 * 1024 * 3,
+    },
+  });
+
+  
 //router.get('/',blogController.blog_homepage);
 //router.get('/appointment',blogController.blog_appointment);
 
@@ -53,7 +73,7 @@ router.put('/adminPageDoctorAccountDetail',requireAuth,checkLogin, checkAdmin,bl
 router.get('/adminPageDoctorAccountDetails/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetails_get);
 router.put('/adminPageDoctorAccountDetails',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetails_put);
 router.get('/adminPageCreateSpecialization',requireAuth,checkLogin, checkAdmin,blogController.adminPageCreateSpecialization_get);
-router.post('/adminPageCreateSpecialization',requireAuth,checkLogin, checkAdmin,blogController.adminPageCreateSpecialization_post);
+router.post('/adminPageCreateSpecialization',requireAuth,checkLogin, checkAdmin, upload.single('image'),blogController.adminPageCreateSpecialization_post);
 router.get('/adminPageSpecialization',requireAuth,checkLogin, checkAdmin,blogController.adminPageSpecialization_get);
 router.delete('/adminPageSpecialization/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageSpecialization_delete);
 router.get('/adminPageSpecializationDetails/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageSpecializationDetails_get);

@@ -1,15 +1,12 @@
-<div class="btnadminPage">
-    <span class="fas fa-bars"></span>
- </div>
- <nav class="sidebaradminPage">
+<nav class="sidebaradminPage">
     <div class="text">
-      Bệnh viện da liễu Sài Gòn
+     <a href="/adminpage" style="text-decoration: none; color: aliceblue; "  > Bệnh viện da liễu Sài Gòn</a>
     </div>
     <ul>
-       <li class="active"><a href="#">Dashboard</a></li>
+       <li class="active"><a href="/adminpage">Dashboard</a></li>
 
        <li>
-          <a href="#" class="feat-btn">Tài khoản
+          <a class="feat-btn">Tài khoản
           <span class="fas fa-caret-down first"></span>
           </a>
           <ul class="feat-show">
@@ -19,7 +16,7 @@
        </li>
 
        <li>
-          <a href="#" class="serv-btn">Chuyên khoa
+          <a class="serv-btn">Chuyên khoa
           <span class="fas fa-caret-down second"></span>
           </a>
           <ul class="serv-show">
@@ -30,7 +27,7 @@
        </li>
 
        <li>
-        <a href="#" class="serv-btn1">Phòng khám
+        <a  class="serv-btn1">Phòng khám
         <span class="fas fa-caret-down third"></span>
         </a>
         <ul class="serv-show1">
@@ -44,10 +41,7 @@
     </ul>
  </nav>
  <script>
-    $('.btnadminPage').click(function(){
-      $(this).toggleClass("click");
-      $('.sidebaradminPage').toggleClass("show");
-    });
+   
 
       $('.feat-btn').click(function(){
         $('.sidebaradminPage ul .feat-show').toggleClass("show");

@@ -55,6 +55,8 @@ const createToken=(id)=>{
 
 
 
+
+
 const register_get=(req,res)=>{
     res.render('register',{title:'Đăng ký'});
 }
@@ -371,9 +373,10 @@ const adminPageCreateSpecialization_get = (req,res)=>{
 }
 
 const adminPageCreateSpecialization_post = async (req,res)=>{
-    const {specializations,description,image,price}=req.body;
+ 
+    const {specializations,description,price}=req.body;
     try{
-        const specialization = await Specialization.create({specializations,description,image,price});
+        const specialization = await Specialization.create({specializations,description,price} );
         res.status(201).json({specialization:specialization._id});
     }catch(err){
         res.status(400).send("No");
@@ -415,8 +418,8 @@ const adminPageSpecialization_delete = (req,res)=>{
 }
 
 const adminPageSpecialization_put =  (req,res)=>{
-    const {specializations_id, description,image,price} = req.body;
-    Specialization.findByIdAndUpdate(specializations_id, {image:image,description:description,price:price})
+    const {specializations_id, description,price} = req.body;
+    Specialization.findByIdAndUpdate(specializations_id, {description:description,price:price})
     .then(result=>{
         res.json( { redirect:'/adminPageSpecialization'} );
     })

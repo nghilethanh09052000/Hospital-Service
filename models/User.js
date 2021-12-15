@@ -21,17 +21,12 @@ const userSchema = new mongoose.Schema({
       enum : ['patient','doctor','admin'],
       default:'patient'
      },
-     
      name:String,
-     image:String,
      phone:String,
      facebook:String,
      instagram:String,
      description:String,
      country:String,
-
-
-
      specialization_id:{
       type: mongoose.Schema.ObjectId,
       ref:Specialization,

@@ -113,15 +113,13 @@ text-decoration: underline;
         <%- include("./partials/sidebarAdminPage.ejs") %> 
         <div class="center">
           <h1>Thông tin chuyên khoa</h1>
-          <form action="/adminPageCreateSpecialization">
+          <form action="/adminPageCreateSpecialization" enctype="multipart/form-data">
             <div class="txt_field">
               <input name="select" id="specializations" name="specializations" required="required" ></input>  
               <span></span>
               <label>TÊN CHUYÊN KHOA</label>
             </div>
-            <div class="txt_field">
-              <input type="file" name="image" required="required">
-                            <span></span>
+      
              
             <div class="txt_field">
               <textarea id='description' name="description"> </textarea>
@@ -170,13 +168,12 @@ text-decoration: underline;
          e.preventDefault();
          const specializations = form.specializations.value;
          const description =document.getElementById("description").value;
-         const image = form.image.value;
          const price = form.price.value;
 
          try{
            const res = await fetch('/adminPageCreateSpecialization',{
              method:'POST',
-             body:JSON.stringify({specializations,description,image,price}),
+             body:JSON.stringify({specializations,description,price}),
              headers:{'Content-Type':'application/json'} 
             })
             const data =await res.json();

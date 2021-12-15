@@ -1,5 +1,5 @@
 section{
-    position: relative;
+
 	display: flex;
 	height: 100%;
 	width: 100%;
@@ -8,11 +8,8 @@ section{
 
 .table-box
 {
-    position: absolute;
-    width: 60%;
-    right: 50%;
-    transform: translateX(50%);
-    margin: 20px auto;
+	width: 80%;
+    margin: 10px auto;
 }
 
 .table-row{
