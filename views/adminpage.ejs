@@ -7,17 +7,19 @@
    <%- include("./partials/sidebarAdminPage.ejs") %>
    <main>
       <div class="main__container">
+
         <div class="main__title">
           <div class="main__greeting">
             <h1>Hello Admin</h1>
             <p>Welcome to your admin dashboard</p>
           </div>
         </div>
+
         <div class="main__cards">
           <div class="card">
             <i
-            class="fa fa-user fa-2x text-yellow"
-              aria-hidden="true"
+            class="fa fa-user fa-2x"
+              aria-hidden="true" style="color: #FFC7C7;"
             ></i>
             <div class="card_inner">
               <p class="text-primary-p">Tài khoản bệnh nhân</p>
@@ -27,7 +29,7 @@
 
           <div class="card">
             <i
-              class="fa fa-user-nurse fa-2x text-yellow"
+              class="fa fa-user-nurse fa-2x text-yellow" style="color: #FFC7C7;"
               aria-hidden="true"
             ></i>
             <div class="card_inner">
@@ -37,7 +39,7 @@
           </div>
           <div class="card">
             <i
-              class="fa fa-book-medical fa-2x "
+              class="fa fa-book-medical fa-2x " style="color: #FFC7C7;"
               aria-hidden="true"
             ></i>
             <div class="card_inner">
@@ -46,7 +48,7 @@
             </div>
           </div>
           <div class="card">
-            <i class="fa fa-door-open fa-2x text-red" aria-hidden="true"></i>
+            <i class="fa fa-door-open fa-2x text-red" aria-hidden="true" style="color: #FFC7C7;"></i>
             <div class="card_inner">
               <p class="text-primary-p">Số phòng khám</p>
               <span class="font-bold text-title"> <%= clinics.length %>  </span>
@@ -62,7 +64,7 @@
           <div class="charts__left">
             <div class="charts__left__title">
               <div>
-                <h1>Daily Appointment</h1>
+                <h1>Lịch hẹn hằng ngày</h1>
               </div>
               <i class="fa fa-usd" aria-hidden="true"></i>
             </div>
@@ -72,24 +74,24 @@
           <div class="charts__right">
             <div class="charts__right__title">
               <div>
-                <h1>Stats Reports</h1>
+                <h1>Bảng thống kê</h1>
               </div>
               <i class="fa fa-usd" aria-hidden="true"></i>
             </div>
 
             <div class="charts__right__cards">
               <div class="card1">
-                <h1>Income</h1>
+                <h1>Thu nhập</h1>
                 <p>1.000.000 VND</p>
               </div>
 
               <div class="card2">
-                <h1>Sales</h1>
+                <h1>Thu nhập</h1>
                 <p>1.000.000 VND</p>
               </div>
 
               <div class="card3">
-                <h1>Users</h1>
+                <h1>Thu nhập</h1>
                 <p>1.000.000 VND</p>
               </div>
 
@@ -100,7 +102,7 @@
             </div>
           </div>
         </div>
-        <!-- CHARTS ENDS HERE -->
+     
       </div>
     </main>
 

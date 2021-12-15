@@ -470,10 +470,14 @@ const   doctorPageInfo_get = (req,res)=>{
                 console.log(err);
             }else{
                  const user = await User.findById(decodedToken.id);
+                 const doctor_id = user._id.toString()
+                 const clinics = await Clinic.find({doctor_id: doctor_id});
                  const specialization = await Specialization.findById(user.specialization_id);
+              
                  return res.render('doctorPageInfo',{
                     user:user,
-                    specialization:specialization, 
+                    specialization:specialization,
+                    clinics:clinics,
                     title:'Thông tin Bác Sĩ'})
               }
   
@@ -524,7 +528,7 @@ const doctorPageCreateSchedule_get = async (req,res)=>{
             }else{
                 const doctorId = await User.findById(decodedToken.id);
                 const doctor_id = doctorId._id.toString()
-                const clinics = await Clinic.find( { doctor_id: doctor_id });
+                const clinics = await Clinic.findOne( { doctor_id: doctor_id });
                 return res.render('doctorPageCreateSchedule',
                 {clinics:clinics,
                     title:'Thêm lịch làm việc'});

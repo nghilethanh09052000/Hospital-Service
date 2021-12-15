@@ -17,6 +17,10 @@
       <%- include("./partials/sidebarDoctor.ejs") %> 
 
     <%= specialization.specializations %>
+    <% if (clinics.length > 0) %>
+    <% clinics.forEach(clinic=> { %>
+      <%=clinic.name %>
+      <% }) %>
       
   
     
