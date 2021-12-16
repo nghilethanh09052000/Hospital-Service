@@ -27,6 +27,7 @@ const userSchema = new mongoose.Schema({
      instagram:String,
      description:String,
      country:String,
+     gender:String,
      specialization_id:{
       type: mongoose.Schema.ObjectId,
       ref:Specialization,
