@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
      name:String,
      phone:String,
      facebook:String,
-     instagram:String,
+     birthday:Number,
      description:String,
      country:String,
      gender:String,

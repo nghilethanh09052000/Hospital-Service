@@ -325,7 +325,7 @@ const adminPageDoctorAccount_delete = (req,res)=>{
 const adminPageDoctorAccountDetails_get = async (req,res)=>{
     const id =req.params.id;
     const user = await User.findById(id);
-    const clinics =  await Clinic.find();
+    const clinics =  await Clinic.find({doctor_id: null});
     return res.render('adminPageDoctorAccountDetails',
     {user:user,clinics :clinics ,
         title:'Phân phòng khám'});
@@ -334,7 +334,7 @@ const adminPageDoctorAccountDetails_get = async (req,res)=>{
 const adminPageDoctorAccountDetails_put = async (req,res)=>{
     const {clinic,user_id} = req.body;
     const doctor_id= await User.findById(user_id);
-
+    
     Clinic.findOneAndUpdate( {name:clinic} , {doctor_id:doctor_id })
     .then(result=>{
         res.json( { redirect:'/adminPageDoctorAccount'} );
@@ -462,7 +462,7 @@ const adminPageClinic_delete = (req,res)=>{
     });
 }
 
-const   doctorPageInfo_get = (req,res)=>{
+const  doctorPageInfo_get = (req,res)=>{
     const token = req.cookies.jwt;
     if(token){
         jwt.verify(token,'nghi', async (err,decodedToken)=>{
@@ -484,6 +484,17 @@ const   doctorPageInfo_get = (req,res)=>{
     })
    
 }
+}
+
+const doctorPageInfo_put = (req,res)=>{
+    const {name,country, phone,facebook,birthday,user_id,gender,description} = req.body;
+    User.findByIdAndUpdate( user_id,  {name,country, phone,facebook,birthday,gender,description})
+    .then(result=>{
+        res.json( { redirect:'/doctorPageInfo'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
 }
 
 const doctorPageSchedule_get = (req,res)=>{
@@ -657,6 +668,7 @@ module.exports = {
     userAccount_get,
 
     doctorPageInfo_get,
+    doctorPageInfo_put,
     doctorPageCreateSchedule_get,
     doctorPageCreateSchedule_post,
     doctorPageSchedule_get,

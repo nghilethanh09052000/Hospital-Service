@@ -55,6 +55,7 @@ router.post('/changepass', blogController.changepass_post);
 
 
 router.get('/doctorPageInfo',requireAuth,checkLogin,checkDoctor,blogController.doctorPageInfo_get);
+router.put('/doctorPageInfo',requireAuth,checkLogin,checkDoctor,blogController.doctorPageInfo_put);
 
 router.get('/doctorPageSchedule',requireAuth,checkLogin,checkDoctor,blogController.doctorPageSchedule_get);
 router.delete('/doctorPageSchedule/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageSchedule_delete);

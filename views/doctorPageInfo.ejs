@@ -42,7 +42,7 @@
       font-weight: 500;
       margin-bottom: 5px;
     }
-    .user-details .input-box input,textarea{
+    .user-details .input-box input,textarea,select{
       height: 45px;
       width: 100%;
       outline: none;
@@ -53,8 +53,8 @@
       border-bottom-width: 2px;
       transition: all 0.3s ease;
     }
-    .user-details .input-box input:focus,
-    .user-details .input-box input:valid{
+    .user-details .input-box input,select:focus,
+    .user-details .input-box input,select:valid{
       border-color: #9b59b6;
     }
     form .gender-details .gender-title{
@@ -87,9 +87,7 @@
       background: #9b59b6;
       border-color: #d9d9d9;
     }
-    form input[type="radio"]{
-      display: none;
-    }
+   
     form .button{
       height: 45px;
       margin: 35px 0
@@ -136,18 +134,19 @@
                 <input type="text" placeholder="<%=user.email %>"  disabled >
               </div>
               <div class="input-box">
-                <span class="details">Phone Number</span>
+                <span class="details">Số điện thoại</span>
                 <input type="text" placeholder="<%=user.phone %>" name='phone' >
+              </div>
+              <div class="input-box">
+                <span class="details">Năm sinh</span>
+                <input type="text" placeholder="<%=user.birthday %>" name='birthday' >
               </div>
               <div class="input-box">
                 <span class="details">Facebook</span>
                 <input type="text" placeholder="<%=user.facebook %>" name='facebook' >
               </div>
               
-              <div class="input-box">
-                <span class="details">Instagram</span>
-                <input type="text" placeholder="<%=user.instagram %>" name='instagram' >
-              </div>
+          
               
               <div class="input-box">
                 <span class="details">Chuyên khoa</span>
@@ -157,26 +156,25 @@
               </div>
               <div class="input-box">
                 <span class="details">Mô tả bản thân</span>
-                <textarea type="text" value="<%=user.description %>" id='description' >
-                  </textarea>
+                <input type="text" placeholder=" <%=user.description %>" name='description' >
+
 
               </div>
-                <input type="hidden" placeholder=" <%=user._id %>" name='user_id' >
+                <input type="hidden" value="<%=user._id %>" name='user_id' >
             </div>
             <div class="gender-details">
-              <input type="radio" name="gender" id="dot-1">
-              <input type="radio" name="gender" id="dot-2">
               <span class="gender-title">Giới tính</span>
+              
               <div class="category">
-                <label for="dot-1">
-                <span class="dot one"></span>
-                <span class="gender">Nam</span>
-              </label>
-              <label for="dot-2">
-                <span class="dot two"></span>
-                <span class="gender">Nữ</span>
-              </label>
-            
+              <select name="gender" id="gender">
+                <option > <%=user.gender %> </option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+
+              </select>
+                  
+          
+
               </div>
             </div>
             <div class="button">
@@ -188,6 +186,29 @@
 
     </section>
   
-
+<script>
+   const form = document.querySelector('form');
+        form.addEventListener('submit', async (e)=>{
+         e.preventDefault();
+         const name = form.name.value;
+         const country = form.country.value;
+         const phone = form.phone.value;
+         const facebook = form.facebook.value;
+         const birthday = form.birthday.value;
+         const user_id = form.user_id.value;
+         const description = form.description.value;
+          const gender = document.getElementById('gender').value
+        
+         
+            fetch('/doctorPageInfo',{
+               method:'PUT',
+               body:JSON.stringify({name,country, phone,facebook,birthday,user_id,gender,description}),
+               headers:{'Content-Type':'application/json'} 
+            })
+            .then(response => response.json())
+            .then(data => window.location.href=data.redirect)
+            .catch(err=> console.log(err));
+         })
+</script>
 </body>
 </html>

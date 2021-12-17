@@ -19,6 +19,10 @@ const scheduleSchema = new mongoose.Schema({
         required:true,
         index:true
     },
+    bookingSlot:{
+        type:Number,
+        default:10
+    }
     
 },{ timestamps: true });
 

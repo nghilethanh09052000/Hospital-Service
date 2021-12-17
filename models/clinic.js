@@ -9,7 +9,7 @@ const clinicSchema= new mongoose.Schema({
     doctor_id:{
         type: mongoose.Schema.ObjectId,
         ref:User,
-        index:true
+        index:true,
     }
 },{ timestamps: true });
 
