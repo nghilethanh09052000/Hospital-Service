@@ -1,60 +1,57 @@
-
 section{
-
-	display: flex;
+    display: flex;
 	height: 100%;
 	width: 100%;
 	background: #fff;
     background-image: url(/HinhAnh/wave.png);
 }
-
-
-.containerAppointment{
-	right:  30%;
-    width: 60%;
-    margin: auto;
-    overflow: hidden;
-    background: skyblue;
-    margin-top: 20px;
+main{
+    margin: 10px auto;
+	display: block;
+	box-sizing: border-box;
 }
 
-.containerAppointment ul{
-    padding: 0px;
-    margin: 0px;
+/*table styling*/
+table {
+	border-collapse: collapse;
+	display: inline-block;
+	text-align: left;
+	border-top: 1px solid #888;
 }
-.containerAppointment ul li{
-    float:left;
-    list-style: none;
-    width:25%;
-    height:300px;
-    background: red;
-    margin :20px 0px 20px 55px; 
-    border:2px solid blue;
-    box-sizing: border-box;
+table thead {
+	background: #bbb;
 }
-.containerAppointment ul li:hover{
-    opacity: 0.8;
+table tr:nth-child(even) {
+	background: #dfdfdf;
 }
-
-.containerAppointment ul li .bottom{
-    width: 100%;
-    height:30%;
-    line-height: 50px;
-    background: #fff;    
-    text-align: center;
-    color:white;
-    font-size: 20px;
-   
+table th, table td {
+	padding: 10px 20px;
+	border: 1px solid #888;
+	border-width: 0 1px 1px;
 }
-.containerAppointment ul li .bottom a{
-    text-decoration: none;
-   
+table tr a{
+	text-decoration: none;
+	color: #000;
 }
-@media screen and (max-width:1250px){
-    .containerAppointment ul li{
-        width:40%;
-        margin-left: 40px;
-    }
+/*responsive table*/
+@media screen and (max-width: 1000px) {
+	/*put each field on its own line and align text to the right
+	 *border is added for further readability
+	 */
+	table td {
+		display: block;
+		text-align: right;
+	}
+	table td:before {
+	
+		float: left;
+		font-weight: bold;
+		margin-right: 10px;
+	}
+	/*remove thead*/
+	table thead {
+		display: none;
+	}
 }
 
 

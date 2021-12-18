@@ -5,25 +5,31 @@
    
    <section>
       <%- include("./partials/sidenav.ejs") %>
-      <div class="containerAppointment">
-         <ul>
-            <% if(specializations.length>0){ %>
-               <% specializations.forEach(specialization=> { %>
-            <li>
-               <div class="bottom">
-                  <a href="<%= specialization._id %>">
-                     <%= specialization.specializations  %>
-                  </a>
-               </div>
-                <img src="<%= specialization.image  %>" alt="">
-            </li>
-            <% }) %>
-            <% }else{%>
-              <p>Không có lịch hẹn nào...</p>
-              <% } %>
-         </ul>
-        
-     </div>
+      <main>
+         <table>
+            <thead>
+               <tr>
+                  <th>Chuyên khoa</th>
+                  <th>Giá</th>
+          
+               </tr>
+            </thead>
+            <tbody>
+               <% if(specializations.length>0){ %>
+                  <% specializations.forEach(specialization=> { %>
+               <tr>
+                  <td> <a href="appointmentSpecial/<%= specialization._id %>"><%= specialization.specializations %></a>  </td>
+                  <td > <a><%= specialization.price  %></a></td>
+
+               </tr>
+               <% }) %>
+               <% }else{%>
+                 <p>Không có chuyên khoa nào...</p>
+                 <% } %>
+            </tbody>
+         </table>
+      </main>
+   
 
  
 

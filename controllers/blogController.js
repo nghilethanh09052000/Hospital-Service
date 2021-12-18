@@ -155,6 +155,15 @@ const sendAdviceMail_post = async (req,res)=>{
     }
 }
 
+const appointmentSpecial_get = async (req,res)=>{
+    const id =req.params.id;
+    const specialization = await Specialization.findById(id);
+    const users = await User.find({specialization_id:id});
+    return res.render('appointmentSpecial',
+    {users:users,
+        title:'Chọn bác sĩ'});
+}
+
 
 const changepass_get = (req,res)=>{
     res.render('changePass',{title:'Đổi mật khẩu'});
@@ -667,6 +676,7 @@ module.exports = {
     benhveda_get,
     userAccount_get,
 
+    appointmentSpecial_get,
     doctorPageInfo_get,
     doctorPageInfo_put,
     doctorPageCreateSchedule_get,
