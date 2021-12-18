@@ -157,11 +157,18 @@ const sendAdviceMail_post = async (req,res)=>{
 
 const appointmentSpecial_get = async (req,res)=>{
     const id =req.params.id;
-    const specialization = await Specialization.findById(id);
     const users = await User.find({specialization_id:id});
     return res.render('appointmentSpecial',
     {users:users,
         title:'Chọn bác sĩ'});
+}
+
+const appointmentcalendar_get = async (req,res)=>{
+    const id =req.params.id;
+    const schedules = await Schedule.find({doctor_id:id}).sort() ;
+    return res.render('appointmentcalendar',
+    {schedules:schedules,
+        title:'Chọn lịch khám'});
 }
 
 
@@ -677,6 +684,7 @@ module.exports = {
     userAccount_get,
 
     appointmentSpecial_get,
+    appointmentcalendar_get,
     doctorPageInfo_get,
     doctorPageInfo_put,
     doctorPageCreateSchedule_get,

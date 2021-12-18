@@ -1,57 +1,97 @@
 
-.sidebar {
-
-	height: 100%; 
-	width:20%;
-	position: absolute; 
-	top: 0%; 
-	left: -30%;
-	background-color: #f29bd4;
-	/* overflow-x: hidden;  */
-	padding-top: 60px; 
-	transition: all 0.5s ease; 
-	display: block;
-	
-	
-}
-.sidebar h2 {
-	position: absolute; 
-	font-size: 100%;
+.sidebaradminPage{
+	width: 100%;
+	height: 100%;
+	left: 0%;
+	background: #1b1b1b;
+	transition: left 0.4s ease;
+  }
+  .sidebaradminPage.show{
+	left: 0px;
+  }
+  .sidebaradminPage .text{
 	color: white;
-    text-align:center;
-}
-.sidebar ul{
-	margin-top: 10%;
-}
-
-.sidebar ul li a{
-	display: block;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 60px;
+	text-align: center;
+	background: #1e1e1e;
+	letter-spacing: 1px;
+  }
+  .sidebaradminPage ul{
+	background: #1b1b1b;
+	height: 100%;
+	width: 100%;
+	list-style: none;
+  }
+  .sidebaradminPage ul li{
+	line-height: 60px;
+	border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .sidebaradminPage ul li:last-child{
+	border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .sidebaradminPage ul li a{
+	position: relative;
 	color: white;
-	line-height: 65px;
-	padding-left: 30px;
-	box-sizing: border-box;
-	border-bottom: 1px solid black;
-	border-top: 1px solid rgba(255,255,255,.1);
-	border-left: 5px solid transparent;
 	text-decoration: none;
-	transition: all .5s ease;
-}
-.sidebar ul li ul {
+	font-size: 18px;
+	padding-left: 40px;
+	font-weight: 500;
+	display: block;
+	width: 100%;
+	border-left: 3px solid transparent;
+  }
+  .sidebaradminPage ul li.active a{
+	color: cyan;
+	background: #1e1e1e;
+	border-left-color: cyan;
+  }
+  .sidebaradminPage ul li a:hover{
+	background: #1e1e1e;
+  }
+  .sidebaradminPage ul ul{
+	position: static;
 	display: none;
-}
-
-.menuSideBar , .closeSideBar{
+  }
+  .sidebaradminPage ul .feat-show.show{
+	display: block;
+  }
+  .sidebaradminPage ul .serv-show.show1{
+	display: block;
+  }
+  
+  .sidebaradminPage ul .serv-show1.show2{
+	display: block;
+  }
+  
+  .sidebaradminPage ul ul li{
+	line-height: 42px;
+	border-top: none;
+  }
+  .sidebaradminPage ul ul li a{
+	font-size: 17px;
+	color: #e6e6e6;
+	padding-left: 80px;
+  }
+  .sidebaradminPage ul li.active ul li a{
+	color: #e6e6e6;
+	background: #1b1b1b;
+	border-left-color: transparent;
+  }
+  .sidebaradminPage ul ul li a:hover{
+	color: cyan!important;
+	background: #1e1e1e!important;
+  }
+  .sidebaradminPage ul li a span{
 	position: absolute;
-	cursor: pointer;
-}
-.menuSideBar{
-	top: 0%;
-	width: 3%;
-	
-}
-.closeSideBar{
-	top: 0%;
-	left: -30%;
-	width: 1%;
-	transition: all 0.5s ease; 
-} 
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+	font-size: 22px;
+	transition: transform 0.4s;
+  }
+  .sidebaradminPage ul li a span.rotate{
+	transform: translateY(-50%) rotate(-180deg);
+  }
+  

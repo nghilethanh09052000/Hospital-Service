@@ -1,7 +1,7 @@
 
 .sidebaradminPage{
   
-  width: 18%;
+  width: 20%;
   height: 100%;
   left: 0%;
   background: #1b1b1b;
@@ -12,8 +12,8 @@
 }
 .sidebaradminPage .text{
   color: white;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 500;
   line-height: 60px;
   text-align: center;
   background: #1e1e1e;
