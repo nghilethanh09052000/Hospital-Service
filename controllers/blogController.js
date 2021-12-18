@@ -165,12 +165,34 @@ const appointmentSpecial_get = async (req,res)=>{
 
 const appointmentcalendar_get = async (req,res)=>{
     const id =req.params.id;
-    const schedules = await Schedule.find({doctor_id:id}).sort() ;
+    const schedules = await Schedule.find({doctor_id:id}) ;
     return res.render('appointmentcalendar',
     {schedules:schedules,
         title:'Chọn lịch khám'});
 }
 
+const appointmentform_get = async (req,res)=>{
+    const id =req.params.id;
+    const schedule = await Schedule.findById(id);
+    const doctor_id = schedule.doctor_id.toString();
+    const doctor = await User.findById(doctor_id);
+    const specialization = await Specialization.findById(doctor.specialization_id.toString());
+    return res.render('appointmentform',
+    {schedule:schedule,
+        doctor:doctor,
+        specialization,
+        title:'Chọn lịch khám'});
+}
+
+const appointmentform_post = async (req,res)=>{
+    const {fullname,phone,birthday,gender,address,note,user_id,schedule_id }=req.body;
+    try{
+        const appointment = await Appointment.create({fullname,phone,birthday,gender,address,note,user_id,schedule_id });
+        res.status(201).json({appointment:appointment._id});
+    }catch(err){
+        res.status(400).send("No");
+    }
+}
 
 const changepass_get = (req,res)=>{
     res.render('changePass',{title:'Đổi mật khẩu'});
@@ -685,6 +707,8 @@ module.exports = {
 
     appointmentSpecial_get,
     appointmentcalendar_get,
+    appointmentform_get,
+    appointmentform_post,
     doctorPageInfo_get,
     doctorPageInfo_put,
     doctorPageCreateSchedule_get,

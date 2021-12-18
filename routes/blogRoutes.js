@@ -47,6 +47,8 @@ router.get('/logout', blogController.logout_get);
 
 router.get('/appointmentSpecial/:id',blogController.appointmentSpecial_get);
 router.get('/appointmentcalendar/:id',blogController.appointmentcalendar_get);
+router.get('/appointmentform/:id',blogController.appointmentform_get);
+router.post('/appointmentform',blogController.appointmentform_post);
 
 router.post('/appointment',blogController.appointment_post);
 router.get('/appointmentinfo',requireAuth,checkLogin, checkPatient,blogController.appointmentinfo_get);
