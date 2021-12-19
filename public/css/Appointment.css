@@ -1,9 +1,8 @@
-section{
+.section{
     display: flex;
-	height: 100%;
 	width: 100%;
 	background: #fff;
-    background-image: url(/HinhAnh/wave.png);
+ 
 }
 main{
     margin: 10px auto;

@@ -5,7 +5,7 @@
 
   
   <section>
-    <%- include("./partials/sidenav.ejs") %>
+    <%- include("./partials/sidebarDoctor.ejs") %>
 
     <div class="table-box">
 
@@ -16,9 +16,7 @@
           <div class="table-cell">
               <p>Trạng thái</p>
           </div>
-        <div class="table-cell last-cell">
-            <p>Xóa</p>
-        </div> 
+        
       </div>
       
       <% if(appointments.length>0){ %>
@@ -26,7 +24,7 @@
         <div class="table-row">
           <div class="table-cell first-cell">
               <p>
-                 <a href="/appointmentdetail/<%= appointment._id %>"><%= appointment._id%>
+                 <a href="/doctorPageNewAppointmentDetail/<%= appointment._id %>"><%= appointment._id%>
                 </a>
               </p>
           </div>
@@ -34,12 +32,7 @@
           <div class="table-cell">
             <p><%= appointment.status %></p>
         </div>
-        <div class="table-cell last-cell">
-              <a class="detail" href="#">Phiếu khám bệnh</a>
-              <a  class="trashBin" data-doc="<%= appointment._id %> " >
-                <img src="/HinhAnh/trash.png" alt="#" >
-              </a>
-            </div>   
+      
       </div>
       <% }) %>
       <% }else{%>

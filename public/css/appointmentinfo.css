@@ -1,9 +1,9 @@
 section{
-	position: relative;
+
 	display: flex;
 	height: 600px;
 	width: 100%;
-	background: #FCD8D4;
+	background: #fff;
 }
 .table-box
 {

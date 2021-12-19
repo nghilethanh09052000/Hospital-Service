@@ -110,6 +110,7 @@ input,select,textarea {
                 <p>Bác sĩ:  <%= doctor.name  %>  </p>
                 <p>Ngày: <%= schedule.date  %>  </p>
                 <p><%= schedule.hour  %>  </p>
+                <p>Giới hạn chỗ: <%= schedule.bookingSlot%>  </p>
             </div>
         </div>
        
@@ -147,8 +148,9 @@ input,select,textarea {
               <p>Ghi chú</p>
               <textarea name="note" id="note"> </textarea>
             </div>
-            <input type="hidden" name="user_id" value="<%= user._id  %> ">
-            <input type="hidden" name="schedule_id" value="<%= schedule._id  %>">
+            <input type="hidden" name="user_id" value="<%= user._id%>">
+            <input type="hidden" name="schedule_id" value="<%= schedule._id%>">
+            <input type="hidden" name="doctor_id" value="<%= doctor._id%>">
            <button class="btn">Xác nhận</button>
            
            
@@ -173,10 +175,11 @@ input,select,textarea {
          const note =document.getElementById("note").value;
          const user_id = form.user_id.value;
          const schedule_id = form.schedule_id.value;
+         const doctor_id = form.doctor_id.value;
          try{
             const res = await fetch('/appointmentform',{
                method:'POST',
-               body:JSON.stringify({fullname,phone,birthday,gender,address,note,user_id,schedule_id}),
+               body:JSON.stringify({fullname,phone,birthday,gender,address,note,user_id,schedule_id,doctor_id}),
                headers:{'Content-Type':'application/json'} 
             })
             const data =await res.json();

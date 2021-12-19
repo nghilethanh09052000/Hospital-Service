@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const User = require('./User');
 const Schedule = require('./schedule');
+const MedicalForm = require('./medicalForm');
 
-const medicalForm = require('./medicalForm');
 const moment = require('moment-timezone');
 
 const dateVietNam = moment.tz(Date.now(), "Asia/Tokyo");
@@ -26,6 +26,21 @@ const appointmentSchema = new mongoose.Schema({
         ref:User,
         required:true,
         index:true
+    },
+    medicalForm_id:{
+        type: mongoose.Schema.ObjectId,
+        ref:MedicalForm,
+        index:true
+    },
+    doctor_id:{
+        type: mongoose.Schema.ObjectId,
+        ref:User,
+        required:true,
+        index:true
+    },
+    status:{
+        type:String,
+        default:'Chờ xác nhận'
     }
 },{ timestamps: true });
 

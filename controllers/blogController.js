@@ -53,7 +53,13 @@ const createToken=(id)=>{
     });
 };
 
+const GioiThieuChung_get = (req,res)=>{
+    res.render('GioiThieuChung',{title:'Giới thiệu chung'});
+}
 
+const benhveda_get =(req,res)=>{
+    res.render('benhveda',{title:'Bệnh về da'});
+}
 
 
 
@@ -185,14 +191,63 @@ const appointmentform_get = async (req,res)=>{
 }
 
 const appointmentform_post = async (req,res)=>{
-    const {fullname,phone,birthday,gender,address,note,user_id,schedule_id }=req.body;
+    const {fullname,phone,birthday,gender,address,note,user_id,schedule_id,doctor_id }=req.body;
     try{
-        const appointment = await Appointment.create({fullname,phone,birthday,gender,address,note,user_id,schedule_id });
+        const appointment = await Appointment.create({fullname,phone,birthday,gender,address,note,user_id,schedule_id,doctor_id });
         res.status(201).json({appointment:appointment._id});
+       
     }catch(err){
         res.status(400).send("No");
     }
+ 
 }
+
+const appointmentinfo_get = async (req,res)=>{
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token,'nghi', async (err,decodedToken)=>{
+            if(err){
+                console.log(err);
+            }else{
+                 const user = await User.findById(decodedToken.id);
+                 const appointments = await Appointment.find({ user_id:user._id.toString() }).sort({createdAt:-1})
+                 
+                    return res.render('appointmentinfo',{
+                       appointments:appointments,
+              
+                       title:'Tất cả lịch hẹn'})
+               
+                }
+            })
+        }
+    }
+     
+const appointmentinfo_delete = (req,res)=>{
+    const id = req.params.id;
+    Appointment.findByIdAndDelete(id).
+    then(result=>{
+        res.json({redirect:'/appointmentinfo'});
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
+const appointmentdetail_get = async (req,res) =>{
+    const id =req.params.id;
+    const appointment = await Appointment.findById(id);
+    const schedule = await Schedule.findById(appointment.schedule_id);
+    const doctor = await User.findById(schedule.doctor_id);
+    const specialization = await Specialization.findById(doctor.specialization_id);
+
+      return  res.render('appointmentdetail',
+      {appointment:appointment,
+        schedule:schedule,
+        doctor:doctor,
+        specialization:specialization,
+        title:'Thông tin lịch khám'});
+}
+
 
 const changepass_get = (req,res)=>{
     res.render('changePass',{title:'Đổi mật khẩu'});
@@ -217,73 +272,14 @@ const changepass_get = (req,res)=>{
         })
     }
 }
-const appointment_post= async (req,res)=>{
-    
-    const {fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status}=req.body;
-    try{
-        const appointment = await Appointment.create({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status});
-        res.status(201).json({appointment:appointment._id});
-    }catch(err){
-        res.status(400).send("No");
-    }
-    
-    
-    
- }
 
-const appointmentinfo_get =  (req,res)=>{
-    const token = req.cookies.jwt;
-    if(token){
-        jwt.verify(token,'nghi', async (err,decodedToken)=>{
-            if(err){
-                console.log(err);
-            }else{
-                const user_id = await User.findById(decodedToken.id);
-                Appointment.find( {user_id:user_id._id } ).sort({appointmentday:-1})
-                    .then(result =>{
-                        res.render('appointmentinfo', {appointments:result ,title:'Quản lý hồ sơ'});
-                    })
-                    .catch(err =>{
-                        console.log(err);
-                        res.render('404', { title: 'Trang không tìm thấy' });
-                    })
-                
-            }
-        })
-    }else{
-        res.render('404', { title: 'Trang không tìm thấy' });
-    }
-}
 
-const appointmentinfo_delete = (req,res)=>{
-    const id = req.params.id;
-    Appointment.findByIdAndDelete(id).
-    then(result=>{
-        res.json( { redirect:'/appointmentinfo'} );
-    })
-    .catch(err=>{
-        console.log(err);
-    });
-}
 
-const appointmentdetail_get = (req,res) =>{
-    const id =req.params.id;
-    Appointment.findById(id)
-    .then(result =>{
-        res.render('appointmentdetail',{appointment:result ,title:'Thông tin chi tiết'});
-    })
-    .catch(err =>{
-        res.render('404', { title: 'Trang không tìm thấy' });
-    })
-}
 
-const GioiThieuChung_get = (req,res)=>{
-    res.render('GioiThieuChung',{title:'Giới thiệu chung'});
-}
 
-const benhveda_get =(req,res)=>{
-    res.render('benhveda',{title:'Bệnh về da'});
-}
+
+
+
 
 const userAccount_get =  (req,res)=>{
      User.find().then(result=>{
@@ -535,6 +531,78 @@ const doctorPageInfo_put = (req,res)=>{
     });
 }
 
+const doctorPageNewAppointment_get = async (req,res)=>{
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token,'nghi', async (err,decodedToken)=>{
+            if(err){
+                console.log(err);
+            }else{
+                const doctor = await User.findById(decodedToken.id);
+                const appointments = await Appointment.find({doctor_id:doctor._id, status:'Chờ xác nhận'}).sort({createdAt:-1});
+                return res.render('doctorpagenewapp',{
+                    appointments:appointments,
+                    title:'Lịch hẹn mới'})
+                }
+                })
+}
+}
+
+const doctorPageNewAppointmentDetail_get = async (req,res )=>{
+    const id =req.params.id;
+    const appointment = await Appointment.findById(id);
+    const schedule = await Schedule.findById(appointment.schedule_id);
+    const doctor = await User.findById(schedule.doctor_id);
+    const specialization = await Specialization.findById(doctor.specialization_id);
+    return  res.render('doctorpagenewappdetail',
+      {appointment:appointment,
+        schedule:schedule,
+        doctor:doctor,
+        specialization:specialization,
+        title:'Thông tin lịch khám'});
+}
+
+const doctorPageNewAppointmentDetail_put = async (req,res)=>{
+    const {appointment_id,status}= req.body;
+   Appointment.findByIdAndUpdate( appointment_id, {status})
+        .then(result=>{
+            res.json( { redirect:'/doctorPageNewAppointment'} );
+        }).catch(err=>{
+            console.log(err);
+        })
+ 
+}
+
+   
+const doctorPageCompletedAppointment_get = async (req, res)=>{
+    const token = req.cookies.jwt;
+    if(token){
+        jwt.verify(token,'nghi', async (err,decodedToken)=>{
+            if(err){
+                console.log(err);
+            }else{
+                const doctor = await User.findById(decodedToken.id);
+                const appointments = await Appointment.find({doctor_id:doctor._id, status:'Chấp nhận'}).sort({createdAt:-1});
+                return res.render('doctorpagecomapp',{
+                    appointments:appointments,
+                    title:'Khám bệnh'})
+                }
+                })
+}
+}
+
+
+const doctorPageNewAppointment_delete = (req,res)=>{
+    const id = req.params.id;
+    Appointment.findByIdAndDelete(id).
+    then(result=>{
+        res.json( { redirect:'/doctorPageNewAppointment'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
 const doctorPageSchedule_get = (req,res)=>{
     const token = req.cookies.jwt;
     if(token){
@@ -697,7 +765,11 @@ module.exports = {
     sendAdviceMail_post,
     changepass_get, 
     changepass_post,
-    appointment_post,
+ 
+    appointmentSpecial_get,
+    appointmentcalendar_get,
+    appointmentform_get,
+    appointmentform_post,
     appointmentinfo_get,
     appointmentinfo_delete,
     appointmentdetail_get,
@@ -705,12 +777,15 @@ module.exports = {
     benhveda_get,
     userAccount_get,
 
-    appointmentSpecial_get,
-    appointmentcalendar_get,
-    appointmentform_get,
-    appointmentform_post,
+    
     doctorPageInfo_get,
     doctorPageInfo_put,
+    doctorPageNewAppointment_get,
+    doctorPageNewAppointmentDetail_get,
+    doctorPageNewAppointmentDetail_put,
+    doctorPageCompletedAppointment_get,
+
+    doctorPageNewAppointment_delete,
     doctorPageCreateSchedule_get,
     doctorPageCreateSchedule_post,
     doctorPageSchedule_get,

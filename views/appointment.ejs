@@ -3,7 +3,7 @@
 <body>
    <%- include("./partials/nav.ejs") %>
    
-   <section>
+   <div class="section">
       <%- include("./partials/sidenav.ejs") %>
       <main>
          <table>
@@ -33,42 +33,7 @@
 
  
 
-         
-   <!-- <script>
-      const userId=  document.querySelector('.userId');
-      const form = document.querySelector('form');
-      form.addEventListener('submit', async (e)=>{
-         e.preventDefault();
-         const fullname = form.fullname.value;
-         const phone = form.phone.value;
-         const birthday = form.birthday.value;
-         const gender = document.getElementById("gender").value;
-         const service = document.getElementById("service").value;
-         const address = form.address.value;
-         const appointmentday = form.appointmentday.value;
-         const note =document.getElementById("note").value;
-         const user_id = form.user_id.value;
-         const status = form.status.value;
-         
-         try{
-            const res = await fetch('/appointment',{
-               method:'POST',
-               body:JSON.stringify({fullname,phone,birthday,gender,service,address,appointmentday,note,user_id,status }),
-               headers:{'Content-Type':'application/json'} 
-            })
-            const data =await res.json();
 
-            if(data.appointment){
-               alert('Đặt lịch thành công');
-            }else{
-               console.log(err);
-            }
-
-         }catch(err){
-            console.log(err);
-         }
-      })
-         
-   </script> -->
+      
 </body>
 </html>
