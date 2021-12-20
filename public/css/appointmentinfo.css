@@ -1,18 +1,73 @@
-section{
+.section{
 
-	display: flex;
-	height: 600px;
-	width: 100%;
-	background: #fff;
-}
+        display: flex;
+        width: 100%;
+      background: #fff;
+    }
 .table-box
 {
-    position: absolute;
-    width: 60%;
-    right: 50%;
-    transform: translateX(50%);
-    margin: 20px auto;
+    width: 80%;
+margin: 10px 5px;
 }
+
+.table-box .box{
+display: inline;
+  max-width: 400px;
+  width: 100%;
+right: 5%;
+
+}
+.table-box .box .search-box{
+  position: relative;
+  height: 50px;
+  max-width: 50px;
+  margin: auto;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+  transition: all 0.3s ease;
+
+}
+#check:checked ~ .search-box{
+  max-width: 380px;
+}
+.search-box input{
+
+ position: absolute;
+ height: 100%;
+ width: 100%;
+ border-radius: 25px;
+ background: #fff;
+ outline: none;
+ border: none;
+ padding-left: 20px;
+ font-size: 18px;
+}
+
+
+.search-box .icon{
+  cursor: pointer;
+  position: absolute;
+  right: -2px;
+  top: 0;
+  width: 50px;
+  background: #FFF;
+  height: 100%;
+  text-align: center;
+  line-height: 50px;
+  color: #FF676D;
+  font-size: 20px;
+  border-radius: 25px;
+}
+#check:checked ~ .search-box .icon{
+  background: #FF676D;
+  color: #FFF;
+  width: 60px;
+  border-radius: 0 25px 25px 0;
+}
+#check{
+  display: none;
+}
+
 
 .table-row{
     display: table;
@@ -53,11 +108,11 @@ a{
     text-decoration: none;
     color: #555;
 }
-
 .last-cell img{
     margin-left: 10%;
     width: 15%;
 }
+
 
 @media only screen and (max-width: 600px) {
   .table-row {

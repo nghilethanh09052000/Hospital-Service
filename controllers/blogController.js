@@ -225,7 +225,7 @@ const appointmentinfo_get = async (req,res)=>{
 const appointmentinfo_delete = async (req,res)=>{
     const id = req.params.id;
     const appointment = await Appointment.findByIdAndDelete(id);
-    if(appointment.status=="Hủy bỏ"){
+    if(appointment.status=="Hủy bỏ" | appointment.status=="Chờ xác nhận"){
         res.json({redirect:'/appointmentinfo'});
     }else if(appointment.status=="Chấp nhận"){
         const schedule = await Schedule.findById(appointment.schedule_id);
