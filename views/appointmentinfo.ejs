@@ -16,6 +16,9 @@
           <div class="table-cell">
               <p>Trạng thái</p>
           </div>
+          <div class="table-cell">
+            <p>Phiếu khám bệnh</p>
+        </div>
         <div class="table-cell last-cell">
             <p>Xóa</p>
         </div> 
@@ -34,8 +37,10 @@
           <div class="table-cell">
             <p><%= appointment.status %></p>
         </div>
+        <div class="table-cell">
+          <a href="/appointmentmedicalform/<%= appointment._id %>" > Xem phiếu khám bệnh </a>
+      </div>
         <div class="table-cell last-cell">
-              <a class="detail" href="#">Phiếu khám bệnh</a>
               <a  class="trashBin" data-doc="<%= appointment._id %> " >
                 <img src="/HinhAnh/trash.png" alt="#" >
               </a>

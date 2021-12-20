@@ -113,12 +113,16 @@ input,select,textarea {
                 <p>Ngày: <%= schedule.date  %>  </p>
                 <p><%= schedule.hour  %>  </p>
                 <p>Giới hạn chỗ: <%= schedule.bookingSlot %>   </p>
+               
             </div>
         </div>
         <div class="container-form">
           <form action="/doctorPageNewAppointmentDetail">
              <h2 class="heading heading-yellow">Xác nhận lịch hẹn </h2>
-
+             <div class="form-field">
+                <p>Email bệnh nhân</p>
+                <input type="text" placeholder=" <%= userId.email%> " disabled>
+             </div>
              <div class="form-field">
                 <p>Họ và tên</p>
                 <input type="text" placeholder="<%=appointment.fullname%>" disabled>

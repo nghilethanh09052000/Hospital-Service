@@ -20,8 +20,8 @@ const scheduleSchema = new mongoose.Schema({
         index:true
     },
     bookingSlot:{
-        type:String,
-        default:'Còn chỗ'
+        type:Number,
+        default:10
     }
     
 },{ timestamps: true });

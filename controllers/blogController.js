@@ -222,16 +222,26 @@ const appointmentinfo_get = async (req,res)=>{
         }
     }
      
-const appointmentinfo_delete = (req,res)=>{
+const appointmentinfo_delete = async (req,res)=>{
     const id = req.params.id;
-    Appointment.findByIdAndDelete(id).
-    then(result=>{
+    const appointment = await Appointment.findByIdAndDelete(id);
+    if(appointment.status=="Hủy bỏ"){
         res.json({redirect:'/appointmentinfo'});
-    })
-    .catch(err=>{
-        console.log(err);
-    });
-}
+    }else if(appointment.status=="Chấp nhận"){
+        const schedule = await Schedule.findById(appointment.schedule_id);
+        const newBookingSlot = parseInt(schedule.bookingSlot) +1;
+        await Schedule.findByIdAndUpdate(schedule._id,{ bookingSlot:newBookingSlot })
+        .then(result=>{
+            res.json({redirect:'/appointmentinfo'});
+        })
+        .catch(err=>{
+            console.log(err);
+        });
+    }
+  }
+
+
+
 
 const appointmentdetail_get = async (req,res) =>{
     const id =req.params.id;
@@ -553,23 +563,38 @@ const doctorPageNewAppointmentDetail_get = async (req,res )=>{
     const appointment = await Appointment.findById(id);
     const schedule = await Schedule.findById(appointment.schedule_id);
     const doctor = await User.findById(schedule.doctor_id);
+    const userId = await User.findById(appointment.user_id);
     const specialization = await Specialization.findById(doctor.specialization_id);
     return  res.render('doctorpagenewappdetail',
       {appointment:appointment,
         schedule:schedule,
         doctor:doctor,
+        userId:userId,
         specialization:specialization,
         title:'Thông tin lịch khám'});
 }
 
 const doctorPageNewAppointmentDetail_put = async (req,res)=>{
     const {appointment_id,status}= req.body;
-   Appointment.findByIdAndUpdate( appointment_id, {status})
-        .then(result=>{
-            res.json( { redirect:'/doctorPageNewAppointment'} );
-        }).catch(err=>{
-            console.log(err);
-        })
+    if(status=="Hủy bỏ"){
+    await Appointment.findByIdAndUpdate( appointment_id, {status})
+    .then(result=>{
+        res.json( { redirect:'/doctorPageNewAppointment'} );
+    }).catch(err=>{
+        console.log(err);
+    })
+    }else if(status=="Chấp nhận"){
+    const appointment = await Appointment.findByIdAndUpdate( appointment_id, {status});
+    const schedule = await Schedule.findById(appointment.schedule_id);
+    const newBookingSlot = parseInt(schedule.bookingSlot) -1;
+    await Schedule.findByIdAndUpdate(schedule._id,{ bookingSlot:newBookingSlot })
+  .then(result=>{
+     res.json( { redirect:'/doctorPageNewAppointment'} );
+ }).catch(err=>{
+     console.log(err);
+ })
+   }
+        
  
 }
 
