@@ -4,42 +4,52 @@
    <%- include("./partials/nav.ejs") %>
 
   
-  <section>
+  <div class="section">
     <%- include("./partials/sidebarDoctor.ejs") %>
 
-    <div class="table-box">
+  
 
-      <div class="table-row table-head">
-          <div class="table-cell first-cell">
-              <p>Mã bệnh nhân</p>
-          </div>
-          <div class="table-cell">
-              <p>Trạng thái</p>
-          </div>
-        
-      </div>
-      
-      <% if(appointments.length>0){ %>
-        <% appointments.forEach(appointment => { %>
-        <div class="table-row">
-          <div class="table-cell first-cell">
-              <p>
-                 <a href="/doctorPageNewAppointmentDetail/<%= appointment._id %>"><%= appointment.user_id%>
-                </a>
-              </p>
-          </div>
-       
-          <div class="table-cell">
-            <p><%= appointment.status %></p>
+  <div class="table-box">
+      <div class="box">
+        <input type="checkbox" id="check">
+        <div class="search-box">
+          <input type="text" placeholder="Tìm kiếm theo mã" id='searchBar'>
+          <label for="check" class="icon">
+            <i class="fas fa-search"></i>
+          </label>
         </div>
-      
       </div>
-      <% }) %>
-      <% }else{%>
-        <p>Không có lịch hẹn nào...</p>
-        <% } %>
+
+      <table class="content-table">
+      <thead>
+        <tr>
+          <th>Mã bệnh nhân</th>
+          <th>Trạng thái</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <% if(appointments.length>0){ %>
+          <% appointments.forEach(appointment=> { %>
+        <tr>
+          <td>
+            <a href="/doctorPageNewAppointmentDetail/<%= appointment._id %>">
+              <%= appointment.user_id%>
+            </a>
+            </td>
+          <td><%=appointment.status %></td>
+        </tr>
+        <% }) %>
+        <% }else{%>
+          <p>Bạn không có lịch hẹn...</p>
+          <% } %>
+       
+      </tbody>
+    </table>
+    
       </div>  
-</section>
+    
+</div >
 
 <script>
   const trashBins = document.querySelectorAll('.trashBin');
@@ -55,6 +65,19 @@
   })
   })
   
+  const searchInput = document.getElementById("searchBar");
+      const rows = document.querySelectorAll("tbody tr");
+      searchInput.addEventListener("keyup", (e)=> {
+        const q = e.target.value.toLowerCase();
+        Array.from(rows).forEach((row) => {
+          const firstSearchItem = row.firstElementChild.textContent;
+          if(firstSearchItem.toLowerCase().indexOf(e.target.value) != -1){
+            row.style.display = 'table-row';
+          } else {
+            row.style.display = 'none';
+      }
+        });
+      });
   
 
 </script>

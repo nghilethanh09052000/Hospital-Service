@@ -15,47 +15,50 @@
               </label>
             </div>
           </div>
-            <div class="table-row table-head">
-                <div class="table-cell first-cell">
-                    <p>Ngày làm việc</p>
-                </div>
-                <div class="table-cell">
-                    <p>Giờ làm việc</p>
-                </div>
-                <div class="table-cell">
-                    <p>Giới hạn chỗ</p>
-                </div>
-                <div class="table-cell last-cell">
-                    <p>Xóa</p>
-                </div>
-              
-            </div>
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Ngày làm việc</th>
+                <th>Giờ làm việc</th>
+                <th>Giới hạn chỗ</th>
+                <th>Xem lịch đặt khám</th>
+                <th>Chi tiết</th>
+                <th>Xóa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if(schedules.length>0){ %>
+                <% schedules.forEach(schedule => { %>
+              <tr>
+                <td><%=schedule.date.toString() %></td>
+                <td><%=schedule.hour %></td>
+               <td><%=schedule.bookingSlot %></td>
+               <td>
+                 <a href="/doctorPageScheduleAppointment/<%=schedule._id %>">
+                  Lịch đặt khám
+                </a>
+                </td>
+                <td>
+                  <a style="text-decoration: none;color: #000;" 
+                  href="/doctorPageScheduleDetail/<%=schedule._id %>">Xem lại</a>
+                </td>
+                <td>
+                  <a  class="trashBin" data-doc="<%= schedule._id %>">
+                    <img src="/HinhAnh/trash.png" alt="#">
+                  </a>
+              </td>
+              </tr>
+              <% }) %>
+              <% }else{%>
+                <p>Chưa có ngày làm...</p>
+                <% } %>
+             
+            </tbody>
+          </table>
             
-            <% if(schedules.length>0){ %>
-              <% schedules.forEach(schedule => { %>
+       
 
-              <div class="table-row">
-                <div class="table-cell first-cell">
-                    <a href="/doctorpagescheduleappointment/<%= schedule._id %>"><%= schedule.date %></a>
-                </div>
-                
-               <div class="table-cell">
-                <p><%= schedule.hour %></p>
-            </div>
-              <div class="table-cell">
-                <p><%= schedule.bookingSlot %></p>
-            </div>
-           
-                <div class="table-cell last-cell">
-                    <a href="" class="trashBin" data-doc="<%= schedule._id %> " >
-                      <img src="/HinhAnh/trash.png" alt="#" >
-                    </a>
-                  </div>   
-            </div>
-            <% }) %>
-            <% }else{%>
-              <p>Chưa có ngày làm...</p>
-              <% } %>
+        
             </div>  
     </section>
 

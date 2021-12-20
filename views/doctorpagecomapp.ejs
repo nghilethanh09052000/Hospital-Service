@@ -4,50 +4,53 @@
    <%- include("./partials/nav.ejs") %>
 
   
-  <section>
+  <div class="section">
     <%- include("./partials/sidebarDoctor.ejs") %>
 
     <div class="table-box">
+      <div class="box">
+        <input type="checkbox" id="check">
+        <div class="search-box">
+          <input type="text" placeholder="Tìm kiếm theo mã" id='searchBar'>
+          <label for="check" class="icon">
+            <i class="fas fa-search"></i>
+          </label>
+        </div>
+      </div>
 
-      <div class="table-row table-head">
-          <div class="table-cell first-cell">
-              <p>Mã lịch hẹn</p>
-          </div>
-          <div class="table-cell">
-              <p>Trạng thái</p>
-          </div>
-          <div class="table-cell">
-            <p>Tiến hành khám bệnh</p>
-        </div>
-        
-      </div>
-      
-      <% if(appointments.length>0){ %>
-        <% appointments.forEach(appointment => { %>
-        <div class="table-row">
-          <div class="table-cell first-cell">
-              <p>
-                 <a href="#"><%= appointment._id%>
-                </a>
-              </p>
-          </div>
-       
-          <div class="table-cell">
-            <p><%= appointment.status %></p>
-        </div>
-        <div class="table-cell">
-            <p> <a href="#">
-               Khám bệnh
+      <table class="content-table">
+      <thead>
+        <tr>
+          <th>Mã lịch hẹn</th>
+          <th>Trạng thái</th>
+          <th>Tiến hành khám bệnh</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(appointments.length>0){ %>
+          <% appointments.forEach(appointment=> { %>
+        <tr>
+          <td>
+            <a href="/doctorPageNewAppointmentDetail/<%= appointment._id %>">
+              <%= appointment._id%>
             </a>
-        </p>
-        </div>
-      
-      </div>
-      <% }) %>
-      <% }else{%>
-        <p>Không có lịch hẹn nào...</p>
-        <% } %>
-      </div>  
+            </td>
+          <td><%=appointment.status %></td>
+          <td>
+            <a href="#">
+          Khám bệnh
+          </a>
+        </td>
+        </tr>
+        <% }) %>
+        <% }else{%>
+          <p>Bạn không có lịch hẹn...</p>
+          <% } %>
+       
+      </tbody>
+    </table>
+    
+      </div>   
 </section>
 
 <script>
