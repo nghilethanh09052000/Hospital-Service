@@ -486,11 +486,14 @@ const adminPageCreateClinic_post = async (req,res)=>{
     }
 }
 
-const adminPageClinic_get = async (req,res)=>{
-    const clinics = await Clinic.find();
-    return res.render('adminPageClinic',
-    { clinics:clinics,
-        title:'Thông tin phòng khám'});
+const adminPageClinic_get = (req,res)=>{
+    Clinic.find()
+    .then(result=>{
+        res.render('adminPageClinic',{ clinics:result,title:'Thông tin phòng khám'});
+    })
+    .catch(err =>{
+        res.render('404', { title: 'Trang không tìm thấy' });
+    })
 
     
 }
