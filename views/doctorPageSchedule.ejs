@@ -76,23 +76,20 @@
     })
     })
 
-    const searchBar = document.getElementById('searchBar');
-    searchBar.addEventListener('keyup', (e) => {
-    const term = e.target.value.toLowerCase();
-    const rows = document.getElementsByClassName(".table-row");
-    Array.from(rows).forEach((row)=>{
-      const firstsearchItem = row.firstElementChild;
-      const searchItem = firstsearchItem.firstElementChild.textContent;
-        if(searchItem.toLowerCase().indexOf(e.target.value) != -1){
-          row.style.display='block';
-      }else{
-        row.style.display='none';
+    const searchInput = document.getElementById("searchBar");
+      const rows = document.querySelectorAll("tbody tr");
+      searchInput.addEventListener("keyup", (e)=> {
+        const q = e.target.value.toLowerCase();
+        Array.from(rows).forEach((row) => {
+          const firstSearchItem = row.firstElementChild.textContent;
+          if(firstSearchItem.toLowerCase().indexOf(e.target.value) != -1){
+            row.style.display = 'table-row';
+          } else {
+            row.style.display = 'none';
       }
-    })
+        });
+      });
     
-    
-
-  });
 
 
     

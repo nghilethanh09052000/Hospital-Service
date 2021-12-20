@@ -171,7 +171,7 @@ const appointmentSpecial_get = async (req,res)=>{
 
 const appointmentcalendar_get = async (req,res)=>{
     const id =req.params.id;
-    const schedules = await Schedule.find({doctor_id:id}) ;
+    const schedules = await Schedule.find({doctor_id:id}).sort({createdAt:-1}) ;
     return res.render('appointmentcalendar',
     {schedules:schedules,
         title:'Chọn lịch khám'});
@@ -346,7 +346,7 @@ const adminPageUserAccountDetails_put = (req,res)=>{
 
 const adminPageDoctorAccount_get =  (req,res)=>{
     const role = 'doctor'
-     User.find({role:role})
+     User.find({role:role}).sort({createdAt:-1})
     .then(result =>{
         res.render('adminPageDoctorAccount',{users:result, title:'Quản lý Bác Sĩ'});
     })

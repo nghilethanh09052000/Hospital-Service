@@ -1,59 +1,68 @@
 <%- include("./partials/head.ejs") %>
-
-<link rel="stylesheet" href="/css/adminPageUserAccount.css">
+<link rel="stylesheet" href="/css/appointmentinfo.css">
 <body>
-   <%- include("./partials/nav.ejs") %>
-    <section>
-      <%- include("./partials/sidebarAdminPage.ejs") %> 
-        <div class="table-box">
-        <div class="table-row table-head">
-            <div class="table-cell first-cell">
-                <p>Email</p>
-            </div>
-      
-            <div class="table-cell ">
-                <p>Role</p>
-            </div>
-            <div class="table-cell ">
-              <p>Phân phòng khám</p>
-          </div>
-            <div class="table-cell last-cell">
-              <p>Chi tiết</p>
-          </div> 
+  <%- include("./partials/nav.ejs") %>
+  <div class="section">
+    <%- include("./partials/sidebarAdminPage.ejs") %>
+    <div class="table-box">
+      <div class="box">
+        <input type="checkbox" id="check">
+        <div class="search-box">
+          <input type="text" placeholder="Tìm kiếm theo tên" id='searchBar'>
+          <label for="check" class="icon">
+            <i class="fas fa-search"></i>
+          </label>
         </div>
+      </div>
+      <table class="content-table">
+      <thead>
+        <tr>
+          <th>Họ và tên</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Phân phòng khám</th>
+          <th>Phân chuyên khoa</th>
+          <th>Xóa tài khoản</th>
+        </tr>
+      </thead>
+      <tbody>
         <% if(users.length>0){ %>
-            <% users.forEach(user=> { %>
-        <div class="table-row">
-            <div class="table-cell first-cell">
-                <p><%= user.email %></p>
-            </div>
-        
-          <div class="table-cell">
-            <p><%= user.role %></p>
-        </div>
-        <div class="table-cell">
-          <a class="detail" href="/adminPageDoctorAccountDetails/<%= user._id %>" >Phân phòng khám</a>
-        </div>
-       <div class="table-cell last-cell">
-        <a class="detail" href="/adminPageDoctorAccountDetail/<%= user._id %>" >Phân chuyên khoa</a>
-        <a class="trashBin" data-doc="<%= user._id %>" > 
-          <img src="/HinhAnh/trash.png" alt="#" >
-        </a>
-      </div>   
-        </div>
+          <% users.forEach(user=> { %>
+        <tr>
+          <td><%=user.name%></td>
+          <td><%=user.email%></td>
+          <td><%=user.role %></td>
+          <td>
+            <a class="detail" href="/adminPageDoctorAccountDetails/<%= user._id %>" >Phân phòng khám</a>
+          </td>
+          <td>
+            <a class="detail" href="/adminPageDoctorAccountDetail/<%= user._id %>" >Phân chuyên khoa</a>
+          </td>
+
+ 
+          <td>
+            <a  class="trashBin" data-doc="<%= user._id %>">
+              <img src="/HinhAnh/trash.png" alt="#">
+            </a>
+        </td>
+        </tr>
         <% }) %>
         <% }else{%>
-          <p>Không có tài khoản nào nào...</p>
+          <p>Không có tài khoản nào...</p>
           <% } %>
-    </div>
-     </section>
+       
+      </tbody>
+    </table>
+    
+      </div> 
+      </section>
+  
 
-
-<script>
-   const trashBins = document.querySelectorAll('.trashBin');
+    <script>
+  const trashBins = document.querySelectorAll('.trashBin');
   Array.from(trashBins).forEach((trashBin)=>{
     trashBin.addEventListener('click',(e)=>{
-      const id = `/adminPageDoctorAccount/${trashBin.dataset.doc}`;
+      const id = `/adminPageUserAccount/${trashBin.dataset.doc}`;
       fetch(id,{
       method:'DELETE',
     }).then(response => response.json())
@@ -61,15 +70,19 @@
     .catch(err=> console.log(err));
     })
     })
-
-
-</script>
-
-
-
-
-
-
-
+    const searchInput = document.getElementById("searchBar");
+      const rows = document.querySelectorAll("tbody tr");
+      searchInput.addEventListener("keyup", (e)=> {
+        const q = e.target.value.toLowerCase();
+        Array.from(rows).forEach((row) => {
+          const firstSearchItem = row.firstElementChild.textContent;
+          if(firstSearchItem.toLowerCase().indexOf(e.target.value) != -1){
+            row.style.display = 'table-row';
+          } else {
+            row.style.display = 'none';
+      }
+        });
+      });
+    </script>
 </body>
 </html>
