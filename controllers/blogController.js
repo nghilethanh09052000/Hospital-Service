@@ -290,16 +290,6 @@ const changepass_get = (req,res)=>{
 
 
 
-
-const userAccount_get =  (req,res)=>{
-     User.find().then(result=>{
-        res.render('userAccount', {users:result,title:"Danh Sách Người Dùng"});
-    }).catch(err =>{
-        console.log(err);
-    });
-    
-}
-
 const adminPageUserAccount_get = (req,res)=>{
     const role = 'patient'
  User.find({role:role}).sort({createdAt:-1})
@@ -803,7 +793,6 @@ module.exports = {
     appointmentdetail_get,
     GioiThieuChung_get,
     benhveda_get,
-    userAccount_get,
 
     
     doctorPageInfo_get,

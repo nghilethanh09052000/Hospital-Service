@@ -101,9 +101,4 @@ router.get('/adminPageClinic',requireAuth,checkLogin, checkAdmin,blogController.
 router.delete('/adminPageClinic/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageClinic_delete);
 
 
-
-
-
-router.get('/userAccount',blogController.userAccount_get);
-
 module.exports=router;

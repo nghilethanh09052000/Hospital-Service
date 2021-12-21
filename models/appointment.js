@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('./User');
 const Schedule = require('./schedule');
-const MedicalForm = require('./medicalForm');
+
 
 const moment = require('moment-timezone');
 
@@ -25,11 +25,6 @@ const appointmentSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref:User,
         required:true,
-        index:true
-    },
-    medicalForm_id:{
-        type: mongoose.Schema.ObjectId,
-        ref:MedicalForm,
         index:true
     },
     doctor_id:{
