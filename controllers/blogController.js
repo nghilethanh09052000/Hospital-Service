@@ -600,7 +600,7 @@ const doctorPageCompletedAppointment_get = async (req, res)=>{
                 console.log(err);
             }else{
                 const doctor = await User.findById(decodedToken.id);
-                const appointments = await Appointment.find({doctor_id:doctor._id, status:'Chấp nhận'}).sort({createdAt:-1});
+                const appointments = await Appointment.find({doctor_id:doctor._id, status:'Đã khám'}).sort({createdAt:-1});
                 return res.render('doctorpagecomapp',{
                     appointments:appointments,
                     title:'Khám bệnh'})
@@ -642,6 +642,7 @@ const doctorPageSchedule_get = (req,res)=>{
     
 }
 
+
 const doctorPageSchedule_delete = (req,res) =>{
     const id = req.params.id;
     Schedule.findByIdAndDelete(id).
@@ -651,6 +652,17 @@ const doctorPageSchedule_delete = (req,res) =>{
     .catch(err=>{
         console.log(err);
     });
+}
+
+const doctorPageScheduleAppointment_get = async (req,res)=>{
+    const id =req.params.id;
+    const schedule = await Schedule.findById(id);
+    const appointments = await Appointment.find({schedule_id:schedule._id},{status:'Chấp nhận'})
+    return res.render('docpagescheduleapp',{
+        schedule:schedule,
+        appointments:appointments,
+        title:'Lịch làm việc'});
+    
 }
 
 
@@ -807,6 +819,8 @@ module.exports = {
     doctorPageCreateSchedule_post,
     doctorPageSchedule_get,
     doctorPageSchedule_delete,
+    doctorPageScheduleAppointment_get,
+
     adminPageUserAccount_get,
     adminPageUserAccountDetails_get,
     adminPageUserAccountDetails_put,

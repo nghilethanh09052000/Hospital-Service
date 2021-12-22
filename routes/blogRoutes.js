@@ -71,6 +71,9 @@ router.get('/doctorPageCompletedAppointment',requireAuth,checkLogin,checkDoctor,
 router.delete('/doctorPageNewAppointment/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageNewAppointment_delete);
 router.get('/doctorPageSchedule',requireAuth,checkLogin,checkDoctor,blogController.doctorPageSchedule_get);
 router.delete('/doctorPageSchedule/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageSchedule_delete);
+router.get('/doctorPageScheduleAppointment/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageScheduleAppointment_get);
+
+
 router.get('/doctorPageCreateSchedule',requireAuth,checkLogin,checkDoctor,blogController.doctorPageCreateSchedule_get);
 router.post('/doctorPageCreateSchedule',requireAuth,checkLogin,checkDoctor,blogController.doctorPageCreateSchedule_post);
 
