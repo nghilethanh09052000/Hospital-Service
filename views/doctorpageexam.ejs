@@ -1,0 +1,84 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/info.css">
+<body>
+    <%- include("./partials/nav.ejs") %> 
+    <div class="section"> 
+      <%- include("./partials/sidebarDoctor.ejs") %> 
+      <div class="container">
+        <div class="title">Đơn thuốc</div>
+        <div class="content">
+          <form action="/doctorPageExamination">
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">Chẩn đoán</span>
+                <input type="text" name="diagnose" >
+              </div>
+              <div class="input-box">
+                <span class="details">Triệu chứng</span>
+                <input type="text"  name="symptoms" >
+              </div>
+              <div class="input-box">
+                <span class="details">Mô tả</span>
+                <input type="text" name="description" >
+              </div>
+              <div class="input-box">
+                <span class="details">Lời khuyên bác sĩ</span>
+                <input type="text" name="doctorAdvice" >
+              </div>
+              <input type="hidden" value="<%=appointment._id %>" name="appointment_id" >
+            </div>
+            <div class="gender-details">
+              <span class="gender-title">Loại thuốc</span>
+              <div class="category">
+                <select name="prescription" id="prescription">
+                  <option value="Thuốc 1">Thuốc 1</option>
+                  <option value="Thuốc 2">Thuốc 2</option>
+                  <option value="Thuốc 3">Thuốc 3</option>
+                  <option value="Thuốc 4">Thuốc 4</option>
+                </select>
+              </div>
+            </div>
+            <div class="button">
+              <input type="submit" value="Xác nhận">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  <script>
+   
+      const form = document.querySelector('form');
+        form.addEventListener('submit', async (e)=>{
+         e.preventDefault();
+         const diagnose = form.diagnose.value;
+         const symptoms = form.symptoms.value;
+         const description = form.description.value;
+         const prescription = document.getElementById('prescription').value;
+         const doctorAdvice = form.doctorAdvice.value;
+         const appointment_id = form.appointment_id.value;
+
+         try{
+           const res = await fetch('/doctorPageExamination',{
+             method:'POST',
+             body:JSON.stringify({diagnose,symptoms,description,prescription,doctorAdvice,appointment_id}),
+             headers:{'Content-Type':'application/json'} 
+            })
+            const data =await res.json();
+
+            if(data.medicalform){
+               alert('Thành công');
+            }else{
+               console.log(err);
+            }
+
+         }catch(err){
+            console.log(err);
+         }
+      })
+
+
+
+
+</script>
+</body>
+</html>

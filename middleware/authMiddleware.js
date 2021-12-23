@@ -64,7 +64,7 @@ const checkLogin= (req,res,next)=>{
 }
 const checkPatient = (req,res,next)=>{
     var role = req.data.role;
-    if(role =='patient'){
+    if(role =='patient' || role =='doctor' || role =='admin'){
         next();
     }else{
         console.log(req.data.email)

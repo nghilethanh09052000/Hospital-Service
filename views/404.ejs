@@ -1,21 +1,12 @@
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>ERROR 404 - Nothing Found</title>
+<%- include("./partials/head.ejs") %>
       
-        <style type="text/css">
-            html,
-            body {
-                height: 100%;
-                background-color: #666;
-                font-family: Helvetica, sans-serif
-            }
-
+        <style >
+         
             body {
                 color: #fff;
+                background-color: #666;
                 text-align: center;
-                text-shadow: 0 1px 3px rgba(0,0,0,.5);
+                /* text-shadow: 0 1px 3px rgba(0,0,0,.5); */
             }
 
             h1 {
@@ -52,7 +43,7 @@
                 width: 100%;
             }     
           .button {
-    background-color: ##fff;
+    background-color: #fff;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -64,8 +55,9 @@
     cursor: pointer;
 }
         </style>    
-    </head>    
+  
     <body>
+        <%- include("./partials/nav.ejs") %>
         <div class="site-wrapper">
           <div class="site-wrapper-inner">
             <div class="cover-container">
@@ -73,5 +65,10 @@
             </div>
           </div>
         </div>
+
+
+
+
     </body>
+
 </html>

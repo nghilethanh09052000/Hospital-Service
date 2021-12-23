@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Appointment = require('../models/appointment');
+const Appointment = require('./appointment');
 
 const medicalFormSchema = new mongoose.Schema({
     diagnose:String,
@@ -11,11 +11,12 @@ const medicalFormSchema = new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref:Appointment,
         required:true,
+        unique:true
     }
 
 },
-{ timestamps: true })
+{ timestamps: true });
 
 
-const medicalForm = mongoose.model(' medicalForms', medicalFormSchema );
+const medicalForm = mongoose.model('medicalForms', medicalFormSchema );
 module.exports =  medicalForm;

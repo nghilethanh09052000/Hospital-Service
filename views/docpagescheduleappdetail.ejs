@@ -99,7 +99,7 @@ input,select,textarea {
    <%- include("./partials/nav.ejs") %>
    
    <div class="section">
-      <%- include("./partials/sidenav.ejs") %>
+      <%- include("./partials/sidebarDoctor.ejs") %>
       <div class="container">
         <div class="LichHen">
             <p>Quý khách có các thắc mắc liên quan đến phương pháp điều trị, chính sách ưu đãi, biểu
@@ -116,7 +116,7 @@ input,select,textarea {
             </div>
         </div>
         <div class="container-form">
-          <form action="/appointmentform">
+          <form action="/doctorPageScheduleAppointmentDetail">
              <h2 class="heading heading-yellow">Đặt lịch</h2>
 
              <div class="form-field">
@@ -139,20 +139,24 @@ input,select,textarea {
             <p>Giới tính</p>
             <input type="text" placeholder="<%=appointment.gender%>" disabled>
          </div>  
-         <div class="form-field">
-            <p>Trạng thái</p>
-            <input type="text" placeholder="<%=appointment.status%>" disabled>
-         </div>
+         
          <div class="form-field">
             <p>Ghi chú</p>
             <input type="text" placeholder="<%=appointment.note%>" disabled>
          </div>
-           <a href="/appointmentinfo"  class="btn">Xác nhận</a>
-           
-           
-          </form>
+         <div class="form-field">
+            <p>Trạng thái</p>
+            <select name="status" id="status">
+                <option><%=appointment.status%></option>
+                <option value="Đã khám">Đã khám</option>
+            </select>
+        </div>
+        <input type="hidden" name="appointment_id" value="<%=appointment._id%>">
+        <input type="submit" class="btn" value="Cập nhật"></input>
+        </form>
        </div>
-       
+    
+
     </div>
    
 </div>
@@ -160,6 +164,23 @@ input,select,textarea {
 
 
 
+<script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async (e)=>{
+     e.preventDefault();
+     const status= document.getElementById("status").value;
+     const appointment_id = form.appointment_id.value;
+        fetch('/doctorPageScheduleAppointmentDetail',{
+           method:'PUT',
+           body:JSON.stringify({appointment_id,status}),
+           headers:{'Content-Type':'application/json'} 
+        })
+        .then(response => response.json())
+        .then(data => window.location.href=data.redirect)
+        .catch(err=> console.log(err));
+     })
+
+</script>
 
 
 </body>

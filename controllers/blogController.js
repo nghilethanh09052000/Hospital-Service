@@ -4,6 +4,7 @@ const Appointment = require('../models/appointment');
 const Specialization = require('../models/specialization');
 const Schedule = require('../models/schedule');
 const Clinic = require('../models/clinic');
+const medicalForm = require('../models/medicalForm');
 
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
@@ -657,12 +658,67 @@ const doctorPageSchedule_delete = (req,res) =>{
 const doctorPageScheduleAppointment_get = async (req,res)=>{
     const id =req.params.id;
     const schedule = await Schedule.findById(id);
-    const appointments = await Appointment.find({schedule_id:schedule._id},{status:'Chấp nhận'})
+    const appointments = await Appointment.find({schedule_id:schedule._id,$or:
+                                                                            [
+                                                                                {status:'Chấp nhận'},
+                                                                            {status:'Đã khám' } 
+                                                                        ]
+                                                                    }       
+                                                                )
     return res.render('docpagescheduleapp',{
         schedule:schedule,
         appointments:appointments,
         title:'Lịch làm việc'});
     
+}
+
+const doctorPageScheduleAppointmentDetail_get = async (req,res)=>{
+    const id =req.params.id;
+    const appointment = await Appointment.findById(id);
+    const schedule = await Schedule.findById(appointment.schedule_id);
+    const doctor = await User.findById(schedule.doctor_id);
+    const specialization = await Specialization.findById(doctor.specialization_id);
+
+      return  res.render('docpagescheduleappdetail',
+      {appointment:appointment,
+        schedule:schedule,
+        doctor:doctor,
+        specialization:specialization,
+        title:'Thông tin lịch khám'});
+}
+
+const doctorPageScheduleAppointmentDetail_put = async (req,res)=>{
+    const {appointment_id,status}= req.body;
+   
+    const appointment = await Appointment.findByIdAndUpdate( appointment_id, {status})
+    const schedule = appointment.schedule_id
+     return  res.json( { redirect:`/doctorPageScheduleAppointment/${schedule._id} `} );
+
+   
+}
+
+
+const doctorPageExamination_get = async (req,res) =>{
+    const id =req.params.id;
+    await Appointment.findById(id)
+    .then(result =>{
+        res.render('doctorpageexam',{appointment:result,title:'Tiến hành khám bệnh'});
+    })
+    .catch(err =>{
+        console.log(err);
+    })
+}
+
+const doctorPageExamination_post = async (req,res)=>{
+    const {diagnose,symptoms,description,prescription,doctorAdvice,appointment_id}=req.body;
+    try{
+        const medicalform = await medicalForm.create({diagnose,symptoms,description,prescription,doctorAdvice,appointment_id});
+        res.status(201).json({medicalform:medicalform._id});
+    }catch{
+        res.status(400).send("No");
+    }
+ 
+  
 }
 
 
@@ -820,6 +876,10 @@ module.exports = {
     doctorPageSchedule_get,
     doctorPageSchedule_delete,
     doctorPageScheduleAppointment_get,
+    doctorPageScheduleAppointmentDetail_get,
+    doctorPageScheduleAppointmentDetail_put,
+    doctorPageExamination_get,
+    doctorPageExamination_post,
 
     adminPageUserAccount_get,
     adminPageUserAccountDetails_get,
