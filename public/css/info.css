@@ -40,7 +40,7 @@
     font-weight: 500;
     margin-bottom: 5px;
   }
-  .user-details .input-box input,textarea,select{
+  .user-details .input-box input,textarea,select,.btn{
     height: 45px;
     width: 100%;
     outline: none;
@@ -51,8 +51,8 @@
     border-bottom-width: 2px;
     transition: all 0.3s ease;
   }
-  .user-details .input-box input,select:focus,
-  .user-details .input-box input,select:valid{
+  .user-details .input-box input,select,.btn:focus,
+  .user-details .input-box input,select,.btn:valid{
     border-color: #9b59b6;
   }
   form .gender-details .gender-title{
@@ -90,7 +90,8 @@
     height: 45px;
     margin: 35px 0
   }
-  form .button input{
+  form .button input, .btn{
+   text-decoration: none;
     height: 100%;
     width: 100%;
     border-radius: 5px;
@@ -107,3 +108,4 @@
     /* transform: scale(0.99); */
     background: linear-gradient(-135deg, #71b7e6, #9b59b6);
     }
+

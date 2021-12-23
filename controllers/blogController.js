@@ -259,6 +259,14 @@ const appointmentdetail_get = async (req,res) =>{
         title:'Thông tin lịch khám'});
 }
 
+const appointmentmedicalform_get = async (req,res)=>{
+    const id = req.params.id;
+    const appointment = await Appointment.findById(id);
+    const medicalforms = await medicalForm.find({appointment_id:appointment._id});
+    return res.render('appointmentmedical',
+    {medicalforms:medicalforms,
+        title:'Đơn thuốc'});
+}
 
 const changepass_get = (req,res)=>{
     res.render('changePass',{title:'Đổi mật khẩu'});
@@ -711,15 +719,26 @@ const doctorPageExamination_get = async (req,res) =>{
 
 const doctorPageExamination_post = async (req,res)=>{
     const {diagnose,symptoms,description,prescription,doctorAdvice,appointment_id}=req.body;
-    try{
-        const medicalform = await medicalForm.create({diagnose,symptoms,description,prescription,doctorAdvice,appointment_id});
-        res.status(201).json({medicalform:medicalform._id});
-    }catch{
-        res.status(400).send("No");
-    }
+    const medicalform = await medicalForm.create({diagnose,symptoms,description,prescription,doctorAdvice,appointment_id});
+    const appointments = medicalform.appointment_id;
+    const appointment = await Appointment.findById(appointments._id)
+    const schedule = appointment.schedule_id;
+   
+    return  res.json( { redirect:`/doctorPageScheduleAppointment/${schedule._id} `} );
  
   
 }
+
+
+const doctorPageExaminateDetails_get = async (req,res)=>{
+    const id = req.params.id;
+    const appointment = await Appointment.findById(id);
+    const medicalforms = await medicalForm.find({appointment_id:appointment._id});
+    return res.render('doctorpageexaminatedetail',
+    {medicalforms:medicalforms,
+        title:'Đơn thuốc'});
+}
+
 
 
 const doctorPageCreateSchedule_get = async (req,res)=>{
@@ -840,6 +859,8 @@ const backadviceMail = async (email) =>{
 }
 
 module.exports = {
+    GioiThieuChung_get,
+    benhveda_get,
     login_get,
     login_post,
     register_get,
@@ -859,8 +880,8 @@ module.exports = {
     appointmentinfo_get,
     appointmentinfo_delete,
     appointmentdetail_get,
-    GioiThieuChung_get,
-    benhveda_get,
+    appointmentmedicalform_get,
+    
 
     
     doctorPageInfo_get,
@@ -880,7 +901,7 @@ module.exports = {
     doctorPageScheduleAppointmentDetail_put,
     doctorPageExamination_get,
     doctorPageExamination_post,
-
+    doctorPageExaminateDetails_get,
     adminPageUserAccount_get,
     adminPageUserAccountDetails_get,
     adminPageUserAccountDetails_put,

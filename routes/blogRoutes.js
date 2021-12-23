@@ -52,6 +52,7 @@ router.post('/appointmentform',requireAuth,checkLogin,checkPatient,blogControlle
 router.get('/appointmentinfo',requireAuth,checkLogin,checkPatient,blogController.appointmentinfo_get);
 router.delete('/appointmentinfo/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentinfo_delete);
 router.get('/appointmentdetail/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentdetail_get);
+router.get('/appointmentmedicalform/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentmedicalform_get);
 
 router.get('/changepass', blogController.changepass_get);
 router.post('/changepass', blogController.changepass_post);
@@ -75,7 +76,8 @@ router.get('/doctorPageScheduleAppointment/:id',requireAuth,checkLogin,checkDoct
 router.get('/doctorPageScheduleAppointmentDetail/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageScheduleAppointmentDetail_get);
 router.put('/doctorPageScheduleAppointmentDetail',requireAuth,checkLogin,checkDoctor,blogController.doctorPageScheduleAppointmentDetail_put);
 router.get('/doctorPageExamination/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageExamination_get);
-router.post('/doctorPageExamination',requireAuth,checkLogin,checkDoctor,blogController.doctorPageExamination_post);
+router.post('/doctorPageExaminate',requireAuth,checkLogin,checkDoctor,blogController.doctorPageExamination_post);
+router.get('/doctorPageExaminateDetails/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageExaminateDetails_get);
 
 
 router.get('/doctorPageCreateSchedule',requireAuth,checkLogin,checkDoctor,blogController.doctorPageCreateSchedule_get);

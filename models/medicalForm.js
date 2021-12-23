@@ -13,9 +13,7 @@ const medicalFormSchema = new mongoose.Schema({
         required:true,
         unique:true
     }
-
-},
-{ timestamps: true });
+},{ timestamps: true });
 
 
 const medicalForm = mongoose.model('medicalForms', medicalFormSchema );

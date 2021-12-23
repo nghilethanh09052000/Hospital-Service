@@ -31,7 +31,11 @@
         <% if(appointments.length>0){ %>
           <% appointments.forEach(appointment=> { %>
         <tr>
-          <td><%=appointment._id%></td>
+          <td>
+            <a href="/doctorPageExaminateDetails/<%=appointment._id%>">
+            <%=appointment._id%>
+          </a>
+        </td>
           <td><%=appointment.status %></td>
           <td>
             <a style="text-decoration: none;color: #000;" 

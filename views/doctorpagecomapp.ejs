@@ -23,7 +23,7 @@
         <tr>
           <th>Mã lịch hẹn</th>
           <th>Trạng thái</th>
-          <th>Tiến hành khám bệnh</th>
+          <th>Xem đơn thuốc</th>
         </tr>
       </thead>
       <tbody>
@@ -31,16 +31,13 @@
           <% appointments.forEach(appointment=> { %>
         <tr>
           <td>
-            <a href="/doctorPageNewAppointmentDetail/<%= appointment._id %>">
-              <%= appointment._id%>
-            </a>
+            <%=appointment._id %>
             </td>
           <td><%=appointment.status %></td>
-          <td>
-            <a href="#">
-          Khám bệnh
-          </a>
-        </td>
+         <td> <a href="/doctorPageExaminateDetails/<%=appointment._id%>">
+          Chi tiết
+        </a></td>
+         
         </tr>
         <% }) %>
         <% }else{%>
@@ -66,7 +63,19 @@
     .catch(err=> console.log(err));
   })
   })
-  
+  const searchInput = document.getElementById("searchBar");
+      const rows = document.querySelectorAll("tbody tr");
+      searchInput.addEventListener("keyup", (e)=> {
+        const q = e.target.value.toLowerCase();
+        Array.from(rows).forEach((row) => {
+          const firstSearchItem = row.firstElementChild.textContent;
+          if(firstSearchItem.toLowerCase().indexOf(e.target.value) != -1){
+            row.style.display = 'table-row';
+          } else {
+            row.style.display = 'none';
+      }
+        });
+      });
   
 
 </script>

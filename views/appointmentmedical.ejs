@@ -1,0 +1,48 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/info.css">
+<body>
+    <%- include("./partials/nav.ejs") %> 
+    <div class="section"> 
+      <%- include("./partials/sidenav.ejs") %> 
+      <div class="container">
+        <div class="title">Thông tin đơn thuốc</div>
+        <% if(medicalforms.length>0){ %>
+            <% medicalforms.forEach(medicalform=> { %>
+            <div class="content">
+          <form>
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">Chẩn đoán</span>
+                <input type="text" value="<%= medicalform.diagnose%>" placeholder="<%= medicalform.diagnose%>">
+              </div>
+              <div class="input-box">
+                <span class="details">Triệu chứng</span>
+                <input type="text"   value="<%= medicalform.symptoms%>" >
+              </div>
+              <div class="input-box">
+                <span class="details">Mô tả</span>
+                <input type="text" name="description" value="<%= medicalform.description%>">
+              </div>
+              <div class="input-box">
+                <span class="details">Lời khuyên bác sĩ</span>
+                <input type="text" name="doctorAdvice" value="<%= medicalform.doctorAdvice%>">
+              </div>
+              <div class="input-box">
+                <span class="details">Thuốc</span>
+                <input type="text" value="<%= medicalform.prescription%>" >
+              </div>
+              
+            </div>
+           
+          </form>
+        </div>
+        <% }) %>
+        <% }else{%>
+          <p>Bạn chưa khám bệnh...</p>
+          <% } %>
+    
+      </div>
+    </div>
+
+</body>
+</html>
