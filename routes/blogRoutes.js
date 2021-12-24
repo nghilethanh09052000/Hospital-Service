@@ -73,6 +73,7 @@ router.delete('/doctorPageNewAppointment/:id',requireAuth,checkLogin,checkDoctor
 router.get('/doctorPageSchedule',requireAuth,checkLogin,checkDoctor,blogController.doctorPageSchedule_get);
 router.delete('/doctorPageSchedule/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageSchedule_delete);
 router.get('/doctorPageScheduleAppointment/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageScheduleAppointment_get);
+router.put('/updateScheduleBookingSlot',requireAuth,checkLogin,checkDoctor,blogController.updateScheduleBookingSlot_put);
 router.get('/doctorPageScheduleAppointmentDetail/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageScheduleAppointmentDetail_get);
 router.put('/doctorPageScheduleAppointmentDetail',requireAuth,checkLogin,checkDoctor,blogController.doctorPageScheduleAppointmentDetail_put);
 router.get('/doctorPageExamination/:id',requireAuth,checkLogin,checkDoctor,blogController.doctorPageExamination_get);

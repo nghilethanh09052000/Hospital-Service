@@ -10,12 +10,23 @@
     <div class="table-box">
       <div class="box">
         <input type="checkbox" id="check">
+        <form action="/updateScheduleBookingSlot">
+          <label>Thêm đặt chỗ </label>
+          <input type="text" placeholder="<%=schedule.bookingSlot %>" name="bookingSlot" >
+          <input type="hidden" value="<%=schedule._id %>" name="schedule_id" >
+
+          <input type="submit" >
+        </form>
+       
+
         <div class="search-box">
+        
           <input type="text" placeholder="Tìm kiếm theo mã" id='searchBar'>
           <label for="check" class="icon">
             <i class="fas fa-search"></i>
           </label>
         </div>
+       
       </div>
       <table class="content-table">
       <thead>
@@ -76,6 +87,21 @@
         });
       });
   
+
+       const form = document.querySelector('form');
+    form.addEventListener('submit', async (e)=>{
+     e.preventDefault();
+     const bookingSlot= form.bookingSlot.value;
+     const schedule_id= form.schedule_id.value;
+        fetch('/updateScheduleBookingSlot',{
+           method:'PUT',
+           body:JSON.stringify({bookingSlot,schedule_id}),
+           headers:{'Content-Type':'application/json'} 
+        })
+        .then(response => response.json())
+        .then(data => window.location.href=data.redirect)
+        .catch(err=> console.log(err));
+     })
 
 </script>
 

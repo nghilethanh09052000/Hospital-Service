@@ -1,7 +1,7 @@
-section{
-    position: relative;
+.section{
 	display: flex;
-	height: 660px;
 	width: 100%;
 	background: #fff;
+	
 }
+
