@@ -62,7 +62,7 @@
   const trashBins = document.querySelectorAll('.trashBin');
   Array.from(trashBins).forEach((trashBin)=>{
     trashBin.addEventListener('click',(e)=>{
-      const id = `/adminPageUserAccount/${trashBin.dataset.doc}`;
+      const id = `/adminPageDoctorAccount/${trashBin.dataset.doc}`;
       fetch(id,{
       method:'DELETE',
     }).then(response => response.json())

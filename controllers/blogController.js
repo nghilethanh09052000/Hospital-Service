@@ -226,7 +226,7 @@ const appointmentinfo_get = async (req,res)=>{
 const appointmentinfo_delete = async (req,res)=>{
     const id = req.params.id;
     const appointment = await Appointment.findByIdAndDelete(id);
-    if(appointment.status=="Hủy bỏ" || appointment.status=="Chờ xác nhận"){
+    if(appointment.status=="Hủy bỏ" || appointment.status=="Chờ xác nhận" ||  appointment.status=="Đã khám"){
         res.json({redirect:'/appointmentinfo'});
     }else if(appointment.status=="Chấp nhận"){
         const schedule = await Schedule.findById(appointment.schedule_id);
@@ -266,6 +266,22 @@ const appointmentmedicalform_get = async (req,res)=>{
     return res.render('appointmentmedical',
     {medicalforms:medicalforms,
         title:'Đơn thuốc'});
+}
+
+
+const appointmentUpdateInfo_get = (req,res)=>{
+    res.render('appointmentUpdateInfo',{title:'Cập nhật tài khoản'});
+}
+
+const appointmentUpdateInfo_put = async (req,res)=>{
+    const {name,country, phone,facebook,birthday,user_id,gender} = req.body;
+    User.findByIdAndUpdate( user_id,  {name,country, phone,facebook,birthday,gender})
+    .then(result=>{
+        res.json( { redirect:'/appointmentUpdateInfo'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
 }
 
 const changepass_get = (req,res)=>{
@@ -464,7 +480,7 @@ const doctorPageScheduleAppointment_get = async (req,res)=>{
                                                                             {status:'Đã khám' } 
                                                                         ]
                                                                     }       
-                                                                )
+                                                                ).sort({createdAt:-1})
     return res.render('docpagescheduleapp',{
         schedule:schedule,
         appointments:appointments,
@@ -571,7 +587,7 @@ const doctorPageCreateSchedule_post =async (req,res) =>{
         res.status(400).send("No");
     }
 }
-
+//-------------------------------- Admin ---------------------------------------
 const adminPageUserAccount_get = (req,res)=>{
     const role = 'patient'
  User.find({role:role}).sort({createdAt:-1})
@@ -711,6 +727,17 @@ const adminPageSpecialization_get =(req,res)=>{
     })
 }
 
+const adminPageSpecialization_delete = (req,res)=>{
+    const id = req.params.id;
+    Specialization.findByIdAndDelete(id).
+    then(result=>{
+        res.json( { redirect:'/adminPageSpecialization'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
 const adminPageSpecializationDetails_get = (req,res)=>{
     const id =req.params.id;
     Specialization.findById(id)
@@ -722,16 +749,7 @@ const adminPageSpecializationDetails_get = (req,res)=>{
     })
 }
 
-const adminPageSpecialization_delete = (req,res)=>{
-    const id = req.params.id;
-    Specialization.findByIdAndDelete(id).
-    then(result=>{
-        res.json( { redirect:'/adminPageSpecialization'} );
-    })
-    .catch(err=>{
-        console.log(err);
-    });
-}
+
 
 const adminPageSpecialization_put =  (req,res)=>{
     const {specializations_id, description,price} = req.body;
@@ -892,8 +910,8 @@ module.exports = {
     appointmentinfo_delete,
     appointmentdetail_get,
     appointmentmedicalform_get,
-    
-
+    appointmentUpdateInfo_get,
+    appointmentUpdateInfo_put,
     
     doctorPageInfo_get,
     doctorPageInfo_put,

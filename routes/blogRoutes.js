@@ -54,6 +54,9 @@ router.delete('/appointmentinfo/:id',requireAuth,checkLogin,checkPatient,blogCon
 router.get('/appointmentdetail/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentdetail_get);
 router.get('/appointmentmedicalform/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentmedicalform_get);
 
+router.get('/appointmentUpdateInfo',requireAuth,checkLogin,checkPatient,blogController.appointmentUpdateInfo_get);
+router.put('/appointmentUpdateInfo',requireAuth,checkLogin,checkPatient,blogController.appointmentUpdateInfo_put);
+
 router.get('/changepass', blogController.changepass_get);
 router.post('/changepass', blogController.changepass_post);
 

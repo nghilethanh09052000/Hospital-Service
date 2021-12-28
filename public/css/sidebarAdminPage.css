@@ -95,3 +95,12 @@
 .sidebaradminPage ul li a span.rotate{
   transform: translateY(-50%) rotate(-180deg);
 }
+@media (max-width: 360px) {
+  .sidebaradminPage{
+  
+    width: 100%;
+
+  
+  }
+
+}

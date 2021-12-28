@@ -121,11 +121,11 @@ input,select,textarea {
 
              <div class="form-field">
                 <p>Họ và tên</p>
-                <input type="text" name="fullname"  required="required">
+                <input type="text" name="fullname" placeholder="<%=user.name %>" value="<%=user.name %>" required="required">
              </div>
              <div class="form-field">
                 <p>Số điện thoại</p>
-                <input type="text" name="phone"  required="required">
+                <input type="text" name="phone" placeholder="<%=user.phone %>" value="<%=user.phone %>" required="required">
              </div>
              <div class="form-field">
                 <p>Ngày sinh</p>
@@ -138,6 +138,7 @@ input,select,textarea {
           <div class="form-field">
             <p>Giới tính</p>
             <select name="gender" id="gender">
+               <option value="<%=user.gender %>"><%=user.gender %></option>
                 <option value="Nam">Nam</option>
                 <option value="Nữ">Nữ</option>
 
