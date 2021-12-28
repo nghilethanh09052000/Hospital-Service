@@ -939,10 +939,12 @@ module.exports = {
     adminPageUserAccountDetails_put,
     adminPageUserAccount_delete,
     adminPageDoctorAccount_get,
+    
     adminPageDoctorAccountDetail_get,
+    adminPageDoctorAccountDetail_put,
     adminPageDoctorAccountDetails_get,
     adminPageDoctorAccountDetails_put,
-    adminPageDoctorAccountDetail_put,
+
     adminPageDoctorAccount_delete,
     adminPageSpecialization_get,
     adminPageSpecialization_delete,
