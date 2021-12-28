@@ -654,6 +654,28 @@ const adminPageDoctorAccount_delete = (req,res)=>{
     });
 }
 
+const adminPageDoctorAccountDetail_get = async (req,res)=>{
+    const id =req.params.id;
+    const user = await User.findById(id);
+    const specializations =  await Specialization.find();
+    return res.render('adminPageDoctorAccountDetail',
+    {user:user,specializations :specializations ,
+        title:'Phân chuyên khoa'});
+
+}
+
+const adminPageDoctorAccountDetail_put= async (req,res)=>{
+    const {specializations,user_id} = req.body;
+    const specialization = await Specialization.findOne({specializations:specializations});
+    User.findByIdAndUpdate(user_id, {specialization_id:specialization._id})
+    .then(result=>{
+        res.json( { redirect:'/adminPageDoctorAccount'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
+
 const adminPageDoctorAccountDetails_get = async (req,res)=>{
     const id =req.params.id;
     const user = await User.findById(id);
@@ -676,27 +698,7 @@ const adminPageDoctorAccountDetails_put = async (req,res)=>{
     });
 }
 
-const adminPageDoctorAccountDetail_get = async (req,res)=>{
-    const id =req.params.id;
-    const user = await User.findById(id);
-    const specializations =  await Specialization.find();
-    return res.render('adminPageDoctorAccountDetail',
-    {user:user,specializations :specializations ,
-        title:'Phân chuyên khoa'});
 
-}
-
-const adminPageDoctorAccountDetail_put= async (req,res)=>{
-    const {specializations,user_id} = req.body;
-    const specialization = await Specialization.findOne({specializations:specializations});
-    User.findByIdAndUpdate(user_id, {specialization_id:specialization._id})
-    .then(result=>{
-        res.json( { redirect:'/adminPageDoctorAccount'} );
-    })
-    .catch(err=>{
-        console.log(err);
-    });
-}
 
 
 
