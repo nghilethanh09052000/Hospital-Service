@@ -7,7 +7,7 @@ const specializationSchema = new mongoose.Schema({
         unique:true
     },
     description:String,
-    price:String
+    price:Number
    
 },{ timestamps: true });
 
