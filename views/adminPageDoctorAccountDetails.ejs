@@ -108,10 +108,11 @@ input[type="submit"]:hover{
 }
 </style>
 <body>
+  <%- include("./partials/nav.ejs") %>
 
     <section>
-        <%- include("./partials/sidebaradminPage.ejs") %>
-        <div class="center">
+      <%- include("./partials/sidebarAdminPage.ejs") %>
+      <div class="center">
          <h1>Chọn phòng khám</h1>
          <form action="/adminPageDoctorAccountDetails" id='form1'>
            <div class="txt_field">
