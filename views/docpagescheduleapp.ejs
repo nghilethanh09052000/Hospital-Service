@@ -34,6 +34,7 @@
           <th>Mã lịch hẹn</th>
           <th>Trạng thái</th>
           <th>Chi tiết</th>
+          <th>Đơn thuốc</th>
           <th>Tiến hành khám bệnh</th>
     
         </tr>
@@ -42,16 +43,17 @@
         <% if(appointments.length>0){ %>
           <% appointments.forEach(appointment=> { %>
         <tr>
-          <td>
-            <a href="/doctorPageExaminateDetails/<%=appointment._id%>">
-            <%=appointment._id%>
-          </a>
-        </td>
+         <td><%=appointment._id%></td>
           <td><%=appointment.status %></td>
           <td>
             <a style="text-decoration: none;color: #000;" 
             href="/doctorPageScheduleAppointmentDetail/<%=appointment._id %>">Xem lại</a>
           </td>
+          <td>
+            <a href="/doctorPageExaminateDetails/<%=appointment._id%>">
+          Xem đơn thuốc
+          </a>
+        </td>
           <td>
             <a style="text-decoration: none;color: #000;" 
             href="/doctorPageExamination/<%=appointment._id %>">Khám bệnh</a>

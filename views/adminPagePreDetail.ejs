@@ -3,7 +3,7 @@
 <body>
     <%- include("./partials/nav.ejs") %> 
     <div class="section"> 
-      <%- include("./partials/sidebarDoctor.ejs") %> 
+    <%- include("./partials/sidebarAdminPage.ejs") %>
       <div class="container">
         <div class="title">Thông tin đơn thuốc</div>
         <% if(medicalforms.length>0){ %>
@@ -13,45 +13,46 @@
             <div class="user-details">
               <div class="input-box">
                 <span class="details">Chẩn đoán</span>
-                <input disabled type="text" value="<%= medicalform.diagnose%>" placeholder="<%= medicalform.diagnose%>">
+                <input type="text" value="<%= medicalform.diagnose%>" placeholder="<%= medicalform.diagnose%>">
               </div>
               <div class="input-box">
                 <span class="details">Triệu chứng</span>
-                <input disabled type="text"   value="<%= medicalform.symptoms%>" >
+                <input type="text"   value="<%= medicalform.symptoms%>" >
               </div>
               <div class="input-box">
                 <span class="details">Mô tả</span>
-                <input disabled type="text" name="description" value="<%= medicalform.description%>">
+                <input type="text" name="description" value="<%= medicalform.description%>">
               </div>
               <div class="input-box">
                 <span class="details">Lời khuyên bác sĩ</span>
-                <input disabled type="text" name="doctorAdvice" value="<%= medicalform.doctorAdvice%>">
+                <input type="text" name="doctorAdvice" value="<%= medicalform.doctorAdvice%>">
               </div>
               <div class="input-box">
                 <span class="details">Thuốc</span>
-                <input disabled type="text" value="<%= medicalform.prescription%>" >
+                <input type="text" value="<%= medicalform.prescription%>" >
               </div>
               
             </div>
             <div class="button">
-              <input type="submit" value="Xác nhận" data-doc="<%= schedule._id %>" name="submit">
-            </div>
-
+                <input type="submit" value="Xác nhận">
+              </div>
           </form>
         </div>
         <% }) %>
         <% }else{%>
-          <p>Bạn chưa khám bệnh...</p>
+          <p>Bác sĩ chưa cập nhật...</p>
           <% } %>
     
       </div>
     </div>
+
+
     <script>
-      const form = document.querySelector('form');
-      form.addEventListener('submit', (e) =>{
-          e.preventDefault();
-          location.assign(`/doctorPageScheduleAppointment/${form.submit.dataset.doc}`);
-      })
-  </script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) =>{
+            e.preventDefault();
+            location.assign('/adminPageAppointment');
+        })
+    </script>
 </body>
 </html>

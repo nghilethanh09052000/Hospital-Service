@@ -99,7 +99,7 @@ input,select,textarea {
    <%- include("./partials/nav.ejs") %>
    
    <div class="section">
-      <%- include("./partials/sidebarDoctor.ejs") %>
+    <%- include("./partials/sidebarAdminPage.ejs") %>
       <div class="container">
         <div class="LichHen">
             <p>Quý khách có các thắc mắc liên quan đến phương pháp điều trị, chính sách ưu đãi, biểu
@@ -107,7 +107,7 @@ input,select,textarea {
                 khách có thể gọi đến tổng đài 1900555553 để được hỗ trợ. Cảm ơn Quý khách.
             </p>
             <div class="btn12">
-                <p>Bạn đã chọn dịch vụ:  <%= specialization.specializations  %> </p>
+                <p>Bệnh nhân đã chọn dịch vụ:  <%= specialization.specializations  %> </p>
                 <p>Giá khám bệnh:  <%= specialization.price  %> </p>
                 <p>Bác sĩ:  <%= doctor.name  %>  </p>
                 <p>Ngày: <%= schedule.date  %>  </p>
@@ -116,12 +116,13 @@ input,select,textarea {
             </div>
         </div>
         <div class="container-form">
-          <form action="/doctorPageScheduleAppointmentDetail">
+          <form action="/appointmentform">
              <h2 class="heading heading-yellow">Đặt lịch</h2>
              <div class="form-field">
-                <p>Email</p>
-                <input type="text" placeholder="<%=patient.email%>" disabled>
+                <p>Mã bệnh nhân</p>
+                <input type="text" placeholder="<%=appointment.user_id%>" disabled>
              </div>
+
              <div class="form-field">
                 <p>Họ và tên</p>
                 <input type="text" placeholder="<%=appointment.fullname%>" disabled>
@@ -142,24 +143,20 @@ input,select,textarea {
             <p>Giới tính</p>
             <input type="text" placeholder="<%=appointment.gender%>" disabled>
          </div>  
-         
+         <div class="form-field">
+            <p>Trạng thái</p>
+            <input type="text" placeholder="<%=appointment.status%>" disabled>
+         </div>
          <div class="form-field">
             <p>Ghi chú</p>
             <input type="text" placeholder="<%=appointment.note%>" disabled>
          </div>
-         <div class="form-field">
-            <p>Trạng thái</p>
-            <select name="status" id="status">
-                <option><%=appointment.status%></option>
-                <option value="Đã khám">Đã khám</option>
-            </select>
-        </div>
-        <input type="hidden" name="appointment_id" value="<%=appointment._id%>">
-        <input type="submit" class="btn" value="Cập nhật"></input>
-        </form>
+           <a href="/adminPageAppointment"  class="btn">Xác nhận</a>
+           
+           
+          </form>
        </div>
-    
-
+       
     </div>
    
 </div>
@@ -167,23 +164,6 @@ input,select,textarea {
 
 
 
-<script>
-    const form = document.querySelector('form');
-    form.addEventListener('submit', async (e)=>{
-     e.preventDefault();
-     const status= document.getElementById("status").value;
-     const appointment_id = form.appointment_id.value;
-        fetch('/doctorPageScheduleAppointmentDetail',{
-           method:'PUT',
-           body:JSON.stringify({appointment_id,status}),
-           headers:{'Content-Type':'application/json'} 
-        })
-        .then(response => response.json())
-        .then(data => window.location.href=data.redirect)
-        .catch(err=> console.log(err));
-     })
-
-</script>
 
 
 </body>

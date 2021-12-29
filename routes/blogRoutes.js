@@ -112,6 +112,10 @@ router.get('/adminPageCreateClinic',requireAuth,checkLogin, checkAdmin,blogContr
 router.post('/adminPageCreateClinic',requireAuth,checkLogin, checkAdmin,blogController.adminPageCreateClinic_post);
 router.get('/adminPageClinic',requireAuth,checkLogin, checkAdmin,blogController.adminPageClinic_get);
 router.delete('/adminPageClinic/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageClinic_delete);
+router.get('/adminPageAppointment',requireAuth,checkLogin, checkAdmin,blogController.adminPageAppointment_get);
+router.get('/adminPageAppointmentDetail/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageAppointmentDetail_get);
+router.get('/adminPagePreDetail/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPagePreDetail_get);
+router.get('/adminPageDoctorAccountInfo/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountInfo_get);
 
 
 module.exports=router;

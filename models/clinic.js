@@ -10,6 +10,7 @@ const clinicSchema= new mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref:User,
         index:true,
+        unique:true
     }
 },{ timestamps: true });
 

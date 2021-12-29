@@ -503,12 +503,13 @@ const doctorPageScheduleAppointmentDetail_get = async (req,res)=>{
     const schedule = await Schedule.findById(appointment.schedule_id);
     const doctor = await User.findById(schedule.doctor_id);
     const specialization = await Specialization.findById(doctor.specialization_id);
-
+    const patient = await User.findById(appointment.user_id);
       return  res.render('docpagescheduleappdetail',
       {appointment:appointment,
         schedule:schedule,
         doctor:doctor,
         specialization:specialization,
+        patient:patient,
         title:'Thông tin lịch khám'});
 }
 
@@ -551,8 +552,9 @@ const doctorPageExaminateDetails_get = async (req,res)=>{
     const id = req.params.id;
     const appointment = await Appointment.findById(id);
     const medicalforms = await medicalForm.find({appointment_id:appointment._id});
+    const schedule =  await Schedule.findById(appointment.schedule_id); 
     return res.render('doctorpageexaminatedetail',
-    {medicalforms:medicalforms,
+    {medicalforms:medicalforms,schedule:schedule,
         title:'Đơn thuốc'});
 }
 
@@ -801,6 +803,51 @@ const adminPageClinic_delete = (req,res)=>{
     });
 }
 
+const adminPageAppointment_get = async (req,res)=>{
+    const appointments = await Appointment.find().sort({createdAt:-1});
+    return res.render('adminPageAppointment',{appointments:appointments,title:'Lịch hẹn bệnh nhân'});
+}
+
+
+const adminPageAppointmentDetail_get = async (req,res)=>{
+    const id =req.params.id;
+    const appointment = await Appointment.findById(id);
+    const schedule = await Schedule.findById(appointment.schedule_id);
+    const doctor = await User.findById(schedule.doctor_id);
+    const specialization = await Specialization.findById(doctor.specialization_id);
+ 
+      return  res.render('adminPageAppointmentDetail',
+      {appointment:appointment,
+        schedule:schedule,
+        doctor:doctor,
+        specialization:specialization,
+        title:'Thông tin lịch khám bênh nhân'});
+
+}
+
+const adminPagePreDetail_get = async (req,res)=>{
+    const id = req.params.id;
+    const appointment = await Appointment.findById(id);
+    const medicalforms = await medicalForm.find({appointment_id:appointment._id});
+    return res.render('adminPagePreDetail',
+    {medicalforms:medicalforms,
+        title:'Đơn thuốc'});
+}
+
+const adminPageDoctorAccountInfo_get = async (req,res)=>{
+   const id = req.params.id;
+   const doctor= await User.findById(id);
+   const clinics = await Clinic.find({ doctor_id:doctor._id });
+   const specialization = await Specialization.findById(doctor.specialization_id);
+
+   return res.render('adminPageDoctorInfo',{
+    doctor:doctor,
+      specialization:specialization,
+      clinics:clinics,
+      title:'Thông tin Bác Sĩ'})
+
+
+}
 
 // Send Otp with nodemailer:
 const mailer = async ( email, code) =>{
@@ -955,5 +1002,9 @@ module.exports = {
     adminPageCreateClinic_get,
     adminPageCreateClinic_post,
     adminPageClinic_get,
-    adminPageClinic_delete
+    adminPageClinic_delete,
+    adminPageAppointment_get,
+    adminPageAppointmentDetail_get,
+    adminPagePreDetail_get,
+    adminPageDoctorAccountInfo_get
 }
