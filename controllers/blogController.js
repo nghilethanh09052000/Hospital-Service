@@ -312,8 +312,7 @@ const changepass_get = (req,res)=>{
 
 
 
-
-
+//-------------------------------------------------- Doctor Page--------------------------------------------------
 
 
 const  doctorPageInfo_get = (req,res)=>{

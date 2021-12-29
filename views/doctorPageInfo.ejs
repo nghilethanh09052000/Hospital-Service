@@ -9,6 +9,18 @@
         <div class="content">
           <form action="/doctorPageInfo">
             <div class="user-details">
+                 <div class="input-box">
+                <span class="details">Chuyên khoa</span>
+                <input type="text" placeholder=" <%=specialization.specializations%>" disabled >
+              </div>
+              <% if(clinics.length>0){ %>
+                <% clinics.forEach(clinic=> { %>
+              <div class="input-box">
+                <span class="details">Phòng khám</span>
+                <input type="text" placeholder=" <%=clinic.name%>" disabled >
+            </div>
+              <% }) %>
+              <% } %>
               <div class="input-box">
                 <span class="details">Họ và tên</span>
                 <input type="text" placeholder="<%=user.name %>" name='name'>
@@ -33,46 +45,34 @@
                 <span class="details">Facebook</span>
                 <input type="text" placeholder="<%=user.facebook %>" name='facebook' >
               </div>
-              
-          
-              
               <div class="input-box">
-                <span class="details">Chuyên khoa</span>
-                <input type="text" placeholder=" <%=specialization.specializations%>" disabled >
-
-
-              </div>
-              <div class="input-box">
-                <span class="details">Mô tả bản thân</span>
+                <span class="details">Học vị</span>
                 <input type="text" placeholder=" <%=user.description %>" name='description' >
-
-
               </div>
-                <input type="hidden" value="<%=user._id %>" name='user_id' >
-            </div>
-            <div class="gender-details">
-              <span class="gender-title">Giới tính</span>
-              
-              <div class="category">
-              <select name="gender" id="gender">
-                <option > <%=user.gender %> </option>
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-
-              </select>
-                  
-          
-
-              </div>
+              <input type="hidden" value="<%=user._id %>" name='user_id' >
+              <div class="input-box">
+                <span class="gender-title">Giới tính</span>
+                <div class="category">
+                <select name="gender" id="gender">
+                  <option > <%=user.gender %> </option>
+                  <option value="Nam">Nam</option>
+                  <option value="Nữ">Nữ</option>
+  
+                </select>
+               </div>
+             </div>
             </div>
             <div class="button">
               <input type="submit" value="Cập nhật">
             </div>
           </form>
+          </div>
+             
+         
         </div>
       </div>
 
-    </section>
+    </div>
   
 <script>
    const form = document.querySelector('form');
