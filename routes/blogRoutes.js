@@ -40,11 +40,6 @@ router.get('/register', blogController.register_get);
 router.post('/register', blogController.register_post);
 router.get('/logout', blogController.logout_get);
 
-
-
-
-
-
 router.get('/appointmentSpecial/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentSpecial_get);
 router.get('/appointmentcalendar/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentcalendar_get);
 router.get('/appointmentform/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentform_get);
@@ -53,10 +48,8 @@ router.get('/appointmentinfo',requireAuth,checkLogin,checkPatient,blogController
 router.delete('/appointmentinfo/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentinfo_delete);
 router.get('/appointmentdetail/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentdetail_get);
 router.get('/appointmentmedicalform/:id',requireAuth,checkLogin,checkPatient,blogController.appointmentmedicalform_get);
-
 router.get('/appointmentUpdateInfo',requireAuth,checkLogin,checkPatient,blogController.appointmentUpdateInfo_get);
 router.put('/appointmentUpdateInfo',requireAuth,checkLogin,checkPatient,blogController.appointmentUpdateInfo_put);
-
 router.get('/changepass', blogController.changepass_get);
 router.post('/changepass', blogController.changepass_post);
 

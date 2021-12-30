@@ -20,17 +20,17 @@ const handleErrors = (err) => {
   
     // incorrect email
     if (err.message === 'incorrect email') {
-      errors.email = 'That email is not existed';
+      errors.email = 'Email không tồn tại';
     }
 
     // incorrect password
     if (err.message === 'incorrect password') {
-        errors.password = 'That password is incorrect';
+        errors.password = 'Sai mật khẩu';
     }
 
     // duplicate email error
     if (err.code === 11000) {
-        errors.email = 'that email is already registered';
+        errors.email = 'Email này đã được đăng ký';
         return errors;
     }
 
