@@ -838,11 +838,16 @@ const adminPageDoctorAccountInfo_get = async (req,res)=>{
    const doctor= await User.findById(id);
    const clinics = await Clinic.find({ doctor_id:doctor._id });
    const specialization = await Specialization.findById(doctor.specialization_id);
-
+   const appointments = await Appointment.find({doctor_id:doctor._id,$or:
+                                                                        [
+                                                                            {status:'Đã khám' } 
+                                                                        ]                  
+                                                                    })
    return res.render('adminPageDoctorInfo',{
     doctor:doctor,
       specialization:specialization,
       clinics:clinics,
+      appointments:appointments,
       title:'Thông tin Bác Sĩ'})
 
 

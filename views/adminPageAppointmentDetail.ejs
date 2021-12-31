@@ -107,13 +107,19 @@ input,select,textarea {
                 khách có thể gọi đến tổng đài 1900555553 để được hỗ trợ. Cảm ơn Quý khách.
             </p>
             <div class="btn12">
+                <% if(specialization){%>
                 <p>Bệnh nhân đã chọn dịch vụ:  <%= specialization.specializations  %> </p>
                 <p>Giá khám bệnh:  <%= specialization.price  %> </p>
+                <% }%>
+                <% if(doctor){%>
                 <p>Bác sĩ:  <%= doctor.name  %>  </p>
-                <p>Ngày: <%= schedule.date  %>  </p>
-                <p><%= schedule.hour  %>  </p>
-                <p>Chỗ: <%= schedule.bookingSlot  %>  </p>
-            </div>
+                <% }%>
+                <% if(schedule){%>
+                    <p>Ngày: <%= schedule.date  %>  </p>
+                    <p><%= schedule.hour  %>  </p>
+                    <p>Chỗ: <%= schedule.bookingSlot  %>  </p>
+                    <% }%>
+                </div>
         </div>
         <div class="container-form">
           <form action="/appointmentform">

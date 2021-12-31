@@ -174,11 +174,8 @@ left: 0%;
    border-right: 20px solid #ff3b7e;
 }
 .container .card .icon{
-  position: relative;
-  left:45%;
-  transform:translateX(-25%) ;
-  /* margin-bottom: 10px;
-  padding-left: 45px; */
+  margin-bottom: 10px;
+   padding-left: 45px;
 }
 
 .container .card .icon img{
