@@ -110,14 +110,20 @@ input,select,textarea {
                 <% if(specialization){%>
                 <p>Bạn đã chọn dịch vụ:  <%= specialization.specializations  %> </p>
                 <p>Giá khám bệnh:  <%= specialization.price  %> </p>
+                <% }else{%>
+                    Chuyên khoa bị xóa
                 <% }%>
                 <% if(doctor){%>
                 <p>Bác sĩ:  <%= doctor.name  %>  </p>
+                <% }else{%>
+                    Bác sĩ bị xóa
                 <% }%>
                 <% if(schedule){%>
                     <p>Ngày: <%= schedule.date  %>  </p>
                     <p><%= schedule.hour  %>  </p>
                     <p>Chỗ: <%= schedule.bookingSlot  %>  </p>
+                    <% }else{%>
+                        Bác sĩ bị xóa
                     <% }%>
                 </div>
             <% if(appointment.status =='Đã khám')  {%>
