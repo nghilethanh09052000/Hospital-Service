@@ -2,7 +2,7 @@
     display: flex;
 	width: 100%;
 	background: #fff;
- 
+
 }
 main{
     margin: 10px auto;
@@ -16,9 +16,11 @@ table {
 	display: inline-block;
 	text-align: left;
 	border-top: 1px solid #888;
+	
 }
 table thead {
 	background: #bbb;
+	
 }
 table tr:nth-child(even) {
 	background: #dfdfdf;

@@ -85,10 +85,8 @@
          const birthday = form.birthday.value;
          const user_id = form.user_id.value;
          const description = form.description.value;
-          const gender = document.getElementById('gender').value
-        
-         
-            fetch('/doctorPageInfo',{
+         const gender = document.getElementById('gender').value
+         fetch('/doctorPageInfo',{
                method:'PUT',
                body:JSON.stringify({name,country, phone,facebook,birthday,user_id,gender,description}),
                headers:{'Content-Type':'application/json'} 

@@ -50,6 +50,7 @@ app.get('/adminpage',checkLogin,checkAdmin, async (req,res)=>{
     [
         {status:'Đã khám' } ,{status:'Chấp nhận' } ,{status:'Chờ xác nhận' } 
     ]})
+    const comAppointments = await Appointment.find({status:'Đã khám'})
   const clinics = await Clinic.find();
   const patient = 'patient';
   const doctor = 'doctor';
@@ -61,6 +62,7 @@ app.get('/adminpage',checkLogin,checkAdmin, async (req,res)=>{
     userpatient:userpatient,
     userdoctor:userdoctor,
     appointments:appointments,
+    comAppointments:comAppointments,
     title:'Trang quản lý'})
 
 })

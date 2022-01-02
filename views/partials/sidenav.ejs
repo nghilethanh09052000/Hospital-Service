@@ -1,5 +1,8 @@
-
+<div class="btn12">
+  <span class="fas fa-bars"></span>
+</div>
  <nav class="sidebaradminPage">
+ 
     <div class="text">
       Bệnh viện da liễu Sài Gòn
     </div>
@@ -19,15 +22,16 @@
         </a>
         <ul class="serv-show">
             <li><a href="/appointmentUpdateInfo">Cập nhật thông tin</a></li>
-            <li><a href="#">Đổi mật khẩu</a></li>
+            <li><a href="/changepass1">Đổi mật khẩu</a></li>
         </ul>
      </li>
-       <li><a href="#">Feedback</a></li>
+      
        <li><a href="/logout">Đăng xuất</a></li>
     </ul>
  </nav>
+
  <script>
-    $('.btnadminPage').click(function(){
+    $('.btn12').click(function(){
       $(this).toggleClass("click");
       $('.sidebaradminPage').toggleClass("show");
     });
