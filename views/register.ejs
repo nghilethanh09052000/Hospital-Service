@@ -48,7 +48,6 @@
       const passwordError=document.querySelector('.passwordError');
       form.addEventListener('submit',async(e)=>{
          e.preventDefault();
-         
          //reset errors:
          emailError.textContent='';
          passwordError.textContent='';
@@ -59,9 +58,7 @@
          if (password!=re_password){
             passwordError.textContent='Mật khẩu không trùng';
          }else{
-
-         
-         try{
+            try{
             const res = await fetch('/register',{
                method:'POST',
                body:JSON.stringify({email,password}),

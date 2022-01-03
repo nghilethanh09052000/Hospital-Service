@@ -386,7 +386,6 @@ section .container2 .trailer{
   visibility: hidden;
   opacity: 0;
 }
-
 section .trailer.active{
   visibility: visible;
   opacity: 1;
@@ -396,7 +395,6 @@ section .trailer.active{
   max-width: 900px;
   outline: none;
 }
-
 .trailer .close{
   position: absolute;
   top: 0%;

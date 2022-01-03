@@ -102,10 +102,6 @@ const login_post= async (req,res)=>{
             const user2 = await User.findOne({email,role});
             res.status(200).json( {user2:user._id} );
         }
-            
-        
-        
-        
     }catch(err){
         const errors = handleErrors(err);
         res.status(400).json({ errors });

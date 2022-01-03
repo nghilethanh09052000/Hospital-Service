@@ -41,7 +41,7 @@ const checkUser= (req,res,next)=>{
     }
 }
 
-// Check admin permission
+// Checkpermission
 const checkLogin= (req,res,next)=>{
    try{
     const token = req.cookies.jwt;
@@ -72,7 +72,6 @@ const checkPatient = (req,res,next)=>{
         res.render('404', { title: 'Trang không tìm thấy' });
     }
 }
-
 const checkDoctor = (req,res,next)=>{
     var role = req.data.role;
     if(role ==='doctor'){

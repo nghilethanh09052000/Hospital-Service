@@ -1,3 +1,6 @@
+<div class="btn12">
+  <span class="fas fa-bars"></span>
+</div>
 <nav class="sidebaradminPage">
     <div class="text">
      <a  > Bệnh viện da liễu Sài Gòn</a>
@@ -41,8 +44,10 @@
     </ul>
  </nav>
  <script>
-   
-
+   $('.btn12').click(function(){
+      $(this).toggleClass("click");
+      $('.sidebaradminPage').toggleClass("show");
+    });
       $('.feat-btn').click(function(){
         $('.sidebaradminPage ul .feat-show').toggleClass("show");
         $('.sidebaradminPage ul .first').toggleClass("rotate");

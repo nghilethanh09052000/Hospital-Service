@@ -48,15 +48,12 @@
       const passwordError=document.querySelector('.passwordError');
       form.addEventListener('submit',async(e)=>{
          e.preventDefault();
-         
          //reset errors:
          emailError.textContent='';
          passwordError.textContent='';
-
          const email = form.email.value;
          const password = form.password.value;
-        
-         try{
+        try{
             const res = await fetch('/login',{
                method:'POST',
                body:JSON.stringify({email,password}),
@@ -71,11 +68,9 @@
             if(data.user2){
                location.assign('/adminpage');
             }
-
             if(data.user1){
                location.assign('/doctorpage');
             }
-            
             if(data.user){
                location.assign('/appointment');
             }

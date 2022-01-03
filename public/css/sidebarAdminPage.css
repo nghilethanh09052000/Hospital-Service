@@ -40,8 +40,8 @@ display: none;
 
 .sidebaradminPage ul{
   background: #1b1b1b;
-  height: 100%;
-  width: 100%;
+  /* height: 100%;
+  width: 100%; */
   list-style: none;
 }
 
@@ -59,7 +59,7 @@ display: none;
   color: white;
   text-decoration: none;
   font-size: 18px;
-  padding-left: 40px;
+  padding-left: 20px;
   font-weight: 500;
   display: block;
   width: 100%;
@@ -100,7 +100,7 @@ display: none;
 .sidebaradminPage ul ul li a{
   font-size: 17px;
   color: #e6e6e6;
-  padding-left: 80px;
+  padding-left: 40px;
 }
 
 .sidebaradminPage ul li.active ul li a{
@@ -127,17 +127,19 @@ display: none;
   transform: translateY(-50%) rotate(-180deg);
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .btn12{
   display: block;
 }
 .btn12.click{
     right: 0%;
     position: absolute;
-    z-index: 1000;
+      animation: animateForSideBar 0.4s linear ;
+    z-index: 888;
   }
   .sidebaradminPage{
   display: none;
+ 
   
 }
   .sidebaradminPage.show{
@@ -145,5 +147,14 @@ display: none;
     display: block;
     width: 100%;
     left: 0px;
+    animation: animateForSideBar 0.4s linear ;
+}
+@keyframes animateForSideBar
+{
+  0%
+  {
+    transform: translateX(-200px);
+  }
+  
 }
 }
