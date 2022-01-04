@@ -29,11 +29,15 @@ const upload = multer({
 
 router.get('/GioiThieuChung',blogController.GioiThieuChung_get);
 router.get('/benhveda', blogController.benhveda_get);
+
+
+
+
+
 router.get('/sendMail', blogController.sendOTP_get);
 router.post('/sendMail',blogController.sendOTP_post);
 router.get('/adviceMail', blogController.sendAdviceMail_get);
 router.post('/adviceMail', blogController.sendAdviceMail_post);
-
 router.get('/login', blogController.login_get);
 router.post('/login', blogController.login_post);
 router.get('/register', blogController.register_get);

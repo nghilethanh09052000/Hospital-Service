@@ -64,6 +64,7 @@ const benhveda_get =(req,res)=>{
 
 
 
+
 const register_get=(req,res)=>{
     res.render('register',{title:'Đăng ký'});
 }
@@ -158,6 +159,8 @@ const sendAdviceMail_post = async (req,res)=>{
     }
 }
 
+
+//--------------------------- Appointment Role---------------------------------------- 
 const appointmentSpecial_get = async (req,res)=>{
     const id =req.params.id;
     const users = await User.find({specialization_id:id});
@@ -939,6 +942,9 @@ const backadviceMail = async (email) =>{
 module.exports = {
     GioiThieuChung_get,
     benhveda_get,
+
+
+
     login_get,
     login_post,
     register_get,
