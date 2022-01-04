@@ -1,7 +1,7 @@
 ﻿.toolbar {
     list-style: none;
-    margin: 30px;
-    padding: 0;
+    margin: 0px;
+    padding: 30px;
 }
 
 .toolbar-item {
@@ -30,6 +30,7 @@ a {
 .toolbar > :last-child > :last-child {
     border: 0;
     padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .toolbar .toolbar-item .sub-toolbar-item:hover {
@@ -91,7 +92,6 @@ a {
 .right_div_in_main_content_div {
     position: relative;
     width: 26%;
-    background-color: white;
     text-align: left;
     font-size: 20px;
     right: 9.5%;
@@ -118,4 +118,20 @@ a {
     color:white;
 }
 
+
+@media(max-width: 700px) {
+    .main_content_div {
+        flex-direction: column;
+    }
+
+    .left_div_in_main_content_div {
+        width: 70%;
+        left: 15%
+    }
+
+    .right_div_in_main_content_div {
+        width: 70%;
+        left: 15%;
+    }
+}
 
