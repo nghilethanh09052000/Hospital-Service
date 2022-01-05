@@ -46,6 +46,8 @@ app.get('/appointment',checkLogin,checkPatient, async (req,res)=>{
 
 app.get('/adminpage',checkLogin,checkAdmin, async (req,res)=>{
   const specializations = await Specialization.find()
+  const allAppointments = await Appointment.find()
+
   const appointments = await Appointment.find({$or:
     [
         {status:'Đã khám' } ,{status:'Chấp nhận' } ,{status:'Chờ xác nhận' } 
@@ -57,7 +59,7 @@ app.get('/adminpage',checkLogin,checkAdmin, async (req,res)=>{
   const userpatient = await User.find({role:patient});
   const userdoctor = await User.find({role:doctor});
   return res.render('adminpage',{
-    specializations:specializations,
+    specializations:specializations,allAppointments:allAppointments,
     clinics:clinics,
     userpatient:userpatient,
     userdoctor:userdoctor,

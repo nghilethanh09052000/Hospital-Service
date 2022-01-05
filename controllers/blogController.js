@@ -161,6 +161,13 @@ const sendAdviceMail_post = async (req,res)=>{
 
 
 //--------------------------- Appointment Role---------------------------------------- 
+const adminPageChart_get= async (req,res)=>{
+    res.render('adminPageChart',{
+
+   title:'Biểu đồ' })
+}
+
+
 const appointmentSpecial_get = async (req,res)=>{
     const id =req.params.id;
     const users = await User.find({specialization_id:id});
@@ -987,6 +994,7 @@ module.exports = {
     doctorPageExamination_get,
     doctorPageExamination_post,
     doctorPageExaminateDetails_get,
+    adminPageChart_get,
     adminPageUserAccount_get,
     adminPageUserAccountDetails_get,
     adminPageUserAccountDetails_put,

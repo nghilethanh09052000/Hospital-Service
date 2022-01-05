@@ -88,7 +88,7 @@ router.post('/doctorPageCreateSchedule',requireAuth,checkLogin,checkDoctor,blogC
 
 
 // ------------------------ Admin Page ------------------------------
-
+router.get('/adminPageChart',requireAuth,checkLogin, checkAdmin,blogController.adminPageChart_get);
 router.get('/adminPageUserAccount',requireAuth,checkLogin, checkAdmin,blogController.adminPageUserAccount_get);
 router.get('/adminPageUserAccountDetails/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageUserAccountDetails_get);
 router.put('/adminPageUserAccountDetails',requireAuth,checkLogin, checkAdmin,blogController.adminPageUserAccountDetails_put);

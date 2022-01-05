@@ -13,8 +13,7 @@
   .container .title{
     font-size: 25px;
     font-weight: 500;
-    
-    margin-bottom: 5px;
+    margin-bottom: 1px;
   }
 
 
@@ -22,7 +21,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 10px 0 12px 0;
+    /* margin: 5px 0 12px 0; */
   }
   form .user-details .input-box{
     margin-bottom: 15px;
@@ -81,7 +80,7 @@
  
   form .button{
     height: 45px;
-    margin: 35px 0
+    /* margin: 35px 0 */
   }
   form .button input, .btn{
    text-decoration: none;
