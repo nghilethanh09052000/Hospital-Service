@@ -217,6 +217,9 @@
     }
 }
 @media(max-width: 700px) {
+  .footer-center-wrap-container-col1-list{
+    justify-content: center;
+}
     .footer-top-wrap-container-col3{
         display: none;
     }.footer-top-wrap-container-col2{
