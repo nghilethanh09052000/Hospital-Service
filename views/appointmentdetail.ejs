@@ -30,7 +30,7 @@
     /* margin-bottom: 10%; */
 }
 
-.LichHen .btn12{
+.LichHen .btn123{
     background-color: #F5C6AA;
 	color: #fff;
 	font-weight: 600;
@@ -106,7 +106,7 @@ input,select,textarea {
                 phí, hình thức thanh toán vui lòng để lại thông tin và Da liễu Sài Gòn sẽ liên hệ lại, hoặc Quý
                 khách có thể gọi đến tổng đài 1900555553 để được hỗ trợ. Cảm ơn Quý khách.
             </p>
-            <div class="btn12">
+            <div class="btn123">
                 <% if(specialization){%>
                 <p>Bạn đã chọn dịch vụ:  <%= specialization.specializations  %> </p>
                 <p>Giá khám bệnh:  <%= specialization.price  %> </p>
@@ -119,7 +119,7 @@ input,select,textarea {
                     Bác sĩ bị xóa
                 <% }%>
                 <% if(schedule){%>
-                    <p>Ngày: <%= schedule.date  %>  </p>
+                    <p>Ngày: <%=schedule.date.toString().split(" 0")[0] %>  </p>
                     <p><%= schedule.hour  %>  </p>
                     <p>Chỗ: <%= schedule.bookingSlot  %>  </p>
                     <% }else{%>

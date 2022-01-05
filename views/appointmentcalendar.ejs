@@ -13,7 +13,7 @@
            <% schedules.forEach(schedule=> { %>
      <div class="wrapper">
         <div class="left">
-            <h2> Ngày: <%= schedule.date %> </h2>
+            <h2> Ngày: <%=schedule.date.toString().split(" 0")[0] %> </h2>
          </div>
         <div class="right">
             <div class="info">

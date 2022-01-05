@@ -64,7 +64,7 @@
           <div class="charts__left">
             <div class="charts__left__title">
               <div>
-                <h1>Tổng các lịch hẹn</h1>
+                <h1>Đơn hủy bỏ & đã khám</h1>
               </div>
               <i class="fa fa-usd" aria-hidden="true"></i>
             </div>
@@ -111,74 +111,106 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
     const appointments =  <%- JSON.stringify(allAppointments) %> ;
-    var i,j,k=1;
+    var numberAppointment = [];
+    var dayAppointment ="";
+    var k =1;
     Array.from(appointments).forEach((appointment)=>{
-     if(appointment.status=="Hủy bỏ"){
-       i++
-     }
-     if(appointment.status=="Chấp nhận"){
-       j++
-     }
-     if(appointment.status=="Đã khám"){
-       i++
-     }
-    })
-     var options = {
-  series: [
-    {
-      name: "Hủy bỏ",
-      data: [i],
-    },
-    {
-      name: "Chấp nhận",
-      data: [j],
-    },
-    {
-      name: "Đã khám",
-      data: [k],
-    },
-  ],
-  chart: {
-    type: "bar",
-    height: 250, 
-    sparkline: {
-      enabled: true, 
-    },
-  },
-  plotOptions: {
-    bar: {
-      horizontal: false,
-      columnWidth: "55%",
-      endingShape: "rounded",
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    show: true,
-    width: 2,
-    colors: ["transparent"],
-  },
-  xaxis: {
-    categories: ["Feb"],
-  },
-  yaxis: {
-    title: {
-      text: "$ (thousands)",
-    },
-  },
-  fill: {
-    opacity: 1,
-  },
-  tooltip: {
-    y: {
-      formatter: function (val) {
-        return "$ " + val + " thousands";
-      },
-    },
-  },
-};
+      let i = appointment.createdAt.toString().split("T")[0];
+      if (i==dayAppointment){
+        k++;
+        dayAppointment=i;
+      }
+  })
+   
+    var options = {
+          series: [{
+            name: "Desktops",
+            data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        }],
+          chart: {
+          height: 350,
+          type: 'line',
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        title: {
+          text: 'Product Trends by Month',
+          align: 'left'
+        },
+        grid: {
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        xaxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        }
+        };
+ 
+//      var options = {
+//   series: [
+//     {
+//       name: "Hủy bỏ",
+//       data: [i],
+//     },
+//     {
+//       name: "Chấp nhận",
+//       data: [j],
+//     },
+//     {
+//       name: "Đã khám",
+//       data: [k],
+//     },
+//   ],
+//   chart: {
+//     type: "bar",
+//     height: 250, 
+//     sparkline: {
+//       enabled: true, 
+//     },
+//   },
+//   plotOptions: {
+//     bar: {
+//       horizontal: false,
+//       columnWidth: "55%",
+//       endingShape: "rounded",
+//     },
+//   },
+//   dataLabels: {
+//     enabled: false,
+//   },
+//   stroke: {
+//     show: true,
+//     width: 2,
+//     colors: ["transparent"],
+//   },
+//   xaxis: {
+//     categories: ["Feb","Nghi"],
+//   },
+//   yaxis: {
+//     title: {
+//       text: "Đơn hẹn",
+//     },
+//   },
+//   fill: {
+//     opacity: 1,
+//   },
+//   tooltip: {
+//     y: {
+//       formatter: function (val) {
+//         return  + val + " Đơn hẹn";
+//       },
+//     },
+//   },
+// };
 
 var chart = new ApexCharts(document.querySelector("#apex1"), options);
 chart.render();

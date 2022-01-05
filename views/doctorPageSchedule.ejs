@@ -29,7 +29,7 @@
               <% if(schedules.length>0){ %>
                 <% schedules.forEach(schedule => { %>
               <tr>
-                <td><%=schedule.date %></td>
+                <td><%=schedule.date.toString().split(" 0")[0] %></td>
                 <td><%=schedule.hour %></td>
                <td><%=schedule.bookingSlot %></td>
                <td>

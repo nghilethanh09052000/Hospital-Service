@@ -29,7 +29,7 @@
           <% users.forEach(user=> { %>
         <tr>
           <td><%=user.email%></td>
-          <td><%=user.createdAt %></td>
+          <td><%=user.createdAt.toString().split("GMT")[0] %></td>
           <td>
             <%=user.role %>
           </td>

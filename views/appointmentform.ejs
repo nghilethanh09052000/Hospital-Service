@@ -108,7 +108,7 @@ input,select,textarea {
                 <p>Bạn đã chọn dịch vụ:  <%= specialization.specializations  %> </p>
                 <p>Giá khám bệnh:  <%= specialization.price  %> </p>
                 <p>Bác sĩ:  <%= doctor.name  %>  </p>
-                <p>Ngày: <%= schedule.date  %>  </p>
+                <p>Ngày: <%=schedule.date.toString().split(" 0")[0] %>  </p>
                 <p><%= schedule.hour  %>  </p>
                 <p>Giới hạn chỗ: <%= schedule.bookingSlot%>  </p>
             </div>
