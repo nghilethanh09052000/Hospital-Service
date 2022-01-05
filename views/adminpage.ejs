@@ -63,9 +63,6 @@
         <div class="charts">
           <div class="charts__left">
             <div class="charts__left__title">
-              <div>
-                <h1>Đơn hủy bỏ & đã khám</h1>
-              </div>
               <i class="fa fa-usd" aria-hidden="true"></i>
             </div>
             <div id="apex1"></div>
@@ -111,21 +108,24 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
     const appointments =  <%- JSON.stringify(allAppointments) %> ;
-    var numberAppointment = [];
-    var dayAppointment ="";
-    var k =1;
-    Array.from(appointments).forEach((appointment)=>{
-      let i = appointment.createdAt.toString().split("T")[0];
-      if (i==dayAppointment){
-        k++;
-        dayAppointment=i;
-      }
-  })
-   
+    var numberAppointment= [];
+    var frequency = []
+    var firstDay = '';
+    var k=1;
+     for( i=0; i<appointments.length ; i++){
+        if( appointments[i].createdAt.toString().split("T")[0] 
+        != firstDay){
+          frequency.push(1);
+          numberAppointment.push(appointments[i].createdAt.toString().split("T")[0])
+        }else{
+          frequency[frequency.length-1]++
+        }
+        firstDay=appointments[i].createdAt.toString().split("T")[0];
+       }
     var options = {
           series: [{
-            name: "Desktops",
-            data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+            name: "Tổng lịch hẹn",
+            data: frequency
         }],
           chart: {
           height: 350,
@@ -141,7 +141,7 @@
           curve: 'straight'
         },
         title: {
-          text: 'Product Trends by Month',
+          text: 'Biểu đồ lịch hẹn theo ngày',
           align: 'left'
         },
         grid: {
@@ -151,66 +151,9 @@
           },
         },
         xaxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+          categories:numberAppointment,
         }
         };
- 
-//      var options = {
-//   series: [
-//     {
-//       name: "Hủy bỏ",
-//       data: [i],
-//     },
-//     {
-//       name: "Chấp nhận",
-//       data: [j],
-//     },
-//     {
-//       name: "Đã khám",
-//       data: [k],
-//     },
-//   ],
-//   chart: {
-//     type: "bar",
-//     height: 250, 
-//     sparkline: {
-//       enabled: true, 
-//     },
-//   },
-//   plotOptions: {
-//     bar: {
-//       horizontal: false,
-//       columnWidth: "55%",
-//       endingShape: "rounded",
-//     },
-//   },
-//   dataLabels: {
-//     enabled: false,
-//   },
-//   stroke: {
-//     show: true,
-//     width: 2,
-//     colors: ["transparent"],
-//   },
-//   xaxis: {
-//     categories: ["Feb","Nghi"],
-//   },
-//   yaxis: {
-//     title: {
-//       text: "Đơn hẹn",
-//     },
-//   },
-//   fill: {
-//     opacity: 1,
-//   },
-//   tooltip: {
-//     y: {
-//       formatter: function (val) {
-//         return  + val + " Đơn hẹn";
-//       },
-//     },
-//   },
-// };
 
 var chart = new ApexCharts(document.querySelector("#apex1"), options);
 chart.render();
