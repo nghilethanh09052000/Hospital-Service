@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { isEmail } = require('validator');
+// const { isEmail } = require('validator');
 const bcrypt = require('bcrypt');
 const Specialization = require('./specialization');
 
@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Vui lòng nhập email'],
         unique:true,
         lowercase: true,
-        validate: [isEmail, 'Vui lòng nhập đúng định dạng email']
       },
       password: {
         type: String,

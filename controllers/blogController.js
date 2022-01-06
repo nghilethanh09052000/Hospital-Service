@@ -161,11 +161,7 @@ const sendAdviceMail_post = async (req,res)=>{
 
 
 //--------------------------- Appointment Role---------------------------------------- 
-const adminPageChart_get= async (req,res)=>{
-    res.render('adminPageChart',{
 
-   title:'Biểu đồ' })
-}
 
 
 const appointmentSpecial_get = async (req,res)=>{
@@ -595,6 +591,29 @@ const doctorPageCreateSchedule_post =async (req,res) =>{
     }
 }
 //-------------------------------- Admin ---------------------------------------
+const adminPageChart_get= async (req,res)=>{
+  
+
+    const specializationsName = await Specialization.find();
+    const doctors = await User.find({role:'doctor'});
+    const patients = await User.find({role:'patient'});
+
+
+    
+    res.render('adminPageChart',{
+
+        specializationsName:specializationsName,
+        doctors:doctors,
+        patients:patients,
+        // bacSiNgoaiDa:bacSiNgoaiDa,
+        // bacSiPhuKhoa:bacSiPhuKhoa,
+        // bacSiTaoHinhThamMy:bacSiTaoHinhThamMy,
+        // bacSiNamKhoa:bacSiNamKhoa,
+        // bacSiThamMyDa:bacSiThamMyDa,
+    
+   title:'Biểu đồ' })
+}
+
 const adminPageUserAccount_get = (req,res)=>{
     const role = 'patient'
  User.find({role:role}).sort({createdAt:-1})

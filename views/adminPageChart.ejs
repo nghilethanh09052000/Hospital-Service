@@ -1,0 +1,338 @@
+<%- include("./partials/head.ejs") %>
+<style>
+    .section{
+   display: flex;
+   width: 100%;
+   background: #fff;
+}
+main{  
+	width: 90%;
+   /* margin: 10px 50px; */
+   margin-right: 50px;
+   padding: 20px 35px;
+   background-color: blanchedalmond;
+}
+.main_container{
+    display: inline-block;
+   width: 45%;
+  align-items: center;
+  margin-right: 30px ;
+  margin-bottom: 50px ;
+
+}
+
+.charts__left {
+	padding: 25px;
+	border-radius: 5px;
+	background: #ffffff;
+	box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+}
+.charts__left__title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  }
+  .charts__left__title > div > h1 {
+	font-size: 24px;
+	color: #2e4a66;
+	margin-bottom: 5px;
+  }
+  .charts__left__title > div > p {
+	font-size: 14px;
+	font-weight: 700;
+	color: #a5aaad;
+  }
+  
+  .charts__left__title > i {
+	color: #ffffff;
+	font-size: 20px;
+	background: #ffc100;
+	border-radius: 200px 0px 200px 200px;
+	-moz-border-radius: 200px 0px 200px 200px;
+	-webkit-border-radius: 200px 0px 200px 200px;
+	border: 0px solid #000000;
+	padding: 15px;
+  }
+
+</style>  
+   <body>
+      <%- include("./partials/nav.ejs") %>
+<div class="section">
+   <%- include("./partials/sidebarAdminPage.ejs") %>
+   <main>
+  
+    <div class="main_container">
+        <div class="charts__left">
+            <div class="charts__left__title">
+              <i class="fa fa-usd" aria-hidden="true"></i>
+            </div>
+            <div id="apex1"></div>
+        </div>
+    </div>
+    <div class="main_container">
+      <div class="charts__left">
+          <div class="charts__left__title">
+            <i class="fa fa-usd" aria-hidden="true"></i>
+          </div>
+          <div id="apex2"></div>
+      </div>
+  </div>
+    <div class="main_container">
+        <div class="charts__left">
+            <div class="charts__left__title">
+              <i class="fa fa-usd" aria-hidden="true"></i>
+            </div>
+            <div id="apex3"></div>
+        </div>
+    </div>
+    <div class="main_container">
+        <div class="charts__left">
+            <div class="charts__left__title">
+              <i class="fa fa-usd" aria-hidden="true"></i>
+            </div>
+            <div id="apex4"></div>
+        </div>
+    </div>
+
+</main>
+   
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+// -------------------------------------------------- Chart 1 ------------------------
+var  patients = <%- JSON.stringify(patients) %> ;
+var numberPatient = [];
+var frequency = [];
+var firstDay = '';
+     for( i=0; i<patients.length ; i++){
+     
+        if( patients[i].createdAt.toString().split("T")[0] 
+        != firstDay){
+          frequency.push(1);
+          numberPatient.push(patients[i].createdAt.toString().split("T")[0])
+        }else{
+          frequency[frequency.length-1]++
+        }
+        firstDay=patients[i].createdAt.toString().split("T")[0];
+       }
+var options1 = {
+          series: [{
+            name: "Desktops",
+            data: frequency
+        }],
+          chart: {
+          height: 230,
+          type: 'line',
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        title: {
+          text: 'Số người tạo tài khoản theo thời gian',
+          align: 'center'
+        },
+        grid: {
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.4
+          },
+        },
+        xaxis: {
+          categories: numberPatient,
+        }
+        };
+        var chart1 = new ApexCharts(document.querySelector("#apex1"), options1);
+        chart1.render();
+//------------------------------------------- Chart 2--------------- 
+var newSpecializations =  <%- JSON.stringify(specializationsName) %> ;
+var doctors =  <%- JSON.stringify(doctors) %> ;
+var k =1
+var mangB = []
+for(i=0; i < doctors.length ; i++  ){
+  mangB.push(k)
+}
+var doctorArray = [];
+var specializationArray = []
+for(i=0; i < doctors.length ; i++  ){
+  dem = 1;
+  for( j= i+1; j < doctors.length;j++){
+    if( doctors[i].specialization_id == doctors[j].specialization_id ){
+      dem++;
+      mangB[j]=0;
+    }
+  }
+  if(mangB[i]!=0){
+    doctorArray.push(dem);
+    specializationArray.push(doctors[i].specialization_id);
+    
+  }
+}
+
+
+var array = []
+for (i=0 ;i< specializationArray.length;i++){
+  for (j=0;j<newSpecializations.length;j++){
+    if(specializationArray[i] == newSpecializations[j]._id ){
+
+      array.push(newSpecializations[j].specializations)
+      break
+    }
+  }
+}
+console.log(doctorArray)
+var options2 = {
+          series: doctorArray,
+          chart: {
+          width: 450,
+          type: 'pie',
+        },
+        labels: array,
+        responsive: [{
+          breakpoint: 400,
+          options: {
+            chart: {
+              width: 400
+            },
+            legend: {
+              position: 'bottom',
+           
+            }
+          }
+        }]
+        };
+
+var chart2 = new ApexCharts(document.querySelector("#apex2"), options2);
+chart2.render();
+
+
+    //------------------------------------------------------- 
+var options3 = {
+  series: [
+    {
+      name: "Net Profit",
+      data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+    },
+    {
+      name: "Revenue",
+      data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+    },
+    {
+      name: "Free Cash Flow",
+      data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+    },
+  ],
+  chart: {
+    type: "bar",
+    height: 250, // make this 250
+    sparkline: {
+      enabled: true, // make this true
+    },
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "55%",
+      endingShape: "rounded",
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    show: true,
+    width: 2,
+    colors: ["transparent"],
+  },
+  xaxis: {
+    categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+  },
+  yaxis: {
+    title: {
+      text: "$ (thousands)",
+    },
+  },
+  fill: {
+    opacity: 1,
+  },
+  tooltip: {
+    y: {
+      formatter: function (val) {
+        return "$ " + val + " thousands";
+      },
+    },
+  },
+};
+
+var chart3 = new ApexCharts(document.querySelector("#apex3"), options3);
+chart3.render();
+
+var options4 = {
+  series: [
+    {
+      name: "Net Profit",
+      data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+    },
+    {
+      name: "Revenue",
+      data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+    },
+    {
+      name: "Free Cash Flow",
+      data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+    },
+  ],
+  chart: {
+    type: "bar",
+    height: 250, // make this 250
+    sparkline: {
+      enabled: true, // make this true
+    },
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "55%",
+      endingShape: "rounded",
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    show: true,
+    width: 2,
+    colors: ["transparent"],
+  },
+  xaxis: {
+    categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+  },
+  yaxis: {
+    title: {
+      text: "$ (thousands)",
+    },
+  },
+  fill: {
+    opacity: 1,
+  },
+  tooltip: {
+    y: {
+      formatter: function (val) {
+        return "$ " + val + " thousands";
+      },
+    },
+  },
+};
+
+var chart4 = new ApexCharts(document.querySelector("#apex4"), options4);
+chart4.render();
+</script>
+</body>
+</html>

@@ -54,10 +54,6 @@
               <span class="font-bold text-title"> <%= clinics.length %>  </span>
             </div>
           </div>
-
-        
-
-         
         </div>
 
         <div class="charts">
@@ -93,7 +89,7 @@
               </div>
 
               <div class="card4">
-                <h2>Số lịch hẹn</h2>
+                <h2>Lịch hẹn đã khám</h2>
                 <p> <%=appointments.length  %> </p>
               </div>
             </div>
@@ -111,7 +107,6 @@
     var numberAppointment= [];
     var frequency = []
     var firstDay = '';
-    var k=1;
      for( i=0; i<appointments.length ; i++){
         if( appointments[i].createdAt.toString().split("T")[0] 
         != firstDay){
@@ -128,7 +123,7 @@
             data: frequency
         }],
           chart: {
-          height: 350,
+          height: 250,
           type: 'line',
           zoom: {
             enabled: false
