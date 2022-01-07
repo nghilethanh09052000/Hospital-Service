@@ -1,0 +1,92 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/GioiThieuChung.css">
+<style>
+     .content-tag {
+         position: relative;
+         width: 60%;
+         background-color: white; 
+         display: grid; 
+         grid-template-columns: repeat(3,1fr);
+         grid-column-gap: 30px;
+         grid-row-gap: 30px;
+         left: 50%;
+         transform: translateX(-50%);
+         margin-top: 50px;
+         margin-bottom: 50px;
+    }
+
+    @media(max-width: 1200px){
+        .content-tag{
+            grid-template-columns: repeat(2,1fr);
+            width: 80%;
+        }
+    }
+
+    @media(max-width: 700px){
+        .content-tag{
+            width: 80%;
+            grid-template-columns: repeat(1,1fr);
+        }
+    }
+</style>
+<body>
+   <%- include("./partials/nav.ejs") %>
+
+   
+   <div class = "content-tag">
+
+
+    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
+        <br />
+        <p style="margin: 10px;">MSSV:</p>
+        <br />
+        <p style="margin:10px">Họ tên:</p>
+    </div>
+
+    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
+        <br />
+        <p style="margin: 10px;">MSSV:</p>
+        <br />
+        <p style="margin:10px">Họ tên:</p>
+    </div>
+
+    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
+        <br />
+        <p style="margin: 10px;">MSSV:</p>
+        <br />
+        <p style="margin:10px">Họ tên:</p>
+    </div>
+
+    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
+        <br />
+        <p style="margin: 10px;">MSSV:</p>
+        <br />
+        <p style="margin:10px">Họ tên:</p>
+    </div>
+    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
+        <br />
+        <p style="margin: 10px;">MSSV:</p>
+        <br />
+        <p style="margin:10px">Họ tên:</p>
+    </div>
+    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
+        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
+        <br />
+        <p style="margin: 10px;">MSSV:</p>
+        <br />
+        <p style="margin:10px">Họ tên:</p>
+    </div>
+
+
+</div> 
+
+
+<%- include("./partials/footer.ejs") %>
+
+</body>
+</html>
