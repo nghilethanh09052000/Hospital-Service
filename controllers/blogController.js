@@ -65,6 +65,10 @@ const benhvaynen_get =(req,res)=>{
     res.render('benhvaynen',{title:'thông tin'});
 }
 
+const aboutus_get = (req,res)=>{
+    res.render('aboutus', {title:'Đội ngũ bác sĩ'});
+}
+
 
 
 
@@ -964,7 +968,12 @@ const backadviceMail = async (email) =>{
 module.exports = {
     GioiThieuChung_get,
     benhveda_get,
+<<<<<<< HEAD
     benhvaynen_get,
+=======
+    aboutus_get,
+
+>>>>>>> d2a1b15f794701c08878a4798a274271d88d7dd0
 
 
     login_get,
