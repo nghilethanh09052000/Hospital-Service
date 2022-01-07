@@ -29,7 +29,7 @@ const upload = multer({
 
 router.get('/GioiThieuChung',blogController.GioiThieuChung_get);
 router.get('/benhveda', blogController.benhveda_get);
-
+router.get('/aboutus', blogController.aboutus_get);
 
 
 
