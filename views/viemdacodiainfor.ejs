@@ -1,0 +1,148 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/Benhveda.css">
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    .custom_a {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        border: 0;
+        border-bottom: 1px solid #808080;
+    }
+
+    a:hover {
+        color: forestgreen;
+    }
+
+    .custom_a:before {
+        content: ">";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 700;
+        position: absolute;
+        top: -2px;
+        right: 0;
+        z-index: 1;
+        color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .custom_a:after {
+        content: "";
+        position: absolute;
+        height: 25px;
+        width: 2px;
+        top: -3px;
+        left: 0;
+        z-index: 1;
+        font-size: 28px;
+        background-color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .content-tag {
+
+        float: left;
+        background-color: white; 
+        display: grid; 
+        grid-template-columns: repeat(2,1fr); 
+        grid-column-gap: 30px; 
+        grid-row-gap: 30px;
+        width: 100%;
+    }
+
+    @media(max-width: 700px) {
+        .main_content_div {
+            flex-direction: column;
+        }
+        .content-tag {
+            display: block;
+        }
+        .left_div_in_main_content_div {
+            width: 80%;
+            left: 10%
+        }
+        .right_div_in_main_content_div {
+            width: 80%;
+            left: 10%;
+        }
+
+    }
+</style>
+</head>
+<body>
+   <%- include("./partials/nav.ejs") %>
+   <div class="main_content_div">
+    <div class="left_div_in_main_content_div">
+ 
+    <div >
+        <h1>Viêm da cơ địa: Những điều cần biết</h1>
+        <br>
+        <p><b>Viêm da cơ địa là một chứng viêm da, ngứa mãn tính. Bệnh lý này có thể đi kèm với các bệnh cơ địa khác như hen suyễn, sốt cỏ khô hay viêm mũi dị ứng... 
+            Các triệu chứng của viêm da cơ địa thường khởi phát rất sớm, ngay từ tuổi sơ sinh, có thể tiếp tục đến lúc trưởng thành hoặc cũng có thể xuất hiện bất cứ thời điểm nào trong đời.</b></p>
+        <br>
+             <h3>Làm thế nào để nhận biết viêm da cơ địa?</h3>
+        <br>
+            <p>Viêm da cơ địa có thể ảnh hưởng đến bất kỳ vùng da nào nhưng thường gặp là vùng bàn tay và các nếp gấp (gấp khoeo chân, gấp khuỷu tay...). Các triệu chứng rầm rộ từng đợt rồi thuyên giảm và sau một thời gian sẽ lặp lại. 
+                Chính vì vậy, bệnh lý này ảnh hưởng rất nhiều đến chất lượng cuộc sống, làm người bệnh mệt mỏi và khó chịu.</p>
+            <br>
+                <p>Viêm da cơ địa thường tiến triển thành từng đợt, trong đợt cấp tính, người bệnh thấy một vùng da nổi mẩn đỏ và ngứa. Mức độ ngứa đôi khi rất nghiêm trọng, 
+                đặc biệt là vào ban đêm khiến người bệnh mất ngủ. Khi bệnh lui dần, vùng da sẽ chuyển sang màu nâu, xám, hoặc để lại các mảng dày da do chà xát nhiều.</p>
+                            
+           
+            <p>Do ngứa nhiều người bệnh phải gãi, vùng da bệnh rất dễ bị trầy xước, có thể bị nhiễm trùng, tổn thương sẽ sưng viêm, tiết mủ đục, có mùi hôi. 
+                Tình trạng ngứa mạn tính và việc chà xát kéo dài sẽ khiến da dày lên. Đặc điểm da của người bệnh viêm da cơ địa thường khô, nứt nẻ.</p>
+            <br>
+            <h3>Nguyên nhân gì gây viêm da cơ địa?</h3>
+            <br>
+           <p>Viêm da cơ địa là một bệnh dị ứng, miễn dịch có tính gia đình. Nguyên nhân chính xác của viêm da cơ địa cho đến nay vẫn chưa thật rõ ràng. 
+               Một số giả thiết cho rằng do da quá khô và dễ bị kích thích, đồng thời, những rối loạn trong hệ thống miễn dịch bẩm sinh cũng có thể gây nổi mẩn ngứa trên da. 
+               Theo đó, tình trạng này có thể khởi phát sớm từ tuổi sơ sinh cũng như sẽ gặp nhiều trong gia đình có các thành viên có bệnh hen suyễn, viêm mũi dị ứng...</p>
+            <br>
+               <p>Một số yếu tố khác được cho là làm tình trạng viêm da dễ khởi phát hơn hay làm những triệu chứng nặng nề hơn như tắm nước nóng hoặc tắm quá lâu, 
+                thay đổi xà phòng, thay đổi nhiệt độ, bài tiết mồ hôi, môi trường có độ ẩm thấp, mặc quần áo lông cừu hoặc vải nhân tạo, len dạ, , 
+                tiếp xúc bụi bặm, lông động vật, khói thuốc lá hay ăn một số loại thực phẩm dễ bị dị ứng như trứng, sữa, cá, đậu nành hay lúa mì... 
+                Nói chung, để tìm kiếm nguyên nhân đôi khi cần phải thực hiện các xét nghiệm rất chuyên sâu nhưng cũng không phải lúc nào cũng xác định được. 
+                Do đó, người bệnh thường được khuyến cáo nên tránh các yếu tố dễ gây kích thích như đã liệt kê, nhằm hạn chế khả năng khởi phát bệnh.
+
+            </p>
+            <br>
+            <h3>Viêm da cơ địa có nguy hiểm không?</h3>
+            <br>
+            <p>Do viêm da cơ địa biểu hiện thành từng đợt sau đó tự thuyên giảm, với thể nhẹ đa số không gây ra biến chứng nguy hiểm. 
+                Tuy nhiên, nếu người bệnh bị ngứa và phải gãi nhiều, móng tay dài, nhọn và kém vệ sinh có thể gây nhiễm trùng da. Cấu trúc vùng da bị phá vỡ, lở loét và vết nứt da bị lây nhiễm bởi chủng vi sinh vật thường trú trên da hay cả vi khuẩn ngoại lai. 
+                Do đó, khi vết thương trên da lành lặn trở lại có thể để lại sẹo xấu, gây mất thẩm mỹ.</p>
+             <br>
+             <p>Trường hợp bị bội nhiễm thêm virus gây hội chứng Kaposi-juliusberg (hay eczema herpeticum) khá nặng nề, biểu hiện có sốt, mệt mỏi, mụn nước trên da, tổn thương nội tạng... 
+                 tỉ lệ tử vong từ 1-9%.</p>  
+            <br>
+            <p>Ngoài ra, do bệnh lý mạn tính kéo dài nhiều năm, nếu điều trị sai, lạm dụng các thuốc bôi hoặc uống có Corticoid có thể dẫn đến tình trạng đỏ da toàn thân. 
+                Toàn thân người bệnh đỏ, có thể có những đợt sốt, rét run, ngứa thường xuyên...</p>
+            <p>Viêm da cơ địa ở vùng da xung quanh mắt làm cho người bệnh khó chịu, ngứa, da quanh mắt thâm do gãi thường xuyên ảnh hưởng đến thẩm mĩ. Do gãi nhiều gây các vết xước trên da có thể nhiễm trùng . 
+                Các biến chứng mắt bao gồm chảy nước mắt liên tục, viêm mí mắt và viêm kết mạc. Nếu nghi ngờ biến chứng mắt, cần đến khám bác sĩ càng sớm càng tốt.</p>
+           
+    </div> 
+
+</div>
+
+
+    <div class="right_div_in_main_content_div">
+        <div style="position: relative; width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%); top:0; left:0;">
+            <ul class="toolbar">
+                <li class="toolbar-item"><a href="/benhvaynen" class="sub-toolbar-item">Bệnh vẩy nến</a></li>
+                <li class="toolbar-item"><a href="/benhcham" class="sub-toolbar-item">Bệnh chàm</a></li>
+                <li class="toolbar-item"><a href="/viemdacodia" class="sub-toolbar-item">Viêm da cơ địa</a></li>
+               
+            </ul>
+        </div>
+    </div>
+</div>
+<%- include("./partials/footer.ejs") %>
+</body>
+</html>

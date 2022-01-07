@@ -1,0 +1,148 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/Benhveda.css">
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    .custom_a {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        border: 0;
+        border-bottom: 1px solid #808080;
+    }
+
+    a:hover {
+        color: forestgreen;
+    }
+
+    .custom_a:before {
+        content: ">";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 700;
+        position: absolute;
+        top: -2px;
+        right: 0;
+        z-index: 1;
+        color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .custom_a:after {
+        content: "";
+        position: absolute;
+        height: 25px;
+        width: 2px;
+        top: -3px;
+        left: 0;
+        z-index: 1;
+        font-size: 28px;
+        background-color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .content-tag {
+
+        float: left;
+        background-color: white; 
+        display: grid; 
+        grid-template-columns: repeat(2,1fr); 
+        grid-column-gap: 30px; 
+        grid-row-gap: 30px;
+        width: 100%;
+    }
+
+    @media(max-width: 700px) {
+        .main_content_div {
+            flex-direction: column;
+        }
+        .content-tag {
+            display: block;
+        }
+        .left_div_in_main_content_div {
+            width: 80%;
+            left: 10%
+        }
+        .right_div_in_main_content_div {
+            width: 80%;
+            left: 10%;
+        }
+
+    }
+</style>
+</head>
+<body>
+   <%- include("./partials/nav.ejs") %>
+   <div class="main_content_div">
+    <div class="left_div_in_main_content_div">
+ 
+    <div >
+        <h1>Bệnh vẩy nến là gì? Nguyên nhân và cách khắc phục?</h1>
+        <br>
+        <p><b>Vảy nến là một bệnh da mạn tính rất thường gặp. 
+            Bệnh không thể chữa khỏi hoàn toàn song có thể điều trị để kiểm soát biểu hiện bệnh.
+             Chế độ ăn uống và sinh hoạt đóng một vai trò quan trọng trong kiểm soát và quản lý bệnh vảy nến.</b></p>
+        <br>
+             <p><b>Bệnh vẩy nến là gì?</b></p>
+        <br>
+            <p>Bệnh vảy nến (psoriasis) là một trong những bệnh da mạn tính rất thường gặp. Bệnh có thể xảy ra ở mọi lứa tuổi, 
+            trong đó có cả trẻ em. Đối với trẻ em, tuổi trung bình khởi phát bệnh là trong khoảng từ 7 đến 10 tuổi. Bệnh biểu hiện bởi những sẩn, mảng đỏ, bong vẩy trắng ở trên da.</p>
+
+            <p>Bệnh vảy nến là một bệnh mãn tính, không thể chữa khỏi hoàn toàn,nhưng có thể kiểm soát để bệnh ổn định và không bùng phát.</p>
+
+            <br>
+            <p><b>Nguyên nhân gây ra bệnh vẩy nến là gì?</b></p>
+            <br>
+            <p>Cho đến nay cơ chế bệnh sinh của bệnh vảy nến vẫn còn chưa được sáng tỏ hoàn toàn,
+                 tuy nhiên có thể cho rằng bệnh có liên quan đến yếu tố gene và rối loạn miễn dịch trong cơ thể. 
+                 Bệnh có xu hướng ditruyền trong gia đình, nhưng không phải người nào mắc bệnh này cũngđều có người thân của mình trong gia đình bị bệnh. Ngoài ra bệnh còn chịu tác động của các yếu tố từ bên ngoài làm khởi phát hoặc làm bệnh nặng thêm như: chấn thương, nhiễm trùng, stress, sử dụng một số thuốc đặc biệt các thuốc chứa thành phần corticoid.</p>
+    
+            <br>  
+            <p><b>Biểu hiện triệu chứng của bệnh vảy nến là gì</b></p>
+            <br>
+            <p>Bệnh có triệu chứng đặc trưng là xuất hiện các mảng đỏ trên da, bong vảy khô, màu trắng hoặc đục, có thể xuất hiện ở bất kỳ vị trí nào, nhưng thường gặp ở trên thân mình, tay chân, da đầu,… những vùng da thường xuyên bị cọ sát. Ở trẻ em, cũng thường gặp vảy nến thể
+                 giọt với biểu hiện trên da là các sẩn đỏ hình giọt nước rải rác, 
+                 thường xuất hiện sau một bệnh nhiễm trùng mũi họng hoặc có thể sau tiêm vaccine.</p>
+            <br>
+            <p><b>Làm cách nào để điều trị bệnh vảy nến?</b></p>
+            <br>
+            <p>Ngoài các biểu hiện trên da, bệnh vảy nến có thể biểu hiện sưng và đaukhớp (viêm khớp), nhưng ít phổ biến ở trẻ em hơn ở người lớn, và biểu hiện ở móng như dày sừng dưới móng, tách móng, vàng móng, móng xù xì, rỗ móng…</p>
+    
+
+            <p>Vảy nến là một bệnh mạn tính, đến nay chưa có phương pháp giúp điều trị khỏi hoàn toàn, nhưng bệnh có thể kiểm soát được.Mục tiêu chính của các phương pháp điều trị là kiểm soát tình trạng bệnh, ngăn ngừa và hạn chế tối đa các biến chứng của bệnh. Có rất nhiều phương pháp điều trị bệnh vẩy nến. Lựa chọn phương pháp điều trị bệnh cần phải cân nhắc về tuổi, thể bệnh, vị trí thương tổn, diện tích da bị bệnh, các phương pháp và các thuốc đã sử dụng.</p>
+    
+
+            <p>Thuốc bôi tại chỗ chứa thành phần corticosteroid, retinoid, acid salicylic, dẫn xuất vitamin D3, ức chế calcineurin thường được sử dụng cho các trường hợp bệnh nhẹ hoặc trung bình, có thể được kết hợp với các phương pháp khác để tăng hiệu quả điều trị.</p>
+
+
+            <p>Trường hợp vảy nến nặng hơn (những tổn thương nghiêm trọng hoặc nhiều tổn thương), có thể cân nhắc điều trị bằng các thuốc đường toàn thân như methotrexate, cyclosporine, vitamin A acid hay các thuốc sinh học. Trong một số trường hợp, quang trị liệu (sử dụng tia UVA, UVB, laser) cũng được áp dụng điều trị hiệu quả bệnh vảy nến.</p>
+
+            <br>
+            <p><p><b>Chế độ ăn uống, sinh hoạt dành cho bệnh nhân vảy nến</b></p></p>
+            <br>    
+            <p>Ngoài việc tuân thủ điều trị theo chỉ dẫn của bác sĩ, chế độ ăn uống và sinh hoạt đóng vai trò rất quan trọng đối với người bệnh vảy nến. Người bệnh vảy nến cần thực hiện chế độ ăn lành mạnh, cân bằng và đầy đủ dưỡng chất, trong đó nên bổ sung thực phẩm giàu chất chống oxy hóa, axit béo omega-3, kẽm, acid folic, beta caroten,…  hạn chế các thực phẩm nhiều tinh bột và đường, món ăn chiên xào nhiều dầu mỡ, nội tạng động vật, các thức ăn chế biến sẵn, thực phẩm đóng hộp</p>
+
+    </div> 
+
+</div>
+
+
+    <div class="right_div_in_main_content_div">
+        <div style="position: relative; width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%); top:0; left:0;">
+            <ul class="toolbar">
+                <li class="toolbar-item"><a href="/benhvaynen" class="sub-toolbar-item">Bệnh vẩy nến</a></li>
+                <li class="toolbar-item"><a href="/benhvaynen" class="sub-toolbar-item">Bệnh chàm</a></li>
+                <li class="toolbar-item"><a href="/benhvaynen" class="sub-toolbar-item">Viêm da cơ địa</a></li>
+               
+            </ul>
+        </div>
+    </div>
+</div>
+<%- include("./partials/footer.ejs") %>
+</body>
+</html>
