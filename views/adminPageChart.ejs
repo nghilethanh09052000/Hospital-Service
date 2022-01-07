@@ -160,6 +160,7 @@ for(i=0; i < doctors.length ; i++  ){
 }
 var doctorArray = [];
 var specializationArray = []
+// Đếm chuyên khoa có bao nhiêu bác sĩ bỏ vô mảng + lấy giá trị unique của id bỏ vô mảng: 
 for(i=0; i < doctors.length ; i++  ){
   dem = 1;
   for( j= i+1; j < doctors.length;j++){
@@ -174,11 +175,11 @@ for(i=0; i < doctors.length ; i++  ){
     
   }
 }
+// So sánh mảng chứa unique của id & mảng chứa dict có key: ._id => cho vào mảng mới theo mảng chứa unique của id 
 var array = []
 for (i=0 ;i< specializationArray.length;i++){
   for (j=0;j<newSpecializations.length;j++){
     if(specializationArray[i] == newSpecializations[j]._id ){
-
       array.push('Bác sĩ'+'\n'+ newSpecializations[j].specializations)
       break
     }
@@ -323,11 +324,11 @@ var firstDay1 = '';
         }
         firstDay1=comAppointments[i].createdAt.toString().split("T")[0];
        }
+
 var revenue = []
 for(i=0;i<frequency1.length;i++){
   revenue.push(frequency1[i]*500000)
 }
-console.log(revenue)
 var options4 = {
           series: [{
           name: 'Doanh thu',
@@ -355,7 +356,7 @@ var options4 = {
           }
         },
         title: {
-          text: 'Doanh thu từ đơn đã khám',
+          text: 'Doanh thu từ đơn khám bệnh'+ "\n" +comAppointments.length*500000,
           align: 'left',
           style: {
             fontSize: "16px",

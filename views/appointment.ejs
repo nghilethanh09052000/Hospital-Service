@@ -1,34 +1,46 @@
 <%- include("./partials/head.ejs") %>
-<link rel="stylesheet" href="/css/Appointment.css">
+<link rel="stylesheet" href="/css/appointmentSpecial.css">
 <body>
    <%- include("./partials/nav.ejs") %>
    
    <div class="section">
       <%- include("./partials/sidenav.ejs") %>
-      <main>
-         <table>
-            <thead>
-               <tr>
-                  <th>Chọn chuyên khoa</th>
-                  <th>Giá khám bệnh</th>
-          
-               </tr>
-            </thead>
-            <tbody>
-               <% if(specializations.length>0){ %>
-                  <% specializations.forEach(specialization=> { %>
-               <tr>
-                  <td> <a href="appointmentSpecial/<%= specialization._id %>"><%= specialization.specializations %></a>  </td>
-                  <td > <a><%= specialization.price%> VND </a></td>
 
-               </tr>
-               <% }) %>
-               <% }else{%>
-                 <p>Không có chuyên khoa nào...</p>
-                 <% } %>
-            </tbody>
-         </table>
-      </main>
+      <main>
+         <% if(specializations.length>0){ %>
+            <% specializations.forEach(specialization=> { %>
+      <div class="wrapper">
+         <div class="left">
+             <h2> <%= specialization.specializations %>  </h2>
+          </div>
+         <div class="right">
+             <div class="info">
+                 <h3>Thông tin</h3>
+                 <div class="info_data">
+                      <div class="data">
+                         <h5>Giá khám bệnh: <%= specialization.price %> VND </h5>
+                        </div>
+                     </div>
+             </div>
+             <div class="social_media">
+                 <ul style="list-style: none;">
+                   <a class='button' href="appointmentSpecial/<%= specialization._id %>">
+                    Chọn
+                  </a>
+                  </ul>
+               </div>
+         </div>
+     </div>
+     <% }) %>
+     <% }else{%>
+       <p>Chưa có chuyên khoa</p>
+       <% } %>
+ </div>
+ 
+ </main>
+
+      </div>
+
    
 
  

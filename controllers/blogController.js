@@ -592,19 +592,12 @@ const doctorPageCreateSchedule_post =async (req,res) =>{
 }
 //-------------------------------- Admin ---------------------------------------
 const adminPageChart_get= async (req,res)=>{
-  
-
     const specializationsName = await Specialization.find();
     const doctors = await User.find({role:'doctor'});
     const patients = await User.find({role:'patient'});
     const appointments = await Appointment.find();
     const comAppointments = await Appointment.find({status:'Đã khám'})
-
-
-
-    
     res.render('adminPageChart',{
-
         specializationsName:specializationsName,
         doctors:doctors,
         patients:patients,
