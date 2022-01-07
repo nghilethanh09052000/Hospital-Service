@@ -597,9 +597,9 @@ const adminPageChart_get= async (req,res)=>{
     const specializationsName = await Specialization.find();
     const doctors = await User.find({role:'doctor'});
     const patients = await User.find({role:'patient'});
-    
+    const appointments = await Appointment.find();
     const comAppointments = await Appointment.find({status:'Đã khám'})
-    const canAppointments = await Appointment.find({status:'Hủy bỏ'})
+
 
 
     
@@ -608,8 +608,8 @@ const adminPageChart_get= async (req,res)=>{
         specializationsName:specializationsName,
         doctors:doctors,
         patients:patients,
-        comAppointments:comAppointments,
-        canAppointments:canAppointments,
+        appointments:appointments,
+        comAppointments: comAppointments,
     
    title:'Biểu đồ' })
 }

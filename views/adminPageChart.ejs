@@ -184,7 +184,6 @@ for (i=0 ;i< specializationArray.length;i++){
     }
   }
 }
-console.log(doctorArray)
 var options2 = {
           series: doctorArray,
           chart: {
@@ -211,14 +210,25 @@ chart2.render();
 
 
     //----------------------------------Chart 3--------------------- 
-    const comAppointments =  <%- JSON.stringify( comAppointments) %> ;
-    const canAppointments =  <%- JSON.stringify( canAppointments) %> ;
-    console.log(comAppointments.length)
-    console.log( canAppointments.length)
+   const appointments =  <%- JSON.stringify(appointments) %> ;
+   var appointmentArray = [];
+    var appointmentName = [];
+    var a=0,b=0,c='',d='';
+    Array.from(appointments).forEach((appointment)=>{
+      if(appointment.status=="Đã khám"){
+        a++;
+        c=appointment.status;
+      }else if(appointment.status=="Hủy bỏ"){
+        b++;
+        d=appointment.status
+      }
+    })
+   appointmentArray.push(a,b)
+   appointmentName.push(c,d)
     var options3 = {
           series: [{
           name: 'Đơn hẹn bệnh nhân',
-          data: [comAppointments.length, canAppointments.length]
+          data: appointmentArray
         }],
           chart: {
           height: 350,
@@ -235,7 +245,7 @@ chart2.render();
         dataLabels: {
           enabled: true,
           formatter: function (val) {
-            return val + "\nĐơn";
+            return val + "\n"+"Đơn";
           },
           offsetY: 20,
           style: {
@@ -245,7 +255,7 @@ chart2.render();
         },
         
         xaxis: {
-          categories: ["Đơn đã khám", "Đơn hủy bỏ"],
+          categories: appointmentName,
           position: 'top',
           axisBorder: {
             show: false
@@ -279,7 +289,7 @@ chart2.render();
           labels: {
             show: false,
             formatter: function (val) {
-              return val + "Đơn";
+              return val +  "\nĐơn";
             }
           }
         
@@ -297,61 +307,77 @@ chart2.render();
        
         var chart3 = new ApexCharts(document.querySelector("#apex3"), options3);
         chart3.render();
-// -------------------------------------------------------------
-
-
-var numberAppointment= [];
-    var frequency = []
-    var firstDay = '';
+// --------------------------------Chart 4-----------------------------
+const comAppointments =  <%- JSON.stringify(comAppointments) %> ;
+var numbercomAppointments = [];
+var frequency1 = [];
+var firstDay1 = '';
      for( i=0; i<comAppointments.length ; i++){
+     
         if( comAppointments[i].createdAt.toString().split("T")[0] 
-        != firstDay){
-          frequency.push(1);
-          numberAppointment.push(comAppointments[i].createdAt.toString().split("T")[0])
+        != firstDay1){
+          frequency1.push(1);
+          numbercomAppointments.push(comAppointments[i].createdAt.toString().split("T")[0])
         }else{
-          frequency[frequency.length-1]++
+          frequency1[frequency1.length-1]++
         }
-        firstDay=comAppointments[i].createdAt.toString().split("T")[0];
+        firstDay1=comAppointments[i].createdAt.toString().split("T")[0];
        }
+var revenue = []
+for(i=0;i<frequency1.length;i++){
+  revenue.push(frequency1[i]*500000)
+}
+console.log(revenue)
 var options4 = {
           series: [{
-          name: 'Website Blog',
-          type: 'column',
-          data: frequency
-        }, {
-          name: 'Social Media',
-          type: 'line',
-          data: frequency
+          name: 'Doanh thu',
+          data: revenue
         }],
           chart: {
           height: 350,
           type: 'line',
         },
+        forecastDataPoints: {
+          count: 7
+        },
         stroke: {
-          width: [0, 4]
+          width: 5,
+          curve: 'smooth'
+        },
+        xaxis: {
+          type: 'datetime',
+          categories: numbercomAppointments,
+          tickAmount: 5,
+          labels: {
+            formatter: function(value, timestamp, opts) {
+              return opts.dateFormatter(new Date(timestamp), 'dd MMM')
+            }
+          }
         },
         title: {
-          text: 'Traffic Sources'
-        },
-        dataLabels: {
-          enabled: true,
-          enabledOnSeries: [1]
-        },
-        labels:numberAppointment,
-        xaxis: {
-          type: 'datetime'
-        },
-        yaxis: [{
-          title: {
-            text: 'Website Blog',
-          },
-        
-        }, {
-          opposite: true,
-          title: {
-            text: 'Social Media'
+          text: 'Doanh thu từ đơn đã khám',
+          align: 'left',
+          style: {
+            fontSize: "16px",
+            color: '#666'
           }
-        }]
+        },
+        fill: {
+          type: 'gradient',
+          gradient: {
+            shade: 'dark',
+            gradientToColors: [ '#FDD835'],
+            shadeIntensity: 1,
+            type: 'horizontal',
+            opacityFrom: 1,
+            opacityTo: 1,
+            stops: [0, 100, 100, 100]
+          },
+        },
+        yaxis: {
+          min: 0,
+          max: 10000000
+        }
         };
 
 var chart4 = new ApexCharts(document.querySelector("#apex4"), options4);
