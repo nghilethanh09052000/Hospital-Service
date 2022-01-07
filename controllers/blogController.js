@@ -61,6 +61,9 @@ const GioiThieuChung_get = (req,res)=>{
 const benhveda_get =(req,res)=>{
     res.render('benhveda',{title:'Bệnh về da'});
 }
+const benhvaynen_get =(req,res)=>{
+    res.render('benhvaynen',{title:'thông tin'});
+}
 
 
 
@@ -961,7 +964,7 @@ const backadviceMail = async (email) =>{
 module.exports = {
     GioiThieuChung_get,
     benhveda_get,
-
+    benhvaynen_get,
 
 
     login_get,
