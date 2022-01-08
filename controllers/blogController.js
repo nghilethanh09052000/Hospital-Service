@@ -86,14 +86,6 @@ const viemdacodiainfor_get =(req,res)=>{
     res.render('viemdacodiainfor',{title:'thông tin'});
 }
 
-
-const aboutus_get = (req,res)=>{
-    res.render('aboutus', {title:'Đội ngũ bác sĩ'});
-}
-
-
-
-
 const register_get=(req,res)=>{
     res.render('register',{title:'Đăng ký'});
 }
