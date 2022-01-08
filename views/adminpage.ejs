@@ -10,7 +10,7 @@
 
         <div class="main__title">
           <div class="main__greeting">
-            <h1>Hello Admin</h1>
+            <h1>Hello Admin <%=user.email %></h1>
             <p>Welcome to your admin dashboard</p>
           </div>
         </div>
@@ -75,7 +75,7 @@
             <div class="charts__right__cards">
               <div class="card1">
                 <h2>Nhà sáng lập</h2>
-                <p>1</p>
+                <p> <%=admins.length %> </p>
               </div>
 
               <div class="card2">

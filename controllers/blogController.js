@@ -65,8 +65,10 @@ const benhvaynen_get =(req,res)=>{
     res.render('benhvaynen',{title:'thông tin'});
 }
 
-const aboutus_get = (req,res)=>{
-    res.render('aboutus', {title:'Đội ngũ bác sĩ'});
+const aboutus_get = async (req,res)=>{
+    const admins = await User.find({role:'admin'});
+    res.render('aboutus', {admins:admins,
+        title:'Đội ngũ bác sĩ'});
 }
 
 
@@ -876,35 +878,6 @@ const adminPageDoctorAccountInfo_get = async (req,res)=>{
       title:'Thông tin Bác Sĩ'})
 
 
-}
-
-// Send Otp with nodemailer:
-const mailer = async ( email, code) =>{
-    let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port:465,
-        secure:true,
-        auth:{
-            user:'thanhnghi591@gmail.com',
-            pass:'abcABC@123456'
-        }
-    });
-    let mailOptions = await transporter.sendMail({
-        from: 'thanhnghi591@gmail.com', // sender address
-        to:  email, // list of receivers
-        subject: "Hello, this is your Otp code ", // Subject line
-        text: "YOUR OTP CODE IS: "+ code // plain text body
-       // html: code, // html body
-      });
-
-      transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          res.status(200).send(setting.status("User created Successfully, Please Check your Mail"))
-        }
-      });
-      
 }
 
 // Send adviceMail: 
