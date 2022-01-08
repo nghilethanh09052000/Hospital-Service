@@ -740,6 +740,20 @@ const adminPageDoctorAccountDetails_put = async (req,res)=>{
 
 
 
+const adminPageAdminAccount_get =async (req,res)=>{
+    res.render('adminupdate',{title:'Cập nhật thông tin'});
+}
+
+const adminPageAdminAccount_put =async (req,res)=>{
+    const {name,country,facebook,user_id} = req.body; 
+    User.findByIdAndUpdate( user_id , {name,country,facebook })
+    .then(result=>{
+        res.json( { redirect:'/adminPageAdminAccount'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
 
 
 const adminPageCreateSpecialization_get = (req,res)=>{
@@ -1010,13 +1024,14 @@ module.exports = {
     adminPageUserAccountDetails_put,
     adminPageUserAccount_delete,
     adminPageDoctorAccount_get,
-    
+    adminPageAdminAccount_put,
+
     adminPageDoctorAccountDetail_get,
     adminPageDoctorAccountDetail_put,
     adminPageDoctorAccountDetails_get,
     adminPageDoctorAccountDetails_put,
-
     adminPageDoctorAccount_delete,
+    adminPageAdminAccount_get,
     adminPageSpecialization_get,
     adminPageSpecialization_delete,
     adminPageSpecializationDetails_get,
