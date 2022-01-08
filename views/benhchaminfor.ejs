@@ -1,0 +1,181 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/Benhveda.css">
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    .custom_a {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        border: 0;
+        border-bottom: 1px solid #808080;
+    }
+
+    a:hover {
+        color: forestgreen;
+    }
+
+    .custom_a:before {
+        content: ">";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 700;
+        position: absolute;
+        top: -2px;
+        right: 0;
+        z-index: 1;
+        color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .custom_a:after {
+        content: "";
+        position: absolute;
+        height: 25px;
+        width: 2px;
+        top: -3px;
+        left: 0;
+        z-index: 1;
+        font-size: 28px;
+        background-color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .content-tag {
+
+        float: left;
+        background-color: white; 
+        display: grid; 
+        grid-template-columns: repeat(2,1fr); 
+        grid-column-gap: 30px; 
+        grid-row-gap: 30px;
+        width: 100%;
+    }
+
+    @media(max-width: 700px) {
+        .main_content_div {
+            flex-direction: column;
+        }
+        .content-tag {
+            display: block;
+        }
+        .left_div_in_main_content_div {
+            width: 80%;
+            left: 10%
+        }
+        .right_div_in_main_content_div {
+            width: 80%;
+            left: 10%;
+        }
+
+    }
+</style>
+</head>
+<body>
+   <%- include("./partials/nav.ejs") %>
+   <div class="main_content_div">
+    <div class="left_div_in_main_content_div">
+ 
+    <div >
+        <h1>Bệnh chàm (Eczema) là gì? Các nguyên nhân gây bệnh</h1>
+        <br>
+        <p><b>Rất nhiều người thắc mắc bệnh chàm là gì mà nhiều người phải ám ảnh vì nó? Không chỉ khiến bề ngoài xuống sắc, triệu chứng bệnh chàm còn gây ngứa ngáy, rất khó chịu.
+             Bởi thế nên nhiều trường hợp mất tự tin, bó hẹp cuộc sống. 
+             Làm thế nào để ngừa nguyên nhân, điều trị sớm và tránh tái phát? Chi tiết kiến thức cần biết về bệnh Eczema sẽ được thông tin dưới đây.</b></p>
+        <br>
+             <h3>Bệnh chàm là bệnh gì?</h3>
+        <br>
+            <p>Bệnh chàm da có tên khoa học là Eczema, chỉ tình trạng viêm da cấp hoặc mãn tính. Trong đó đặc trưng của nó là những biểu hiện như da mẩn đỏ và ngứa kèm theo mụn li ti.
+                 Là bệnh ngoài da nhưng chàm hay tái phát nhiều lần và ảnh hưởng sâu đến lớp biểu bì dưới da.</p>
+            <p>Người ta hay bị chàm ở nhiều vị trí nhưng điển hình nhất là cánh tay, trên mặt hay vùng cổ. Bệnh làm bề mặt da trở nên sần sùi, không ưa nhìn và dễ gây phản cảm. 
+                Đó là lý do nhiều người bị tự ti, không hòa đồng sau khi phát hiện vết chàm.</p>
+                <p>Đáng chú ý, đây lại là căn bệnh có thể xuất hiện ở bất kỳ đối tượng nào. Trong đó nhiều hơn cả là những trường hợp:</p>
+           
+                <ul style="list-style-position: inside; ">
+                    <li>Trẻ sơ sinh.</li>
+                    <li>Trẻ em hiếu động hoặc ít vệ sinh chân tay.</li>
+                    <li>Chị em nội trợ.</li>
+                    <li>Công nhân làm việc nhiều với hóa chất độc hại.</li>
+                    <li>Người có cơ địa dễ bị kích ứng bởi các yếu tố ngoại sinh..</li>
+                    <li>Người bị ảnh hưởng bởi gen di truyền từ thế hệ trước…</li>
+                </ul>
+            <br>
+            <p>Mặc dù không gây nguy hiểm nhiều cho sức khỏe nhưng bệnh nhân cần sớm được điều trị. Đồng thời loại bỏ các tác nhân gây bệnh để phòng ngừa tái phát từ sớm. Nếu không xử lý triệt để từ đầu, 
+                bệnh phát triển nặng sẽ rất khó điều trị. Người bệnh có nhiều khả năng phải chung sống cùng Eczema.</p>
+            <br>
+            <h3>Nguyên nhân bị chàm</h3>
+            <br>
+            <p><b>Nguyên nhân chung</b></p>
+            <p>Các nghiên cứu từ chuyên gia cho biết có đến hơn 2000 yếu tố gây ra bệnh chàm. Nhưng có thể xếp chung vào các vấn đề cơ bản như sau:
+                <ul style="list-style-position: inside; ">
+                    <li>
+                       <b>Di truyền</b>: Mầm bệnh chàm tồn tại và di truyền vào gen. Vì vậy, người mẹ rất dễ truyền bệnh cho con cái họ sinh ra. 
+                        Trong đó nhiều người có biểu hiện từ lúc sơ sinh, cũng không ít trường hợp đến khi dậy thì hoặc trưởng thành hẳn mới phát hiện ra.
+                    </li>
+                    <li>
+                        <b>Yếu tố dị nguyên</b>: Việc thường xuyên làm những công việc phải tiếp xúc với hóa chất hoặc sử dụng thuốc tây, mỹ phẩm độc hại… sẽ khiến cơ thể bị tác động xấu. 
+                        Nếu hệ miễn tốt thì có thể chỉ gây dị ứng bình thường, nhưng nếu sức đề kháng kém hoặc cơ địa nhạy cảm thì các biểu hiện của chàm sẽ xuất hiện.
+                    </li>
+                    <li>
+                        <b>Nhiễm vi sinh</b>: Người có cơ địa nhạy cảm lại gặp thời tiết nóng ẩm hoặc quá lạnh thì bề mặt da hay sần sùi lên. 
+                        Từ vị trí đó, vi sinh vật dễ trú ngụ, sinh sản và xâm lấn vào trong da, gây nên bệnh.
+                    </li>
+                    <li>
+                        <b>Thể trạng kém</b>: Hệ miễn dịch giống như lá chắn bảo vệ cơ thể khỏi sự tấn công của các yếu tố bên ngoài. 
+                        Khi nó yếu đi thì sức cản bị giới hạn, vi khuẩn cùng các tác nhân khác xâm nhập nhanh hơn và gây ra nhiều bệnh, trong đó có chàm da.
+                    </li>
+                    <li><b>Mắc bệnh mãn tính</b>: Những người bị hen phế quản hoặc viêm thận, bệnh xơ gan… dễ dẫn đến biến chứng chàm da. 
+                        Đối với trường hợp này, việc chữa khỏi bệnh lý nền quyết định phần lớn khả năng khỏi Eczema.
+                    </li>
+                </ul> 
+                <br>
+                <p><b>Nguyên nhân từng thể bệnh</b></p>
+                <p>Nếu xét theo thể bệnh thì mỗi dạng chàm da xuất hiện do một vài nhóm yếu tố đặc trưng quy định. Cụ thể như sau:
+                    <ul style="list-style-position: inside; ">
+                        <li>
+                           <b>Viêm da dị ứng:</b> Xảy ra do cơ thể không đủ khả năng chống lại chất kích ứng ngoài môi trường. 
+                           Hoặc cũng có khả năng là do gen di truyền quy định.
+                        </li>
+                        <li>
+                            <b>Chàm tiếp xúc</b>: Do thường xuyên dùng và bị nhiễm chất độc hại từ nước rửa bát, sữa tắm, mỹ phẩm hay nhiều sản phẩm khác được sản xuất công nghiệp. 
+                            Hoặc chịu tác động của ánh mặt trời, những hóa chất không dùng ngoài da.
+                        </li>
+                        <li>
+                            <b>Chàm tổ đỉa, chàm đồng tiền</b>: Nguyên nhân gây chàm tổ đỉa cũng giống với viêm da dị ứng, chủ yếu do nhiễm độc tố hóa học.
+                        </li>
+                        <li>
+                            <b>Chàm thể địa</b>: Đây là thể bệnh chịu tác động của gen, đồng thời phát sinh khi chịu ảnh hưởng của yếu tố ngoại sinh.
+                        </li>
+                        <li>
+                            <b>Chàm da đầu</b>: Do rối loạn trong tuyến bã nhờn làm nấm mén xuất hiện. Tác nhân sâu xa có thể do di truyền hoặc sử dụng dầu gội chứa chất kích ứng.
+                        </li>
+                        <li>
+                            <b>Chàm sữa</b>: Do đứa trẻ chứa sẵn một phần gen di truyền có bệnh, đồng thời khi sinh ra sức đề kháng lại yếu.
+                        </li>
+                    </ul> 
+               
+           
+    </div> 
+
+</div>
+
+
+    <div class="right_div_in_main_content_div">
+        <div style="position: relative; width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%); top:0; left:0;">
+            <ul class="toolbar">
+                <li class="toolbar-item"><a href="/benhvaynen" class="sub-toolbar-item">Bệnh vẩy nến</a></li>
+                <li class="toolbar-item"><a href="/benhvaynen" class="sub-toolbar-item">Bệnh chàm</a></li>
+                <li class="toolbar-item"><a href="/benhvaynen" class="sub-toolbar-item">Viêm da cơ địa</a></li>
+               
+            </ul>
+        </div>
+    </div>
+</div>
+<%- include("./partials/footer.ejs") %>
+</body>
+</html>

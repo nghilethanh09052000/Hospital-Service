@@ -70,6 +70,26 @@ const aboutus_get = async (req,res)=>{
     res.render('aboutus', {admins:admins,
         title:'Đội ngũ bác sĩ'});
 }
+const benhcham_get =(req,res)=>{
+    res.render('benhcham',{title:'thông tin'});
+}
+const viemdacodia_get =(req,res)=>{
+    res.render('viemdacodia',{title:'thông tin'});
+}
+const benhchaminfor_get =(req,res)=>{
+    res.render('benhchaminfor',{title:'thông tin'});
+}
+const benhvayneninfor_get =(req,res)=>{
+    res.render('benhvayneninfor',{title:'thông tin'});
+}
+const viemdacodiainfor_get =(req,res)=>{
+    res.render('viemdacodiainfor',{title:'thông tin'});
+}
+
+
+const aboutus_get = (req,res)=>{
+    res.render('aboutus', {title:'Đội ngũ bác sĩ'});
+}
 
 
 
@@ -943,7 +963,11 @@ module.exports = {
     benhveda_get,
     benhvaynen_get,
     aboutus_get,
-
+    benhcham_get,
+    viemdacodia_get,
+    benhvayneninfor_get,
+    benhchaminfor_get,
+    viemdacodiainfor_get,
 
 
     login_get,

@@ -30,6 +30,11 @@ const upload = multer({
 router.get('/GioiThieuChung',blogController.GioiThieuChung_get);
 router.get('/benhveda', blogController.benhveda_get);
 router.get('/benhvaynen', blogController.benhvaynen_get);
+router.get('/benhcham', blogController.benhcham_get);
+router.get('/viemdacodia', blogController.viemdacodia_get);
+router.get('/benhvayneninfor', blogController.benhvayneninfor_get);
+router.get('/benhchaminfor', blogController.benhchaminfor_get);
+router.get('/viemdacodiainfor', blogController.viemdacodiainfor_get);
 
 router.get('/aboutus', blogController.aboutus_get);
 
