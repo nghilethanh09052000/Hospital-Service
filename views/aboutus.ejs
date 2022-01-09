@@ -1,9 +1,14 @@
 <%- include("./partials/head.ejs") %>
 <link rel="stylesheet" href="/css/GioiThieuChung.css">
 <style>
-     .content-tag {
-         align-items: center;
+    .section{
+        align-items: center;
          justify-content: center;
+         text-align: center;
+         background: linear-gradient(#c6ffdd, #fbd786, #f7797d);
+    }
+     .content-tag {
+        
          width: 50%;
                   display: grid; 
          grid-template-columns: repeat(3,1fr);
@@ -13,7 +18,7 @@
         
     }
     .container4{
-  
+       
         box-shadow: 0 5px 25px rgb(0 0 0 /20%)
     }
     .container4:hover{
@@ -27,6 +32,31 @@
     }
     img{
         width: 100%;
+    }
+
+.container4:nth-child(1) p{
+        color: #F54291;
+        font-weight: 600;
+    }
+    .container4:nth-child(2) p{
+        color: #F54291;
+        font-weight: 600;
+    }
+    .container4:nth-child(3) p{
+        color: #F54291;
+        font-weight: 600;
+    }
+    .container4:nth-child(4) p{
+        color: #5ff8f8;
+        font-weight: 600;
+    }
+    .container4:nth-child(5) p{
+        color: #5ff8f8;
+        font-weight: 600;
+    }
+    .container4:nth-child(6) p{
+        color: #5ff8f8;
+        font-weight: 600;
     }
 
 
@@ -47,27 +77,27 @@
 <body>
    <%- include("./partials/nav.ejs") %>
 
-    <h2>Đội ngũ bác sĩ</h2>
-
    
-   <div class = "content-tag">
+<div class="section">
 
+  <h2 style="color:#ff0162b2 ;">Đội ngũ bác sĩ bệnh viện da liễu Sài Gòn</h2>
+   <div class = "content-tag">
+ 
     <% if(admins.length>0){ %>
         <% admins.forEach(admin=> { %>
-
     <div class="container4" >
    
     <img src="/HinhAnh/<%=admin.facebook%>" /> 
- 
-        <p style="margin: 10px;">MSSV: <%=admin.country%> </p>
-        <p style="margin:10px">Họ tên: <%=admin.name%></p>
+    <p style="margin:10px">Họ tên: <%=admin.name%></p>
+    <p style="margin: 10px;">MSSV: <%=admin.country%> </p>
+    
     </div>
 
     <% }) %>
     <% }%>
 </div> 
 
-
+</div>
 <%- include("./partials/footer.ejs") %>
 
 </body>

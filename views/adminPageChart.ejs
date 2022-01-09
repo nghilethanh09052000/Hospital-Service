@@ -4,28 +4,21 @@
    display: flex;
    width: 100%;
    background: #fff;
-}
-main{  
-	width: 90%;
-   /* margin: 10px 50px; */
-   margin-right: 50px;
-   padding: 20px 35px;
-   background-color: blanchedalmond;
-}
-.main_container{
-    display: inline-block;
-   width: 45%;
-  align-items: center;
-  margin-right: 30px ;
-  margin-bottom: 50px ;
 
 }
+.charts {
+  display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 5px;
+  margin:0 10px;
 
-.charts__left {
-	padding: 25px;
+}
+.charts__left{
+  padding: 25px;
 	border-radius: 5px;
 	background: #ffffff;
 	box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;
+	position: relative;
 }
 .charts__left__title {
 	display: flex;
@@ -37,6 +30,7 @@ main{
 	color: #2e4a66;
 	margin-bottom: 5px;
   }
+  
   .charts__left__title > div > p {
 	font-size: 14px;
 	font-weight: 700;
@@ -53,48 +47,54 @@ main{
 	border: 0px solid #000000;
 	padding: 15px;
   }
+  
+  @media only screen and (max-width: 1000px) {
 
+  .charts {
+	  grid-template-columns: 1fr;
+	  }
+
+  }
 </style>  
    <body>
       <%- include("./partials/nav.ejs") %>
 <div class="section">
    <%- include("./partials/sidebarAdminPage.ejs") %>
-   <main>
-  
-    <div class="main_container">
-        <div class="charts__left">
+  <div class="charts">
+          
+          <div class="charts__left">
             <div class="charts__left__title">
               <i class="fa fa-usd" aria-hidden="true"></i>
             </div>
             <div id="apex1"></div>
-        </div>
-    </div>
-    <div class="main_container">
-      <div class="charts__left">
-          <div class="charts__left__title">
-            <i class="fa fa-usd" aria-hidden="true"></i>
           </div>
-          <div id="apex2"></div>
-      </div>
-  </div>
-    <div class="main_container">
-        <div class="charts__left">
+          
+          <div class="charts__left">
+            <div class="charts__left__title">
+              <i class="fa fa-usd" aria-hidden="true"></i>
+            </div>
+            <div id="apex2"></div>
+          </div>
+          
+          <div class="charts__left">
             <div class="charts__left__title">
               <i class="fa fa-usd" aria-hidden="true"></i>
             </div>
             <div id="apex3"></div>
-        </div>
-    </div>
-    <div class="main_container">
-        <div class="charts__left">
+          </div>
+          
+          <div class="charts__left">
             <div class="charts__left__title">
               <i class="fa fa-usd" aria-hidden="true"></i>
             </div>
             <div id="apex4"></div>
-        </div>
-    </div>
+          </div>
 
-</main>
+   </div>
+        
+ 
+
+
    
 
 </div>
@@ -135,8 +135,8 @@ var options1 = {
           curve: 'straight'
         },
         title: {
-          text: 'Số người tạo tài khoản theo thời gian',
-          align: 'center'
+          text: 'Number of the created patient account',
+          align: 'left'
         },
         grid: {
           row: {
@@ -188,15 +188,15 @@ for (i=0 ;i< specializationArray.length;i++){
 var options2 = {
           series: doctorArray,
           chart: {
-          width: 450,
+          width: 500,
           type: 'pie',
         },
         labels: array,
         responsive: [{
-          breakpoint: 400,
+          breakpoint: 500,
           options: {
             chart: {
-              width: 400
+              width: 350
             },
             legend: {
               position: 'bottom',
@@ -356,7 +356,7 @@ var options4 = {
           }
         },
         title: {
-          text: 'Doanh thu từ đơn khám bệnh'+ "\n" +comAppointments.length*500000,
+          text: 'Revenue from completed appointment',
           align: 'left',
           style: {
             fontSize: "16px",
