@@ -1,42 +1,30 @@
 
 .section{
    display: flex;
-   width: 100%;
    background: #fff;
 }
 main{  
-	width: 90%;
-   /* margin: 10px 50px; */
-   margin-right: 50px;
-   padding: 20px 35px;
+   display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 50px;
+  margin:10px auto;
 
 }
 .wrapper{
-   display: inline-block;
-   width: 45%;
-  align-items: center;
-  margin-right: 30px ;
-  margin-bottom: 50px ;
+   align-items: center;
+   justify-content: center;
   box-shadow: 0 1px 20px 0 rgba(69,90,100,.08);
+  width:450px;
    }
    .wrapper .left{
       background: linear-gradient(to right,#01a9ac,#01dbdf);
       text-align: center;
       color: #edf0f5;
    }
-   .wrapper .left h4{
-   margin-bottom: 10px;
-   }
-   .wrapper .left p{
-   font-size: 12px;
-   }
-
    .wrapper .right{
-
-      background: #fff;
+   background: #fff;
    padding: 30px 25px;
-   border-top-right-radius: 5px;
-   border-bottom-right-radius: 5px;
+
    }
 
    .wrapper .right .info{
@@ -44,6 +32,7 @@ main{
    }
 
    .wrapper .right .info h3{
+
       margin-bottom: 15px;
       padding-bottom: 5px;
       border-bottom: 1px solid #e0e0e0;
@@ -57,9 +46,7 @@ main{
    justify-content: space-between;
    }
 
-   .wrapper .right .info_data .data{
-   width: 45%;
-   }
+   
 
    .wrapper .right .info_data .data h4{
       color: #353c4e;
@@ -72,15 +59,20 @@ main{
    color: #353c4e;
    }
 
+   .wrapper .social_media a{
+      text-decoration: none;
+   
+   }
+
    .wrapper .social_media ul{
    display: flex;
    }
 
    .wrapper .social_media ul li{
-   width: 45px;
+   width: 55px;
    height: 45px;
    background: linear-gradient(to right,#01a9ac,#01dbdf);
-   margin-right: 10px;
+   margin-right: 5px;
    border-radius: 5px;
    text-align: center;
    line-height: 45px;
@@ -88,7 +80,7 @@ main{
 
    .wrapper .social_media ul li a{
    color :#fff;
-   display: block;
+  
    font-size: 18px;
    }
 
@@ -118,6 +110,18 @@ main{
 	-o-transform: scale(1.03);
 	box-shadow: 10px 12px 15px rgba(0, 0, 0, .3);
    }
+
+   .wrapper .social_media ul .button{
+      width: 200px;
+    
+      background: linear-gradient(to right,#01a9ac,#01dbdf);
+      margin-left: 25px;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 45px;
+      font-weight: 600;
+      color: white;
+   }
    .wrapper .social_media ul .button:hover {
 	transform: scale(1.03);
 	-webkit-transform: scale(1.03);
@@ -125,4 +129,19 @@ main{
 	-ms-transform: scale(1.03);
 	-o-transform: scale(1.03);
 	box-shadow: 10px 12px 15px rgba(0, 0, 0, .3);
+}
+
+@media (max-width:1000px) {
+   main{
+      grid-template-columns: 1fr;
+   }
+
+}
+
+@media (max-width:600px) {
+   main{
+     margin-top: 50px
+   }
+
+
 }

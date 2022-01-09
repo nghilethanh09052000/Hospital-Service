@@ -49,12 +49,29 @@
   }
   
   @media only screen and (max-width: 1000px) {
+    .btn12{
+      display: none;
+    }
 
   .charts {
 	  grid-template-columns: 1fr;
+ 
 	  }
 
   }
+  @media only screen and (max-width: 450px) {
+
+.charts:before {
+  grid-template-columns: 1fr;
+  content: 'Biểu đồ không hỗ trợ thiết bị kích thước nhỏ ';
+  }
+  .charts__left{
+
+display: none;
+
+}
+
+}
 </style>  
    <body>
       <%- include("./partials/nav.ejs") %>

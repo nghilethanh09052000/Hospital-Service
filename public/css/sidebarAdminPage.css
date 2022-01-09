@@ -127,7 +127,7 @@ display: none;
   transform: translateY(-50%) rotate(-180deg);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1025px) {
   .btn12{
   display: block;
 }
@@ -135,7 +135,7 @@ display: none;
     right: 0%;
     position: absolute;
       animation: animateForSideBar 0.4s linear ;
-    z-index: 888;
+    z-index: 9999;
   }
   .sidebaradminPage{
   display: none;
@@ -147,14 +147,7 @@ display: none;
     display: block;
     width: 100%;
     left: 0px;
-    animation: animateForSideBar 0.4s linear ;
+   
 }
-@keyframes animateForSideBar
-{
-  0%
-  {
-    transform: translateX(-200px);
-  }
-  
-}
+
 }
