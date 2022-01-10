@@ -59,19 +59,6 @@
 	  }
 
   }
-  @media only screen and (max-width: 450px) {
-
-.charts:before {
-  grid-template-columns: 1fr;
-  content: 'Biểu đồ không hỗ trợ thiết bị kích thước nhỏ ';
-  }
-  .charts__left{
-
-display: none;
-
-}
-
-}
 </style>  
    <body>
       <%- include("./partials/nav.ejs") %>
@@ -145,6 +132,18 @@ var options1 = {
             enabled: false
           }
         },
+        responsive: [{
+    
+          options: {
+            chart: {
+              width: 300
+            },
+            legend: {
+              position: 'bottom',
+           
+            }
+          }
+        }],
         dataLabels: {
           enabled: false
         },
@@ -213,7 +212,7 @@ var options2 = {
           breakpoint: 500,
           options: {
             chart: {
-              width: 350
+              width: 300
             },
             legend: {
               position: 'bottom',
@@ -271,7 +270,18 @@ chart2.render();
             colors: ["#304758"]
           }
         },
-        
+        responsive: [{
+    
+    options: {
+      chart: {
+        width: 300
+      },
+      legend: {
+        position: 'bottom',
+     
+      }
+    }
+  }],
         xaxis: {
           categories: appointmentName,
           position: 'top',
@@ -371,7 +381,18 @@ var options4 = {
               return opts.dateFormatter(new Date(timestamp), 'dd MMM')
             }
           }
-        },
+        },  responsive: [{
+    
+    options: {
+      chart: {
+        width: 300
+      },
+      legend: {
+        position: 'bottom',
+     
+      }
+    }
+  }],
         title: {
           text: 'Revenue from completed appointment',
           align: 'left',

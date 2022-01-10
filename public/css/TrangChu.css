@@ -133,30 +133,12 @@ left: 0%;
     font-weight: bold;
     text-decoration: none;
   }
+
   .dotsbox{
   display: none;
     }
 }
 
-@media (max-width:1000px){
-  .myslide{
-    height: 300px;
-   }
-   .booking .btn{
-     font-size:10px;
-    text-transform: uppercase;
-
-    margin: 10px;
-    cursor: pointer;
-    transition: color 0.4s linear;
-    color: #F54291;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  .dotsbox{
-  display: none;
-    }
-}
 @media (max-width:300px){
   .myslide{
     height: 150px;
@@ -176,47 +158,40 @@ left: 0%;
   display: none;
     }
 }
-
-@media (max-width:1024px){
-  
-  .dotsbox{
-  display: none;
-    }
-}
 /*-------------------------------------------*/
                     /*Part 3*/
 .container{
   height:660px;
-  position: relative;
-  display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   background: #FFCBCB;
+  display:grid;
+  gap:60px;
+  grid-template-columns: auto auto auto auto ;
+position: relative;
 }
 .container h2{
-  margin: 10px;
-  position: absolute;
-  top: 0;
+  text-align: center;
+  top: 2%;
   left: 50%;
   transform: translateX(-50%);
+  position: absolute;
   color: #E11D74;
   font-weight: 600;
+
 }
 
 .container .card{
-   position: relative;
-   width: 300px;
-   padding: 50px;
-   margin: 50px;
-   /* backdrop-filter:blur(5px); */
+  width: 270px;
+  padding: 40px;
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
-  /*border-bottom: 1px solid rgba(255, 255, 255, 0.2);*/
   background: linear-gradient(#FAF2F2,#FFBCBC);
-
   border-radius: 10px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
 }
 
 .container .card::before{
@@ -229,17 +204,16 @@ left: 0%;
    border-right: 20px ;*/
 }
 
-.container .card.active::before{
-    border-top: 20px solid #ff3b7e;
-   border-right: 20px solid #ff3b7e;
-}
 .container .card .icon{
-  margin-bottom: 10px;
-   padding-left: 45px;
+  position: relative;
+
 }
 
 .container .card .icon img{
-   max-width: 90px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90px;
 
 }
 .container .card .content{
@@ -248,8 +222,6 @@ left: 0%;
    overflow: hidden;
 }
 
-
-
 .container .card .content::before{
    content: '';
    position: absolute;
@@ -257,10 +229,35 @@ left: 0%;
    left: 0;
    width: 100%;
    height: 100%;
-  /* background: linear-gradient(transparent,#3f3f3f);*/
+}
+
+.container .card .more{
+ padding:10px 15px ;
+  margin: 10px auto;
+  background: #ECE2E1;
+  display: inline-block;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #383838;
+  font-weight: 500;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.container .card .more:hover{
+  transform: scale(1.03);
+	-webkit-transform: scale(1.03);
+	-moz-transform: scale(1.03);
+	-ms-transform: scale(1.03);
+	-o-transform: scale(1.03);
+	box-shadow: 10px 12px 15px rgba(0, 0, 0, .3);
+}
+.container .card.active::before{
+  border-top: 20px solid #ff3b7e;
+ border-right: 20px solid #ff3b7e;
 }
 .container .card.active .content{
-  padding-bottom: 300px;
+  padding-bottom: 350px;
 }
 .container .card.active .content::before{
    display: none;
@@ -286,27 +283,26 @@ left: 0%;
   font-weight: 300;
 
 }
-.container .card .more{
-   position: relative;
-   padding:10px 15px ;
-   background: #ECE2E1;
-   margin-top: 20px;
-   margin-left: 5px;
-   display: inline-block;
-   cursor: pointer;
-   text-transform: uppercase;
-   color: #383838;
-   font-weight: 500;
-   letter-spacing: 2px;
-   font-size: 14px;
-   font-weight: bold;
-}
-
-
 
 .container .card .more::before{
   content: 'Read More';
 
+}
+
+@media (max-width:1000px) {
+  .container{
+    height: auto;
+    grid-template-columns: auto ;
+    gap:10px;
+  
+  }
+  .container h2{
+    top: 0%;
+    font-size: 12px;
+  }
+  .container .card{
+    margin-top :40px ;
+  }
 }
 
 
@@ -465,7 +461,21 @@ section .trailer.active{
   filter: invert(1);
   max-width: 32px;
 }
+@media (max-width:1000px) {
+  section .container2 .content{
+    top: 20%;
+  }
+  .loader, .play{
+    display: none;
+  }
 
+}
+@media (max-width:300px) {
+  .loader, .play{
+    display: none;
+  }
+
+}
 
 
 /*---------------------------------------------*/
