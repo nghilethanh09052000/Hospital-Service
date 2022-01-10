@@ -142,6 +142,17 @@ main{
    main{
      margin-top: 50px
    }
+}
 
-
+@media (max-width:400px) {
+   .wrapper{
+      
+     width:375px;
+      }
+}
+@media (max-width:280px) {
+   .wrapper{
+      
+     width:250px;
+      }
 }

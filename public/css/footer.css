@@ -3,7 +3,7 @@
 
 
 .footer-top-wrap {
-  background-color: #Fdbccf;
+  background-color: #ff9aa2;
   padding: 90px 0px 38px;
   display: flex;
 }
@@ -90,7 +90,7 @@
   }
 
 .footer-center-wrap {
-  background-color: #Fdbccf;
+  background-color: #ff9aa2;
   padding: 30px 0;
 }
 
@@ -152,7 +152,7 @@
 }
 
 .footer-bottom-wrap {
-  background-color: #Fdbccf;
+  background-color: #ff9aa2;
   padding: 30px 0;
   display: block;
   margin-top: 5px;
