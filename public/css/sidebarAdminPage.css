@@ -16,10 +16,10 @@ display: none;
 
 
 .sidebaradminPage{
-  /* display: none; */
+ 
   width: 20%;
   height: 100%;
-  left: 0%;
+
   background: #1b1b1b;
   transition: left 0.4s ease;
 }

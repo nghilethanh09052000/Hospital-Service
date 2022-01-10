@@ -8,14 +8,14 @@
     padding: 20px 35px;
     background-color:#FDF6F0;
 	display: flex;
-
+width: 80%;
 }
 
 .LichHen{
 	width: 40%;
     padding: 20px 10px;
     color: #000;
-	left: 0%;
+	
 }
 
 .LichHen p{
@@ -77,6 +77,9 @@
 	-moz-transition: all .3s;
 	-ms-transition: all .3s;
 	-o-transition: all .3s;
+    text-decoration: none;
+    text-align: center;
+    
 }
 .container-form .btn:hover {
 	transform: scale(1.03);
@@ -87,7 +90,17 @@
 	box-shadow: 10px 12px 15px rgba(0, 0, 0, .3);
 }
 
+@media (max-width:1000px) {
+    .container{
+        width: 100%;
+    }
+
+}
+
 @media (max-width:500px) {
+    .container{
+        width: 100%;
+    }
 	.LichHen{
 		display: none;
 	}

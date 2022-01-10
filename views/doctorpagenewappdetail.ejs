@@ -1,100 +1,6 @@
 <%- include("./partials/head.ejs") %>
-<style>
-    
-.section{
-	display: flex;
-    width: 100%;
-    background: #fff;
-}
+<link rel="stylesheet" type="text/css" href="/css/appointmentForm.css">
 
-.container { width: 90%;
-    /* margin-left: 50px; */
-    padding: 20px 35px;
-    background-color:#FDF6F0;
-    box-shadow: 10px 15px 20px rgba(0, 0, 0, .4);
-	display: flex;
-    grid-template-columns: 50% 60%; 
-}
-
-.LichHen{
-
-	width: 40%;
-    padding: 20px 10px;
-    color: #000;
-	left: 0%;
-}
-
-.LichHen p{
-    font-size: 100%;
-    font-weight: 600;
-    /* margin-bottom: 10%; */
-}
-
-.LichHen .btn12{
-    background-color: #F5C6AA;
-	color: #fff;
-	font-weight: 600;
-    text-align: left;
-    border: none;
-	font-size: 18px;
-}
-
-
-.container-form {
-    width: 60%;
-    left: 0%;
-   padding: 20px 10px; 
-}
-.container-form form {
-	display: grid;
-	grid-row-gap: 20px;
-   
-}
-.container-form form p {
-	font-weight: 600;
-	margin-right: 10%;
-}
-.container-form .form-field {
-	display: flex;
-	justify-content: space-between;
-	
-}
-
-input,select,textarea {
-	padding: 5px 20px;
-}
-.container-form .btn {
-   text-align: center;
-   text-decoration: none;
-	background-color: #F5C6AA;
-	color: #fff;
-	padding: 10px 20px;
-	border: none;
-	font-size: 18px;
-	border-radius: 100px;
-	-webkit-border-radius: 100px;
-	-moz-border-radius: 100px;
-	-ms-border-radius: 100px;
-	-o-border-radius: 100px;
-	box-shadow: 7px 10px 12px rgba(0, 0, 0, .1);
-	cursor: pointer;
-	transition: all .3s;
-	-webkit-transition: all .3s;
-	-moz-transition: all .3s;
-	-ms-transition: all .3s;
-	-o-transition: all .3s;
-}
-.container-form .btn:hover {
-	transform: scale(1.03);
-	-webkit-transform: scale(1.03);
-	-moz-transform: scale(1.03);
-	-ms-transform: scale(1.03);
-	-o-transform: scale(1.03);
-	box-shadow: 10px 12px 15px rgba(0, 0, 0, .3);
-}
-
-
-</style>
 <body>
    <%- include("./partials/nav.ejs") %>
    
@@ -102,11 +8,9 @@ input,select,textarea {
       <%- include("./partials/sidebarDoctor.ejs") %>
       <div class="container">
         <div class="LichHen">
-            <p>Quý khách có các thắc mắc liên quan đến phương pháp điều trị, chính sách ưu đãi, biểu
-                phí, hình thức thanh toán vui lòng để lại thông tin và Da liễu Sài Gòn sẽ liên hệ lại, hoặc Quý
-                khách có thể gọi đến tổng đài 1900555553 để được hỗ trợ. Cảm ơn Quý khách.
+            <p>Quý khách vui lòng xem kỹ lại các thông tin đã chọn và điền đúng thông tin cá nhân. Bệnh viện sẽ tiến hành liên lạc với quý khách trong vòng 15-30p để xác nhận lịch hẹn của quý khách. Nếu có thắc mắc, quý khách có thể gọi đến tổng đài 1900555553 để được hỗ trợ. Da liễu Sài Gòn xin cảm ơn quý khách !!
             </p>
-            <div class="btn12">
+            <div class="btn123">
                 <% if(specialization){%>
                 <p>Bệnh nhân đã chọn dịch vụ:  <%= specialization.specializations  %> </p>
                 <p>Giá khám bệnh:  <%= specialization.price  %> </p>

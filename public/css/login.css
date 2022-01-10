@@ -214,6 +214,6 @@ section .container12 .user .formBx input[type="submit"]{
 }
 @media (max-width: 400px){
 	section.container12{
-		width: 360px;
+		width: 350px;
 	}
 }

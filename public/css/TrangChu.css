@@ -171,7 +171,6 @@ left: 0%;
 position: relative;
 }
 .container h2{
-  text-align: center;
   top: 2%;
   left: 50%;
   transform: translateX(-50%);
@@ -182,7 +181,7 @@ position: relative;
 }
 
 .container .card{
-  width: 270px;
+  width: 300px;
   padding: 40px;
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -297,11 +296,11 @@ position: relative;
   
   }
   .container h2{
-    top: 0%;
-    font-size: 12px;
+    top:0%;
+    text-align: center;
   }
   .container .card{
-    margin-top :40px ;
+    margin-top :80px ;
   }
 }
 

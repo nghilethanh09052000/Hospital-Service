@@ -19,12 +19,12 @@
         <tr>
           <th>Mã lịch hẹn</th>
           <th>Trạng thái
-            <select name="" id="" style="border-radius:5px ;">
-              <option ></option>
-              <option value="all">Hủy bỏ</option>
-              <option value="all">Đang chờ</option>
-              <option value="all">Chấp nhận</option>
-              <option value="all">Đã khám</option>
+            <select name="" id="status" style="border-radius:5px ;">
+              <option value="Tất cả">Tất cả</option>
+              <option value="Hủy bỏ">Hủy bỏ</option>
+              <option value="Chờ xác nhận">Chờ xác nhận</option>
+              <option value="Chấp nhận">Chấp nhận</option>
+              <option value="Đã khám">Đã khám</option>
             </select>
           </th>
           <th>Chi tiết</th>
@@ -76,6 +76,25 @@
       }
         });
       });
+
+       const status = document.getElementById('status');
+       status.addEventListener("click", (e)=>{
+         Array.from(rows).forEach( (row)=>{
+          //  if( status.value =="Tất cả"){
+          //   row.style.display = true;
+   
+          //  }
+          const secondSearchItem = row.children[1].textContent;
+          //  const secondSearchItem = document.querySelector("tbody tr::nth-child(2)");
+           if(secondSearchItem == status.value || status.value == "Tất cả"){ 
+            row.style.display = 'table-row';
+          }else{
+          row.style.display = 'none';
+          }
+
+        })
+   
+       })
     </script>
 </body>
 </html>
