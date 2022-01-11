@@ -114,5 +114,20 @@ max-width: 400px;
 }
 
 
+/* @media (max-width: 1025px){
+  .section{
+    display: block;
+  }
+  .table-box{
+    background-color:red;
+    width: 100%;
+    position: relative;
+  }
+  .content-table{
+    width: 100%;
+    position: relative;
+  }
+} */
+
 
 

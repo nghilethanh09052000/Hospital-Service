@@ -176,9 +176,9 @@ header.white .navigation .menu .menu-item >a{
   transition: .3s;
   }
   
-  .close-btn{
+  .header .close-btn{
   position: absolute;
-  background: url(/HinhAnh/close.png)no-repeat;
+  background: url(/HinhAnh/healthcare1.jpg)no-repeat;
   width: 500px;
   height: 50px;
   background-size: 20px;
@@ -189,8 +189,8 @@ header.white .navigation .menu .menu-item >a{
   cursor: pointer;
   } 
   
-  .menu-btn{
-  background: url(/HinhAnh/buttonblack.png)no-repeat;
+  .header .menu-btn{
+  background: url(/HinhAnh/menu123.png)no-repeat;
   width: 40px;
   height: 40px;
   background-size: 30px;
