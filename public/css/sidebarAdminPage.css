@@ -19,30 +19,46 @@ display: none;
  
   width: 20%;
   height: 100%;
-
-  background: #1b1b1b;
+  background: #ff9aa2;
   transition: left 0.4s ease;
 }
+.sidebaradminPage ul{
+  background: #ffffd8 ;
 
-.sidebaradminPage.show{
-  left: 0px;
+  list-style: none;
+}
+.sidebaradminPage ul li.active ul li a{
+  color: #fa636f;
+  background: #ffffd8;
+  border-left-color: transparent;
 }
 
 .sidebaradminPage .text{
   color: white;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 60px;
   text-align: center;
-  background: #1e1e1e;
+  background: #ff9aa2;
   letter-spacing: 1px;
 }
 
-.sidebaradminPage ul{
-  background: #1b1b1b;
-  /* height: 100%;
-  width: 100%; */
-  list-style: none;
+.sidebaradminPage ul li.active a{
+  color: #fa636f;
+  background: #ffdac1;
+  border-left-color: #fa636f;
+
+}
+.sidebaradminPage ul li a:hover{
+  background: #ffdac1;
+}
+.sidebaradminPage ul ul li a:hover{
+  color: #fa636f!important;
+  background: #ffdac1!important;
+}
+
+.sidebaradminPage.show{
+  left: 0px;
 }
 
 .sidebaradminPage ul li{
@@ -54,26 +70,21 @@ display: none;
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
+
+
 .sidebaradminPage ul li a{
   position: relative;
-  color: white;
+  color: #fa636f;
   text-decoration: none;
   font-size: 18px;
   padding-left: 20px;
   font-weight: 500;
   display: block;
-  width: 100%;
+ 
   border-left: 3px solid transparent;
 }
 
-.sidebaradminPage ul li.active a{
-  color: cyan;
-  background: #1e1e1e;
-  border-left-color: cyan;
-}
-.sidebaradminPage ul li a:hover{
-  background: #1e1e1e;
-}
+
 
 .sidebaradminPage ul ul{
   position: static;
@@ -99,19 +110,8 @@ display: none;
 
 .sidebaradminPage ul ul li a{
   font-size: 17px;
-  color: #e6e6e6;
+  color: #fa636f;
   padding-left: 40px;
-}
-
-.sidebaradminPage ul li.active ul li a{
-  color: #e6e6e6;
-  background: #1b1b1b;
-  border-left-color: transparent;
-}
-
-.sidebaradminPage ul ul li a:hover{
-  color: cyan!important;
-  background: #1e1e1e!important;
 }
 
 .sidebaradminPage ul li a span{

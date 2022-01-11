@@ -126,7 +126,7 @@ header.white .navigation .menu .menu-item >a{
 }
 /*---------------------------------------------*/
                       /*Thu nhỏ màn hình*/
-@media(max-width: 1100px){
+@media(max-width: 1200px){
   .header .navigation .menu{
     position: fixed;
     display: block;
