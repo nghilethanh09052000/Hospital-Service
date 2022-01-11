@@ -40,7 +40,7 @@ router.get('/biquyetdakhoeinfor', blogController.biquyetdakhoeinfor_get);
 router.get('/aboutus', blogController.aboutus_get);
 
 
-
+ 
 
 router.get('/sendMail', blogController.sendOTP_get);
 router.post('/sendMail',blogController.sendOTP_post);
