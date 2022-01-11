@@ -67,7 +67,9 @@ const benhvaynen_get =(req,res)=>{
 
 const aboutus_get = async (req,res)=>{
     const admins = await User.find({role:'admin'});
-    
+    res.render('aboutus',{
+        admins:admins,
+        title:'Đội ngũ bác sĩ'});
 }
 const benhcham_get =(req,res)=>{
     res.render('benhcham',{title:'thông tin'});
