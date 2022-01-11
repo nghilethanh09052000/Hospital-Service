@@ -171,7 +171,7 @@ left: 0%;
 position: relative;
 }
 .container h2{
-  top: 2%;
+  top: 0%;
   left: 50%;
   transform: translateX(-50%);
   position: absolute;
@@ -256,7 +256,7 @@ position: relative;
  border-right: 20px solid #ff3b7e;
 }
 .container .card.active .content{
-  padding-bottom: 350px;
+  padding-bottom: 360px;
 }
 .container .card.active .content::before{
    display: none;
