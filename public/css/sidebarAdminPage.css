@@ -134,7 +134,7 @@ display: none;
 .btn12.click{
     right: 0%;
     position: absolute;
-      animation: animateForSideBar 0.4s linear ;
+    
     z-index: 9999;
   }
   .sidebaradminPage{
@@ -147,6 +147,7 @@ display: none;
     display: block;
     width: 100%;
     left: 0px;
+    z-index: 999;
    
 }
 
