@@ -80,8 +80,12 @@ const benhvayneninfor_get =(req,res)=>{
 const viemdacodiainfor_get =(req,res)=>{
     res.render('viemdacodiainfor',{title:'thông tin'});
 }
-
-
+const biquyetdakhoe_get =(req,res)=>{
+    res.render('biquyetdakhoe',{title:'thông tin'});
+}
+const biquyetdakhoeinfor_get =(req,res)=>{
+    res.render('biquyetdakhoeinfor',{title:'thông tin'});
+}
 const aboutus_get = (req,res)=>{
     res.render('aboutus', {title:'Đội ngũ bác sĩ'});
 }
@@ -992,7 +996,8 @@ module.exports = {
     benhvayneninfor_get,
     benhchaminfor_get,
     viemdacodiainfor_get,
-
+    biquyetdakhoe_get,
+    biquyetdakhoeinfor_get,
 
     login_get,
     login_post,
