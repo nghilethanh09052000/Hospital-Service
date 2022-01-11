@@ -35,11 +35,12 @@ router.get('/viemdacodia', blogController.viemdacodia_get);
 router.get('/benhvayneninfor', blogController.benhvayneninfor_get);
 router.get('/benhchaminfor', blogController.benhchaminfor_get);
 router.get('/viemdacodiainfor', blogController.viemdacodiainfor_get);
-
+router.get('/biquyetdakhoe', blogController.biquyetdakhoe_get);
+router.get('/biquyetdakhoeinfor', blogController.biquyetdakhoeinfor_get);
 router.get('/aboutus', blogController.aboutus_get);
 
 
-
+ 
 
 router.get('/sendMail', blogController.sendOTP_get);
 router.post('/sendMail',blogController.sendOTP_post);

@@ -1,0 +1,189 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/Benhveda.css">
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    .custom_a {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+        border: 0;
+        border-bottom: 1px solid #808080;
+    }
+
+    a:hover {
+        color: forestgreen;
+    }
+
+    .custom_a:before {
+        content: ">";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 700;
+        position: absolute;
+        top: -2px;
+        right: 0;
+        z-index: 1;
+        color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .custom_a:after {
+        content: "";
+        position: absolute;
+        height: 25px;
+        width: 2px;
+        top: -3px;
+        left: 0;
+        z-index: 1;
+        font-size: 28px;
+        background-color: #d9d9d9;
+        transition: all 0.5s ease-out;
+    }
+
+    .content-tag {
+
+        float: left;
+        background-color: white; 
+        display: grid; 
+        grid-template-columns: repeat(2,1fr); 
+        grid-column-gap: 30px; 
+        grid-row-gap: 30px;
+        width: 100%;
+    }
+
+    @media(max-width: 700px) {
+        .main_content_div {
+            flex-direction: column;
+        }
+        .content-tag {
+            display: block;
+        }
+        .left_div_in_main_content_div {
+            width: 80%;
+            left: 10%
+        }
+        .right_div_in_main_content_div {
+            width: 80%;
+            left: 10%;
+        }
+
+    }
+</style>
+</head>
+<body>
+   <%- include("./partials/nav.ejs") %>
+   <div class="main_content_div">
+    <div class="left_div_in_main_content_div">
+ 
+    <div >
+        <h1>7 nguyên tắc để có làn da khỏe đẹp</h1>
+        <br>
+        <p><b>Một làn da khỏe, đẹp không chỉ do yếu tố di truyền mà còn do quá trình chăm sóc thường ngày. 
+            Việc dùng mỹ phẩm chỉ là một bước trong quy trình chăm sóc làn da.</b></p>
+        <br>
+            <p>Muốn da khỏe đẹp, mỗi người cần ý thức cả chế độ chăm sóc da lẫn thói quen sinh hoạt hàng ngày, 
+                vì cơ thể khỏe là nền tảng của làn da đẹp.</p>
+        <br>
+             <p><b>Làn da sạch là nền tảng</b></p>
+        <br>
+            <p>Làm sạch da là bước chăm sóc da cơ bản đầu tiên mà chúng ta không được phép quên. Bạn có thể thực hiện bước này theo trình tự sử dụng sản phẩm tẩy trang để làm sạch lớp trang điểm bên ngoài và bụi bẩn bám vào da, 
+                tiếp đó là dùng sữa rửa mặt để làm sạch sâu hơn từ lỗ chân lông cho da.</p>
+
+            <br>
+            <p>Cách rửa mặt đúng là: Rửa nhẹ để lấy đi chất bẩn bám trên da, sau đó là bước rửa mặt lại lần nữa để lấy sạch chất bẩn trong lỗ chân lông. Khi lớp trên cùng gồm chất ô nhiễm không khí, chất bẩn do lượng dầu tự nhiên tạo ra và lượng dầu thừa được loại bỏ, lần rửa mặt thứ hai sẽ lấy đi chất bẩn từ sâu bên trong da, 
+                loại bỏ những nhân tố có thể gây ra mụn bên dưới bề mặt da hoặc làm da kém tươi tắn.</p>
+            <br>
+            <p>Tuy nhiên cũng nên lưu ý là không nên rửa mặt quá nhiều lần trong ngày vì làm mất đi lớp dầu tự nhiên của da. 
+                Bên cạnh đó, rửa mặt quá mức cũng khiến bụi bẩn và các mảnh vụn từ môi trường bên ngoài dễ dàng thâm nhập vào da, gây viêm nhiễm.</p>
+            <br>
+
+
+            <p><b>Dưỡng ẩm rất quan trọng</b></p>
+            <br>
+                <p>
+                    Làm ẩm da giúp cho các tế bào biểu bì đàn hồi tốt hơn và vì thế làn da trông căng và khỏe mạnh hơn. Làn da sẽ trở nên đầy sinh lực nhờ có lớp bảo vệ chống thất thoát nước ra bên ngoài. 
+                    Không chỉ da khô mà mọi loại da đều cần sử dụng kem dưỡng ẩm.
+                </p>
+
+                <p>Đối với da khô: Sử dụng sản phẩm dưỡng ẩm có kết cấu dạng kem hoặc sữa giàu dưỡng chất. 
+                    Kết cấu này sẽ tối ưu chăm sóc cho làn da khô bong tróc hiệu quả.
+                </p>
+
+                <p>
+                    Đối với da nhạy cảm: Chọn sản phẩm dưỡng ẩm có kết cấu lotion dịu nhẹ chứa nhiều thành phần tự nhiên, lành tính.
+                </p>
+
+                <p>
+                    Đối với da dầu - da hỗn hợp: Lựa chọn sản phẩm dưỡng ẩm có kết cấu gel hoặc lotion. 
+                    Kết cấu này tăng khả năng thẩm thấu nhanh trên da mà không để lại cảm giác nặng mặt hay bí da.
+                </p>
+            <br>  
+
+
+            <p><b>Đừng quên chống nắng</b></p>
+            <br>
+            <p>
+                Nếu bạn bỏ ra rất nhiều tiền để mua mỹ phẩm mà bạn không tránh nắng thì hiệu quả chăm sóc da cũng không được như mong muốn. Tia cực tím có trong ánh nắng mặt trời sẽ phá hủy các sợi collagen, làm xuất hiện các nếp nhăn sớm. Tia cực tím cũng kích thích tăng sự tích tụ lượng sắc tố trong da, gây nên các vết xạm, nám, tàn nhang. Khi ra đường, bạn nên đeo khẩu trang, đội mũ, đặc biệt trong khoảng thời gian từ 9 - 15 giờ là khoảng thời gian có hàm lượng tia cực tím cao. 
+                Với các bạn có làn da dễ mẫn cảm hoặc đã có các vết nám thì nhất thiết phải bôi kem chống nắng 30 phút trước khi ra ngoài.
+            </p>
+            <br>
+
+
+
+            <p><b>Cung cấp nước cho da</b></p>
+            <br>
+                <p>
+                    Nước mới thực sự là nguồn sống của da. Nắm được nguyên tắc đó, chúng ta nên cung cấp đủ nước cho cơ thể. Không chỉ cung cấp độ ẩm từ bên ngoài qua kem dưỡng, mà còn bổ sung “thức ăn cho da” ngay từ bên trong qua việc uống nước. Ngoài ra, có thể cung cấp thêm vitamin cho da bằng cách ăn nhiều rau quả tươi, và xem rau quả tươi là một phần không thể thiếu trong khẩu phần ăn. 
+                    Như vậy, da sẽ đủ dưỡng chất, thúc đẩy các tế bào mới tích cực sinh trưởng như làm mới làn da mỗi ngày.
+                </p>
+            <br>
+
+
+            <p><p><b>Xử trí đúng khi da bị tổn thương</b></p></p>
+            <br>    
+                <p>
+                    Khi da gặp vấn đề, bị viêm nhiễm, dị ứng, nổi mẩn đỏ, nổi mụn… tuyệt đối không được tự chữa trị. Một số bạn nghe mách bảo hoặc tự mua các thuốc bôi ngoài da như trangalar, cortebios, gentrison, flucinar, temproson, kem trộn, kem Đông y không rõ nguồn gốc bôi lên mặt. Những thuốc trên có chứa chất cortisol, nếu bôi dài ngày sẽ bị teo da, giãn mạch, mặt sùi như vỏ cam sành... Các biến chứng này về sau chữa trị rất khó khăn. Đặc biệt, không được xông hơi, đắp mặt nạ, tẩy da chết khi da đang bị viêm... Sử dụng các biện pháp này sẽ làm da bị tổn thương thêm và tình trạng viêm da tăng nặng. 
+                    Nếu da bị viêm, bạn phải đến các cơ sở chuyên khoa da liễu khám và điều trị. Khi bệnh khỏi hoàn toàn thì mới tiến hành các bước chăm sóc da.
+                </p>
+            <br>
+            <p><b>Xây dựng thói quen ăn uống và sinh hoạt lành mạnh</b></p>
+            <br>
+                <p>
+                    Bạn nên duy trì chế độ ăn giàu chất dinh dưỡng và vitamin phù hợp với độ tuổi; nên ăn nhiều rau xanh, quả tươi, uống nhiều nước.
+                </p>
+                <p>
+                    Uống nhiều cà phê hoặc rượu bia cũng làm da bạn sớm lão hóa. Không nên thức khuya quá, tránh căng thẳng thần kinh. 
+                    Không ngồi màn hình lâu quá, thỉnh thoảng nghỉ ngơi 10 - 15 phút xen kẽ các giờ làm việc.
+                </p>
+            <br>
+            <p><b>Hạn chế tiếp xúc với ánh sáng xanh</b></p>
+            <br>
+                <p>
+                    Theo nhiều nghiên cứu, tia ánh sáng xanh trong thiết bị điện tử hiện đại có tác hại gấp nhiều lần so với tia UV trong ánh nắng mặt trời. Việc tiếp xúc thường xuyên với ánh sáng này kích thích sự hình thành của các gốc tự do. Điều này góp phần phá hủy collagen và elastin, từ đó thúc đẩy quá trình lão hóa da. Kết quả mà bạn nhận được chính là sự xuất hiện của các nếp nhăn và làn da dần mất đi độ đàn hồi tự nhiên và nhanh lão hóa. Vì vậy, để giúp làn da duy trì vẻ đẹp tuổi thanh xuân, bạn cần hạn chế thời gian sử dụng các thiết bị điện tử, 
+                    đặc biệt là sau khi thực hiện các bước chăm sóc da cơ bản, để hạn chế tối đa tác hại của ánh sáng xanh đến làn da.
+                </p>
+    </div> 
+
+</div>
+
+
+<div class="right_div_in_main_content_div">
+    <div style="position: relative; width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%); top:0; left:0;">
+        <ul class="toolbar">
+            <li class="toolbar-item"><a href="/biquyetdakhoe" class="sub-toolbar-item">Bí quyết da khỏe</a></li>
+            <li class="toolbar-item"><a href="#" class="sub-toolbar-item">Hướng dẫn đặt lịch hẹn</a></li>
+          
+           
+        </ul>
+    </div>
+</div>
+</div>
+<%- include("./partials/footer.ejs") %>
+</body>
+</html>

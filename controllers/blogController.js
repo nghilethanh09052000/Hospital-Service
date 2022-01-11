@@ -67,8 +67,7 @@ const benhvaynen_get =(req,res)=>{
 
 const aboutus_get = async (req,res)=>{
     const admins = await User.find({role:'admin'});
-    res.render('aboutus', {admins:admins,
-        title:'Đội ngũ bác sĩ'});
+    
 }
 const benhcham_get =(req,res)=>{
     res.render('benhcham',{title:'thông tin'});
@@ -85,6 +84,17 @@ const benhvayneninfor_get =(req,res)=>{
 const viemdacodiainfor_get =(req,res)=>{
     res.render('viemdacodiainfor',{title:'thông tin'});
 }
+
+const biquyetdakhoe_get =(req,res)=>{
+    res.render('biquyetdakhoe',{title:'thông tin'});
+}
+const biquyetdakhoeinfor_get =(req,res)=>{
+    res.render('biquyetdakhoeinfor',{title:'thông tin'});
+}
+
+
+
+
 
 const register_get=(req,res)=>{
     res.render('register',{title:'Đăng ký'});
@@ -974,7 +984,8 @@ module.exports = {
     benhvayneninfor_get,
     benhchaminfor_get,
     viemdacodiainfor_get,
-
+    biquyetdakhoe_get,
+    biquyetdakhoeinfor_get,
 
     login_get,
     login_post,
