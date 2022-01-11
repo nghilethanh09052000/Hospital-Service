@@ -1,0 +1,67 @@
+<%- include("./partials/head.ejs") %>
+<link rel="stylesheet" href="/css/info.css">
+<body>
+    <%- include("./partials/nav.ejs") %> 
+    <div class="section"> 
+      <%- include("./partials/sidebarAdminPage.ejs") %> 
+      <div class="container">
+        <div class="title">Thông tin bác sĩ</div>
+        <div class="content">
+          <form action="/adminPageAdminAccount">
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="text" placeholder="<%=user.email %>"  disabled >
+                  </div>
+              <div class="input-box">
+                  
+                <span class="details">Họ và tên</span>
+                <input type="text" placeholder="<%=user.name %>" name='name' value="<%=user.name %>">
+              </div>
+              <div class="input-box">
+                <span class="details">Mã số sinh viên</span>
+                <input type="text" placeholder="<%=user.country %>" name='country' value="<%=user.country %>" >
+              </div>
+             
+              <div class="input-box">
+                <span class="details">Tên hình ảnh</span>
+                <input type="text" placeholder="<%=user.facebook %>" value="<%=user.facebook %>" name='facebook' >
+              </div>
+       
+           
+          
+              <input type="hidden" value="<%=user._id %>" name='user_id' >
+    
+            </div>
+            <div class="button">
+              <input type="submit" value="Cập nhật">
+            </div>
+          </form>
+          </div>
+             
+         
+        </div>
+      </div>
+
+    </div>
+  
+ <script>
+   const form = document.querySelector('form');
+        form.addEventListener('submit', async (e)=>{
+         e.preventDefault();
+         const name = form.name.value;
+         const country = form.country.value;
+         const facebook = form.facebook.value;
+         const user_id = form.user_id.value;
+         fetch('/adminPageAdminAccount',{
+               method:'PUT',
+               body:JSON.stringify({name,country,facebook,user_id}),
+               headers:{'Content-Type':'application/json'} 
+            })
+            .then(response => response.json())
+            .then(data => window.location.href=data.redirect)
+            .catch(err=> console.log(err));
+         })
+</script>
+</body>
+</html>

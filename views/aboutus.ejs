@@ -1,21 +1,47 @@
 <%- include("./partials/head.ejs") %>
 <link rel="stylesheet" href="/css/GioiThieuChung.css">
 <style>
+    .section{
+        align-items: center;
+         justify-content: center;
+         text-align: center;
+       
+    }
      .content-tag {
-         position: relative;
-         width: 60%;
-         background-color: white; 
-         display: grid; 
+        
+         width: 50%;
+                  display: grid; 
          grid-template-columns: repeat(3,1fr);
          grid-column-gap: 30px;
          grid-row-gap: 30px;
-         left: 50%;
-         transform: translateX(-50%);
-         margin-top: 50px;
-         margin-bottom: 50px;
+         margin:20px auto;
+        
+    }
+    .container4{
+       
+        box-shadow: 0 5px 25px rgb(0 0 0 /20%)
+    }
+    .container4:hover{
+      
+        transform: scale(1.03);
+	-webkit-transform: scale(1.03);
+	-moz-transform: scale(1.03);
+	-ms-transform: scale(1.03);
+	-o-transform: scale(1.03);
+	box-shadow: 10px 12px 15px rgba(0, 0, 0, .3);
+    }
+    img{
+        width: 100%;
     }
 
-    @media(max-width: 1200px){
+.container4 p{
+        color: #F54291;
+        font-weight: 600;
+    }
+  
+
+
+    @media(max-width: 1000px){
         .content-tag{
             grid-template-columns: repeat(2,1fr);
             width: 80%;
@@ -33,59 +59,26 @@
    <%- include("./partials/nav.ejs") %>
 
    
+<div class="section">
+
+  <h2 style="color:#ff0162b2 ;">Đội ngũ bác sĩ bệnh viện da liễu Sài Gòn</h2>
    <div class = "content-tag">
-
-
-    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
-        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
-        <br />
-        <p style="margin: 10px;">MSSV:</p>
-        <br />
-        <p style="margin:10px">Họ tên:</p>
+ 
+    <% if(admins.length>0){ %>
+        <% admins.forEach(admin=> { %>
+    <div class="container4" >
+   
+    <img src="/HinhAnh/<%=admin.facebook%>" /> 
+    <p style="margin:10px">Họ tên: <%=admin.name%></p>
+    <p style="margin: 10px;">MSSV: <%=admin.country%> </p>
+    
     </div>
 
-    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
-        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
-        <br />
-        <p style="margin: 10px;">MSSV:</p>
-        <br />
-        <p style="margin:10px">Họ tên:</p>
-    </div>
-
-    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
-        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
-        <br />
-        <p style="margin: 10px;">MSSV:</p>
-        <br />
-        <p style="margin:10px">Họ tên:</p>
-    </div>
-
-    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
-        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
-        <br />
-        <p style="margin: 10px;">MSSV:</p>
-        <br />
-        <p style="margin:10px">Họ tên:</p>
-    </div>
-    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
-        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
-        <br />
-        <p style="margin: 10px;">MSSV:</p>
-        <br />
-        <p style="margin:10px">Họ tên:</p>
-    </div>
-    <div style="width: 100%; box-shadow: 0 5px 25px rgb(0 0 0 /20%)">
-        <img src="HinhAnh/ngoaida.jpg" width="100%" style="margin-bottom:10px" />
-        <br />
-        <p style="margin: 10px;">MSSV:</p>
-        <br />
-        <p style="margin:10px">Họ tên:</p>
-    </div>
-
-
+    <% }) %>
+    <% }%>
 </div> 
 
-
+</div>
 <%- include("./partials/footer.ejs") %>
 
 </body>

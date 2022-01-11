@@ -7,14 +7,15 @@
       
       <div class="slider">
          <div class="myslide fade">
-            <img src="HinhAnh/Untitled-1.png" style="width: 100%; height: 100%;"alt="hinh">
+            
+            <img src="HinhAnh/newyear3b.jpg" style="width: 100%; height: 100%;"alt="hinh">
             <div class="circleLoading"></div>
          </div>
          <div class="myslide fade">
-            
-            <img src="HinhAnh/doctor.jpg" style="width: 100%; height: 100%;"alt="hinh">
+            <img src="HinhAnh/Untitled-1.png" style="width: 100%; height: 100%;"alt="hinh">
             <div class="circleLoading"></div>
          </div>
+      
          <div class="myslide fade">
              
             <img src="/HinhAnh/ngoaida.jpg" style="width: 100%; height: 100%;"alt="hinh">
@@ -38,27 +39,27 @@
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
             <span class="dot" onclick="currentSlide(4)"></span>
-         <span class="dot" onclick="currentSlide(5)"></span></div>
+         <span class="dot" onclick="currentSlide(5)"></span>
+      </div>
 
          <div class="booking">
-            <a href="/appointment">
-               <button class="btn btn1">
+            <a href="/appointment" class="btn">
+            
                   Đặt lịch khám
-               </button>
+     
             </a>
-            <a href="/adviceMail">
-               <button class="btn btn2">
+            <a href="/adviceMail" class="btn">
+          
                Nhận tư vấn miễn phí 
-            </button>
+       
             </a>
          </div>
 
       </div>
          
-      <section>
          <div class="container">
             <h2 >CHÀO MỪNG ĐẾN VỚI HỆ THỐNG DA LIỄU SÀI GÒN</h2>
-
+         
             <div class="card">
             <div  class="icon">
                <img src="HinhAnh/audit.png" alt="hinh">
@@ -99,8 +100,9 @@
             </div>
             <a class="more"></a>
          </div>
-      </div>
-      </section>
+    
+   </div>
+   
       
 
       <section>
@@ -149,7 +151,72 @@
          
     
 
-     
+   <script>
+   
+
+      
+      //javascript for showslide:
+      const myslide = document.querySelectorAll('.myslide'),
+         dot = document.querySelectorAll('.dot');
+       let counter = 1;
+       slidefun(counter);
+
+       let timer = setInterval(autoSlide, 8000);
+       function autoSlide() {
+          counter += 1;
+          slidefun(counter);
+       }
+       function plusSlides(n) {
+          counter += n;
+          slidefun(counter);
+          resetTimer();
+       }
+       function currentSlide(n) {
+          counter = n;
+          slidefun(counter);
+          resetTimer();
+       }
+       function resetTimer() {
+          clearInterval(timer);
+          timer = setInterval(autoSlide, 8000);
+       }
+
+       function slidefun(n) {
+       
+          let i;
+          for(i = 0;i<myslide.length;i++){
+             myslide[i].style.display = "none";
+          }
+          for(i = 0;i<dot.length;i++) {
+             dot[i].className = dot[i].className.replace(' active', '');
+          }
+          if(n > myslide.length){
+             counter = 1;
+             }
+          if(n < 1){
+             counter = myslide.length;
+             }
+          myslide[counter - 1].style.display = "block";
+          dot[counter - 1].className += " active";
+    }
+    // Javascript for More-Less
+     let more=document.querySelectorAll('.more');
+       for(let i=0;i<more.length;i++){
+          more[i].addEventListener('click',function(){
+             more[i].parentNode.classList.toggle('active');
+          })
+          
+       }
+       //Javascript for video
+       function toggleVideo(){
+          const trailer=document.querySelector('.trailer');
+          const video=document.querySelector('iframe');
+          trailer.classList.toggle('active');
+          video.currentTime=0;
+          // video.pause();
+          // video.stop();
+       }
+</script>
       
 
      

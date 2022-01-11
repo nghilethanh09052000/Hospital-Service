@@ -103,6 +103,11 @@ router.put('/adminPageUserAccountDetails',requireAuth,checkLogin, checkAdmin,blo
 router.delete('/adminPageUserAccount/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageUserAccount_delete);
 router.get('/adminPageDoctorAccount',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccount_get);
 router.delete('/adminPageDoctorAccount/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccount_delete);
+
+router.get('/adminPageAdminAccount',requireAuth,checkLogin, checkAdmin,blogController.adminPageAdminAccount_get);
+router.put('/adminPageAdminAccount',requireAuth,checkLogin, checkAdmin,blogController.adminPageAdminAccount_put);
+
+
 router.get('/adminPageDoctorAccountDetail/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetail_get);
 router.put('/adminPageDoctorAccountDetail',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetail_put);
 router.get('/adminPageDoctorAccountDetails/:id',requireAuth,checkLogin, checkAdmin,blogController.adminPageDoctorAccountDetails_get);

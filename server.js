@@ -58,11 +58,13 @@ app.get('/adminpage',checkLogin,checkAdmin, async (req,res)=>{
   const doctor = 'doctor';
   const userpatient = await User.find({role:patient});
   const userdoctor = await User.find({role:doctor});
+  const admins = await User.find({role:'admin'});
   return res.render('adminpage',{
     specializations:specializations,allAppointments:allAppointments,
     clinics:clinics,
     userpatient:userpatient,
     userdoctor:userdoctor,
+    admins:admins,
     appointments:appointments,
     comAppointments:comAppointments,
     title:'Trang quản lý'})

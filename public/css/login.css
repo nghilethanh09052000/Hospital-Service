@@ -201,37 +201,6 @@ section .container12 .user .formBx input[type="submit"]{
 }
 
 
-
-/* section .container .user.signupBx .formBx input[type="submit"]{
- 	background: #e73e49;
- }*/
-
-
-/*section .container .signupBx{
- 	pointer-events: none;
-}*/
-
-/*section .container.active .signupBx{
-	pointer-events: all;
- }*/
-
-/*section .container .signupBx .formBx{
- 	top: 100%;
- }*/
-
-/*section .container .signupBx .imgBx{
- 	top: -100%;
- 	transition: 0.5s;
-}*/
-
- /*section .container.active .signupBx .formBx{
- 	top: 0;
- }*/
-
-/*section .container.active .signupBx .imgBx{
- 	top: 0;
-}*/
-
 @media (max-width: 990px){
 	section.container12{
 		max-width: 400px;
@@ -241,5 +210,10 @@ section .container12 .user .formBx input[type="submit"]{
 	}
 	section .container12 .user .formBx{
 		width: 100%;
+	}
+}
+@media (max-width: 400px){
+	section.container12{
+		width: 350px;
 	}
 }

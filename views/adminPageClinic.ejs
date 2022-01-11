@@ -29,7 +29,7 @@
               <% clinics.forEach(clinic=> { %>
             <tr>
               <td><%=clinic.name%></td>
-              <td><%=clinic.createdAt %></td>
+              <td><%=clinic.createdAt.toString().split("GMT")[0] %></td>
     
               <td>
                 <a  class="trashBin" data-doc="<%=clinic._id %>">

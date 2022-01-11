@@ -65,6 +65,10 @@ const benhvaynen_get =(req,res)=>{
     res.render('benhvaynen',{title:'thông tin'});
 }
 
+const aboutus_get = async (req,res)=>{
+    const admins = await User.find({role:'admin'});
+    
+}
 const benhcham_get =(req,res)=>{
     res.render('benhcham',{title:'thông tin'});
 }
@@ -80,15 +84,14 @@ const benhvayneninfor_get =(req,res)=>{
 const viemdacodiainfor_get =(req,res)=>{
     res.render('viemdacodiainfor',{title:'thông tin'});
 }
+
 const biquyetdakhoe_get =(req,res)=>{
     res.render('biquyetdakhoe',{title:'thông tin'});
 }
 const biquyetdakhoeinfor_get =(req,res)=>{
     res.render('biquyetdakhoeinfor',{title:'thông tin'});
 }
-const aboutus_get = (req,res)=>{
-    res.render('aboutus', {title:'Đội ngũ bác sĩ'});
-}
+
 
 
 
@@ -747,6 +750,20 @@ const adminPageDoctorAccountDetails_put = async (req,res)=>{
 
 
 
+const adminPageAdminAccount_get =async (req,res)=>{
+    res.render('adminupdate',{title:'Cập nhật thông tin'});
+}
+
+const adminPageAdminAccount_put =async (req,res)=>{
+    const {name,country,facebook,user_id} = req.body; 
+    User.findByIdAndUpdate( user_id , {name,country,facebook })
+    .then(result=>{
+        res.json( { redirect:'/adminPageAdminAccount'} );
+    })
+    .catch(err=>{
+        console.log(err);
+    });
+}
 
 
 const adminPageCreateSpecialization_get = (req,res)=>{
@@ -899,35 +916,6 @@ const adminPageDoctorAccountInfo_get = async (req,res)=>{
 
 }
 
-// Send Otp with nodemailer:
-const mailer = async ( email, code) =>{
-    let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port:465,
-        secure:true,
-        auth:{
-            user:'thanhnghi591@gmail.com',
-            pass:'abcABC@123456'
-        }
-    });
-    let mailOptions = await transporter.sendMail({
-        from: 'thanhnghi591@gmail.com', // sender address
-        to:  email, // list of receivers
-        subject: "Hello, this is your Otp code ", // Subject line
-        text: "YOUR OTP CODE IS: "+ code // plain text body
-       // html: code, // html body
-      });
-
-      transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          res.status(200).send(setting.status("User created Successfully, Please Check your Mail"))
-        }
-      });
-      
-}
-
 // Send adviceMail: 
 const adviceMail = async ( email, note) =>{
     let transporter = nodemailer.createTransport({
@@ -1047,13 +1035,14 @@ module.exports = {
     adminPageUserAccountDetails_put,
     adminPageUserAccount_delete,
     adminPageDoctorAccount_get,
-    
+    adminPageAdminAccount_put,
+
     adminPageDoctorAccountDetail_get,
     adminPageDoctorAccountDetail_put,
     adminPageDoctorAccountDetails_get,
     adminPageDoctorAccountDetails_put,
-
     adminPageDoctorAccount_delete,
+    adminPageAdminAccount_get,
     adminPageSpecialization_get,
     adminPageSpecialization_delete,
     adminPageSpecializationDetails_get,
