@@ -39,6 +39,11 @@ router.get('/biquyetdakhoe', blogController.biquyetdakhoe_get);
 router.get('/biquyetdakhoeinfor', blogController.biquyetdakhoeinfor_get);
 router.get('/aboutus', blogController.aboutus_get);
 
+router.get('/khambenhngoaida', blogController.khambenhngoaida_get);
+router.get('/khamnamkhoa', blogController.khamnamkhoa_get);
+router.get('/khamphukhoa', blogController.khamphukhoa_get);
+router.get('/khamvatuvantaohinhthammy', blogController.khamvatuvantaohinhthammy_get);
+router.get('/khamthammyda', blogController.khamthammyda_get);
 
  
 

@@ -94,7 +94,21 @@ const biquyetdakhoeinfor_get =(req,res)=>{
     res.render('biquyetdakhoeinfor',{title:'thông tin'});
 }
 
-
+const khambenhngoaida_get =(req,res)=>{
+    res.render('khambenhngoaida',{title:'Khám bệnh ngoài da'});
+}
+const  khamphukhoa_get=(req,res)=>{
+    res.render('khamphukhoa',{title:'Khám phụ khoa'});
+}
+const  khamnamkhoa_get =(req,res)=>{
+    res.render('khamnamkhoa',{title:'Khám nam khoa'});
+}
+const  khamvatuvantaohinhthammy_get =(req,res)=>{
+    res.render('khamthammy',{title:'Khám và tư vấn tạo hình thẩm mỹ'});
+}
+const khamthammyda_get =(req,res)=>{
+    res.render('khamthammyda',{title:'Khám thẩm mỹ da'});
+}
 
 
 
@@ -988,7 +1002,11 @@ module.exports = {
     viemdacodiainfor_get,
     biquyetdakhoe_get,
     biquyetdakhoeinfor_get,
-
+    khambenhngoaida_get,
+    khamnamkhoa_get,
+    khamphukhoa_get,
+    khamvatuvantaohinhthammy_get,
+    khamthammyda_get,
     login_get,
     login_post,
     register_get,
