@@ -26,4 +26,14 @@
         </tr>
       </tbody>
 </table>
+<h2>How to build and run</h2>
+<h2>1. Install NodeJs and npm</h2>
+<p>Download and install Node.js from this link https://nodejs.org/en/download/</p>
+<h2>2. Clone or download this repo.</h2>
+<p>On your terminal or cmd, type: git clone https://github.com/ThanhNghi95/Hospital-Service.git</p>
+<p>On your command line, navigate to root folder and install: npm install</p>
+<h2>3. Run the application</h2>
+<p>Run the app on local: nodemon server</p>
+<h1>Technology use in the application:</h1>
+<p>Express, Nodejs, Mongodb</p>
 
