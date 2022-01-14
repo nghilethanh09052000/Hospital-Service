@@ -32,8 +32,8 @@
 <h2>2. Clone or download this repo.</h2>
 <p>On your terminal or cmd, type: git clone https://github.com/nghilethanh2000/Hospital-Service.git</p>
 <p>On your command line, navigate to root folder and install: npm install</p>
-<h2>3. Run the application</h2>
-<p>Run the app on local: nodemon server</p>
-<h1>Technologies used in the application:</h1>
+<h2>3. Run the web</h2>
+<p>Run the web on local: nodemon server</p>
+<h1>Technologies used in this Website:</h1>
 <p>Express, Nodejs, Mongodb</p>
 
