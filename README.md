@@ -1,6 +1,6 @@
 <h2>Hospital appointment booking website</h2>
 <b>Website:</b>
-<a href="http://dlsg.herokuapp.com/" target="_blank" >Link</a>
+<a href="https://dalieusaigon.herokuapp.com/" target="_blank" >Link</a>
  <table>
       <thead>
       <tr>

@@ -52,7 +52,7 @@ const checkLogin= (req,res,next)=>{
             req.data=data
             next()
         }else{
-            res.json('Not Permission1')
+            res.json('Not Permission')
         }
     }).catch(err=>{
         res.render('404', { title: 'Trang không tìm thấy' });

@@ -42,8 +42,6 @@ app.get('/appointment',checkLogin,checkPatient, async (req,res)=>{
        title:'Đặt lịch'});
     
 })
-
-
 app.get('/adminpage',checkLogin,checkAdmin, async (req,res)=>{
   const specializations = await Specialization.find()
   const allAppointments = await Appointment.find()
