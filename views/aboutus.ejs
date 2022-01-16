@@ -17,8 +17,13 @@
         
     }
     .container4{
-       
+        display: flex;
+        flex-direction: column;
         box-shadow: 0 5px 25px rgb(0 0 0 /20%)
+    }
+
+    .container4__infor{
+        margin-top: auto;
     }
     .container4:hover{
       
@@ -29,8 +34,10 @@
 	-o-transform: scale(1.03);
 	box-shadow: 10px 12px 15px rgba(0, 0, 0, .3);
     }
-    img{
+    .container4 img{
+        height: 200px;
         width: 100%;
+        flex-shrink: 0;
     }
 
 .container4 p{
@@ -68,9 +75,10 @@
     <div class="container4" >
    
     <img src="/HinhAnh/<%=admin.facebook%>" /> 
-    <p style="margin:10px">Họ tên: <%=admin.name%></p>
-    <p style="margin: 10px;">MSSV: <%=admin.country%> </p>
-    
+    <div class="container4__infor">
+        <p style="margin:10px">Họ tên: <%=admin.name%></p>
+        <p style="margin: 10px;">MSSV: <%=admin.country%> </p>
+    </div>
     </div>
 
     <% }) %>

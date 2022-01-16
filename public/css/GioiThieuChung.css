@@ -87,9 +87,11 @@ a {
     width: 52%;
     padding-left: 15px;
     left: 9.5%;
+    text-align: justify;
 }
 
 .right_div_in_main_content_div {
+    z-index: 99999;
     position: relative;
     width: 26%;
     text-align: left;
