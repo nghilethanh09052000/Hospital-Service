@@ -1,14 +1,15 @@
 const express = require('express');
 const morgan =  require('morgan');
 const mongoose = require('mongoose');
-const blogRoutes = require('./routes/blogRoutes');
 const cookieParser = require('cookie-parser');
 const {requireAuth, checkUser , checkLogin, checkPatient,checkDoctor,checkAdmin}= require('./middleware/authMiddleware');
 const Specialization = require('./models/specialization');
 const Appointment = require('./models/appointment');
 const Clinic = require('./models/clinic');
 const User = require('./models/User');
+const path = require('path');
 
+const pageRoutes = require('./routes/page/page');
 //express app
 const app=express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //register view engine
+
 app.set('view engine','ejs');
 
 var port = process.env.PORT || 3000;
@@ -32,7 +34,7 @@ mongoose.connect(dbURI,{ useNewUrlParser: true, useUnifiedTopology: true })
 app.get('*', checkUser);
 
 app.get('/',(req,res)=>{
-    res.render('homepage',{title:'Trang chủ'});
+    res.render('./main/page/homepage',{title:'Trang chủ'});
 })
 
 app.get('/appointment',checkLogin,checkPatient, async (req,res)=>{
@@ -77,7 +79,7 @@ app.get('/doctorpage',checkLogin,checkDoctor,(req,res)=>{
 
 
 // blog routes
-app.use(blogRoutes);
+app.use(pageRoutes);
 
 
 // 404 page
