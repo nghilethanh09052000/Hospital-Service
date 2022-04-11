@@ -36,11 +36,11 @@
 <p>Open your browser and type: localhost:3000/</p>
 <h1>Screen shot from the website:</h1>
 <h5>Homepage:</h5>
-<img scr='./public/HinhAnh/Home.PNG'>
+<img src='./public/HinhAnh/Home.PNG'>
 <h5>Booking page:</h5>
-<img scr='./public/HinhAnh/Patient.PNG'>
+<img src='./public/HinhAnh/Patient.PNG'>
 <h5>Adminpage:</h5>
-<img scr='./public/HinhAnh/Admin.PNG'>
+<img src='./public/HinhAnh/Admin.PNG'>
 <h1>Technologies used in this Website:</h1>
 <p>ExpressJs, Mongodb, HTML/CSS</p>
 
