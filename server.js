@@ -7,9 +7,12 @@ const Specialization = require('./models/specialization');
 const Appointment = require('./models/appointment');
 const Clinic = require('./models/clinic');
 const User = require('./models/User');
-const path = require('path');
 
+//Routes:
 const pageRoutes = require('./routes/page/page');
+const patientRoutes = require('./routes/patient/patient');
+const doctorRoutes = require('./routes/doctor/doctor');
+const adminRoutes = require('./routes/admin/admin');
 //express app
 const app=express();
 
@@ -39,7 +42,7 @@ app.get('/',(req,res)=>{
 
 app.get('/appointment',checkLogin,checkPatient, async (req,res)=>{
     const specializations = await Specialization.find()
-    return res.render('appointment',{
+    return res.render('./main/patient/appointment',{
       specializations:specializations,
        title:'Đặt lịch'});
     
@@ -59,7 +62,7 @@ app.get('/adminpage',checkLogin,checkAdmin, async (req,res)=>{
   const userpatient = await User.find({role:patient});
   const userdoctor = await User.find({role:doctor});
   const admins = await User.find({role:'admin'});
-  return res.render('adminpage',{
+  return res.render('./main/admin/adminpage',{
     specializations:specializations,allAppointments:allAppointments,
     clinics:clinics,
     userpatient:userpatient,
@@ -72,17 +75,18 @@ app.get('/adminpage',checkLogin,checkAdmin, async (req,res)=>{
 })
 
 app.get('/doctorpage',checkLogin,checkDoctor,(req,res)=>{
-    res.render('doctorpage',{title:'Trang bác sĩ'})
+    res.render('./main/doctor/doctorpage',{title:'Trang bác sĩ'})
   
   })
 
 
 
-// blog routes
+// all broutes
 app.use(pageRoutes);
-
-
+app.use(patientRoutes)
+app.use(doctorRoutes)
+app.use(adminRoutes)
 // 404 page
 app.use((req, res) => {
-    res.status(404).render('404',{title:'Trang không tìm thấy'});
+    res.status(404).render('./main/page/404',{title:'Trang không tìm thấy'});
   });
